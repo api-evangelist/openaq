@@ -11,6 +11,8 @@ apis:
     properties:
       - url: https://docs.openaq.org/
         type: Documentation
+      - type: OpenAPI
+        url: properties/openaq-openapi.yml
     description: |-
 
       OpenAQ is a nonprofit organization providing universal access to air
