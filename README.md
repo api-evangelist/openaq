@@ -33,15 +33,17 @@ inequality-the unequal access to clean air.
 
 #### Tags:
 
- - API
+ - Instruments, Manufacturers, Locations, Licenses, Parameters, Countries, Sensors, Measurements, Hourly, Daily, Hours, Monthly, Yearly, Days, Years, Owners, Providers, Latest, Flags, Sensor, Averages, Cities, Projects, Project, Sources, Readme, Slug, Summary
 
 #### Properties
 
 - [Documentation](https://docs.openaq.org/)
+- [OpenAPI](properties/openaq-openapi.yml)
 
 ## Common Properties
 
 - [Portal](https://openaq.org/developers/platform-overview/)
+- [GitHubOrganization](https://github.com/openaq)
 
 ## Maintainers
 
