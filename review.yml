@@ -1,4 +1,4 @@
-executed: '2025-01-02T22:33:17.462Z'
+executed: '2025-01-02T22:41:27.374Z'
 results:
   - code: apis-json-specification-aid-info
     message: There is an aid.
@@ -34,7 +34,7 @@ results:
         line: 2
         character: 5
       end:
-        line: 17
+        line: 46
         character: 49
   - code: apis-json-apis-contact-error
     message: API COULD have a contact.
@@ -47,7 +47,7 @@ results:
         line: 3
         character: 4
       end:
-        line: 17
+        line: 46
         character: 49
   - code: apis-json-apis-aid-info
     message: API has an aid property.
@@ -89,8 +89,8 @@ results:
         line: 5
         character: 9
       end:
-        line: 6
-        character: 11
+        line: 33
+        character: 15
   - code: apis-json-apis-tags-upper-case-info
     message: API Tags are Upper Case
     path:
@@ -105,7 +105,412 @@ results:
         character: 8
       end:
         line: 6
-        character: 11
+        character: 19
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '1'
+    severity: 2
+    range:
+      start:
+        line: 7
+        character: 8
+      end:
+        line: 7
+        character: 21
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '2'
+    severity: 2
+    range:
+      start:
+        line: 8
+        character: 8
+      end:
+        line: 8
+        character: 17
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '3'
+    severity: 2
+    range:
+      start:
+        line: 9
+        character: 8
+      end:
+        line: 9
+        character: 16
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '4'
+    severity: 2
+    range:
+      start:
+        line: 10
+        character: 8
+      end:
+        line: 10
+        character: 18
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '5'
+    severity: 2
+    range:
+      start:
+        line: 11
+        character: 8
+      end:
+        line: 11
+        character: 17
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '6'
+    severity: 2
+    range:
+      start:
+        line: 12
+        character: 8
+      end:
+        line: 12
+        character: 15
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '7'
+    severity: 2
+    range:
+      start:
+        line: 13
+        character: 8
+      end:
+        line: 13
+        character: 20
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '8'
+    severity: 2
+    range:
+      start:
+        line: 14
+        character: 8
+      end:
+        line: 14
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '9'
+    severity: 2
+    range:
+      start:
+        line: 15
+        character: 8
+      end:
+        line: 15
+        character: 13
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '10'
+    severity: 2
+    range:
+      start:
+        line: 16
+        character: 8
+      end:
+        line: 16
+        character: 13
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '11'
+    severity: 2
+    range:
+      start:
+        line: 17
+        character: 8
+      end:
+        line: 17
+        character: 15
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '12'
+    severity: 2
+    range:
+      start:
+        line: 18
+        character: 8
+      end:
+        line: 18
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '13'
+    severity: 2
+    range:
+      start:
+        line: 19
+        character: 8
+      end:
+        line: 19
+        character: 12
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '14'
+    severity: 2
+    range:
+      start:
+        line: 20
+        character: 8
+      end:
+        line: 20
+        character: 13
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '15'
+    severity: 2
+    range:
+      start:
+        line: 21
+        character: 8
+      end:
+        line: 21
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '16'
+    severity: 2
+    range:
+      start:
+        line: 22
+        character: 8
+      end:
+        line: 22
+        character: 17
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '17'
+    severity: 2
+    range:
+      start:
+        line: 23
+        character: 8
+      end:
+        line: 23
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '18'
+    severity: 2
+    range:
+      start:
+        line: 24
+        character: 8
+      end:
+        line: 24
+        character: 13
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '19'
+    severity: 2
+    range:
+      start:
+        line: 25
+        character: 8
+      end:
+        line: 25
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '20'
+    severity: 2
+    range:
+      start:
+        line: 26
+        character: 8
+      end:
+        line: 26
+        character: 16
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '21'
+    severity: 2
+    range:
+      start:
+        line: 27
+        character: 8
+      end:
+        line: 27
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '22'
+    severity: 2
+    range:
+      start:
+        line: 28
+        character: 8
+      end:
+        line: 28
+        character: 16
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '23'
+    severity: 2
+    range:
+      start:
+        line: 29
+        character: 8
+      end:
+        line: 29
+        character: 15
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '24'
+    severity: 2
+    range:
+      start:
+        line: 30
+        character: 8
+      end:
+        line: 30
+        character: 15
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '25'
+    severity: 2
+    range:
+      start:
+        line: 31
+        character: 8
+      end:
+        line: 31
+        character: 14
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '26'
+    severity: 2
+    range:
+      start:
+        line: 32
+        character: 8
+      end:
+        line: 32
+        character: 12
+  - code: apis-json-apis-tags-upper-case-info
+    message: API Tags are Upper Case
+    path:
+      - apis
+      - '0'
+      - tags
+      - '27'
+    severity: 2
+    range:
+      start:
+        line: 33
+        character: 8
+      end:
+        line: 33
+        character: 15
   - code: apis-json-apis-image-info
     message: Has an Image
     path:
@@ -115,10 +520,10 @@ results:
     severity: 2
     range:
       start:
-        line: 7
+        line: 34
         character: 11
       end:
-        line: 7
+        line: 34
         character: 84
   - code: apis-json-apis-baseURL-info
     message: APIs Has a Base URL
@@ -129,10 +534,10 @@ results:
     severity: 2
     range:
       start:
-        line: 8
+        line: 35
         character: 13
       end:
-        line: 8
+        line: 35
         character: 35
   - code: apis-json-apis-humanURL-info
     message: Has a Human URL
@@ -143,10 +548,10 @@ results:
     severity: 2
     range:
       start:
-        line: 9
+        line: 36
         character: 14
       end:
-        line: 9
+        line: 36
         character: 33
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
@@ -159,10 +564,10 @@ results:
     severity: 2
     range:
       start:
-        line: 11
+        line: 38
         character: 13
       end:
-        line: 11
+        line: 38
         character: 37
   - code: apis-json-apis-properties-documentation-info
     message: Has Documentation
@@ -175,11 +580,27 @@ results:
     severity: 2
     range:
       start:
-        line: 12
+        line: 39
         character: 14
       end:
-        line: 12
+        line: 39
         character: 27
+  - code: apis-json-apis-properties-openapi-info
+    message: Has An OpenAPI
+    path:
+      - apis
+      - '0'
+      - properties
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 41
+        character: 14
+      end:
+        line: 41
+        character: 21
   - code: apis-json-apis-description-info
     message: Has a Description
     path:
@@ -189,10 +610,10 @@ results:
     severity: 2
     range:
       start:
-        line: 13
+        line: 42
         character: 17
       end:
-        line: 17
+        line: 46
         character: 49
   - code: apis-json-name-info
     message: There is a name.
@@ -201,10 +622,10 @@ results:
     severity: 2
     range:
       start:
-        line: 18
+        line: 47
         character: 6
       end:
-        line: 18
+        line: 47
         character: 12
   - code: apis-json-tags-info
     message: There is a Tags Object
@@ -213,10 +634,10 @@ results:
     severity: 2
     range:
       start:
-        line: 19
+        line: 48
         character: 5
       end:
-        line: 21
+        line: 50
         character: 8
   - code: apis-json-tags-upper-case-info
     message: Tags Upper Case
@@ -226,10 +647,10 @@ results:
     severity: 2
     range:
       start:
-        line: 20
+        line: 49
         character: 4
       end:
-        line: 20
+        line: 49
         character: 16
   - code: apis-json-tags-upper-case-info
     message: Tags Upper Case
@@ -239,10 +660,10 @@ results:
     severity: 2
     range:
       start:
-        line: 21
+        line: 50
         character: 4
       end:
-        line: 21
+        line: 50
         character: 8
   - code: apis-json-specification-type-info
     message: There is a specification type.
@@ -251,10 +672,10 @@ results:
     severity: 2
     range:
       start:
-        line: 22
+        line: 51
         character: 6
       end:
-        line: 22
+        line: 51
         character: 14
   - code: apis-json-image-info
     message: There is an image.
@@ -263,10 +684,10 @@ results:
     severity: 2
     range:
       start:
-        line: 23
+        line: 52
         character: 7
       end:
-        line: 23
+        line: 52
         character: 80
   - code: apis-json-common-info
     message: There is an common property.
@@ -275,11 +696,11 @@ results:
     severity: 2
     range:
       start:
-        line: 24
+        line: 54
         character: 7
       end:
-        line: 26
-        character: 16
+        line: 59
+        character: 28
   - code: apis-json-apis-properties-url-info
     message: Property URLs Are Valid
     path:
@@ -289,10 +710,10 @@ results:
     severity: 2
     range:
       start:
-        line: 25
+        line: 55
         character: 9
       end:
-        line: 25
+        line: 55
         character: 57
   - code: apis-json-apis-properties-portal-info
     message: Has Developer Portal
@@ -303,11 +724,39 @@ results:
     severity: 2
     range:
       start:
-        line: 26
+        line: 56
         character: 10
       end:
-        line: 26
+        line: 56
         character: 16
+  - code: apis-json-apis-properties-url-info
+    message: Property URLs Are Valid
+    path:
+      - common
+      - '1'
+      - url
+    severity: 2
+    range:
+      start:
+        line: 57
+        character: 9
+      end:
+        line: 57
+        character: 34
+  - code: apis-json-apis-properties-github-organization-info
+    message: Has a GitHub Organization
+    path:
+      - common
+      - '1'
+      - type
+    severity: 2
+    range:
+      start:
+        line: 59
+        character: 10
+      end:
+        line: 59
+        character: 28
   - code: apis-json-created-info
     message: There is a created date.
     path:
@@ -315,10 +764,10 @@ results:
     severity: 2
     range:
       start:
-        line: 27
+        line: 60
         character: 9
       end:
-        line: 27
+        line: 60
         character: 21
   - code: apis-json-modified-info
     message: There is a modified date.
@@ -327,10 +776,10 @@ results:
     severity: 2
     range:
       start:
-        line: 28
+        line: 61
         character: 10
       end:
-        line: 28
+        line: 61
         character: 22
   - code: apis-json-description-info
     message: There is a description.
@@ -339,10 +788,10 @@ results:
     severity: 2
     range:
       start:
-        line: 29
+        line: 63
         character: 13
       end:
-        line: 38
+        line: 72
         character: 74
   - code: apis-json-maintainers-info
     message: There is a maintainer object.
@@ -351,10 +800,10 @@ results:
     severity: 2
     range:
       start:
-        line: 39
+        line: 73
         character: 12
       end:
-        line: 42
+        line: 76
         character: 28
   - code: apis-json-maintainers-fn-info
     message: There is a FN property for maintainers.
@@ -365,10 +814,10 @@ results:
     severity: 2
     range:
       start:
-        line: 40
+        line: 74
         character: 8
       end:
-        line: 40
+        line: 74
         character: 16
   - code: apis-json-maintainers-email-info
     message: There is a email property for maintainers.
@@ -379,10 +828,10 @@ results:
     severity: 2
     range:
       start:
-        line: 41
+        line: 75
         character: 11
       end:
-        line: 41
+        line: 75
         character: 33
   - code: apis-json-specification-version-info
     message: There is a specification version.
@@ -391,8 +840,8 @@ results:
     severity: 2
     range:
       start:
-        line: 43
+        line: 77
         character: 22
       end:
-        line: 43
+        line: 77
         character: 28
