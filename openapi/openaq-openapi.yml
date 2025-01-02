@@ -1,13 +1,17 @@
 openapi: 3.1.0
 info:
   title: OpenAQ
-  description: OpenAQ API
+  description: |-
+
+    OpenAQ is a nonprofit organization providing universal access to air
+    quality data to empower a global community of changemakers to solve air
+    inequality-the unequal access to clean air.
   version: 2.0.0
 paths:
   /v3/instruments/{instruments_id}:
     get:
       tags:
-        - v3
+        - Instruments
       summary: Get an instrument by ID
       description: Provides a instrument by instrument ID
       operationId: instrument_get_v3_instruments__instruments_id__get
@@ -38,7 +42,7 @@ paths:
   /v3/instruments:
     get:
       tags:
-        - v3
+        - Instruments
       summary: Get instruments
       description: Provides a list of instruments
       operationId: instruments_get_v3_instruments_get
@@ -117,7 +121,8 @@ paths:
   /v3/manufacturers/{manufacturers_id}/instruments:
     get:
       tags:
-        - v3
+        - Manufacturers
+        - Instruments
       summary: Get instruments by manufacturer ID
       description: Provides a list of instruments for a specific manufacturer
       operationId: >-
@@ -149,7 +154,7 @@ paths:
   /v3/locations/{locations_id}:
     get:
       tags:
-        - v3
+        - Locations
       summary: Get a location by ID
       description: Provides a location by location ID
       operationId: location_get_v3_locations__locations_id__get
@@ -181,7 +186,7 @@ paths:
   /v3/locations:
     get:
       tags:
-        - v3
+        - Locations
       summary: Get locations
       description: Provides a list of locations
       operationId: locations_get_v3_locations_get
@@ -447,7 +452,7 @@ paths:
   /v3/licenses/{licenses_id}:
     get:
       tags:
-        - v3
+        - Licenses
       summary: Get an instrument by ID
       description: Provides a instrument by instrument ID
       operationId: license_get_v3_licenses__licenses_id__get
@@ -478,7 +483,7 @@ paths:
   /v3/licenses:
     get:
       tags:
-        - v3
+        - Licenses
       summary: Get licenses
       description: Provides a list of licenses
       operationId: instruments_get_v3_licenses_get
@@ -557,7 +562,7 @@ paths:
   /v3/parameters/{parameters_id}:
     get:
       tags:
-        - v3
+        - Parameters
       summary: Get a parameter by ID
       description: Provides a parameter by parameter ID
       operationId: parameter_get_v3_parameters__parameters_id__get
@@ -589,7 +594,7 @@ paths:
   /v3/parameters:
     get:
       tags:
-        - v3
+        - Parameters
       summary: Get a parameters
       description: Provides a list of parameters
       operationId: parameters_get_v3_parameters_get
@@ -773,7 +778,7 @@ paths:
   /v3/countries/{countries_id}:
     get:
       tags:
-        - v3
+        - Countries
       summary: Get a country by ID
       description: Provides a country by country ID
       operationId: country_get_v3_countries__countries_id__get
@@ -803,7 +808,7 @@ paths:
   /v3/countries:
     get:
       tags:
-        - v3
+        - Countries
       summary: Get countries
       description: Provides a list of countries
       operationId: countries_get_v3_countries_get
@@ -912,7 +917,7 @@ paths:
   /v3/manufacturers/{manufacturers_id}:
     get:
       tags:
-        - v3
+        - Manufacturers
       summary: Get a manufacturer by ID
       description: Provides a manufacturer by manufacturer ID
       operationId: manufacturer_get_v3_manufacturers__manufacturers_id__get
@@ -943,7 +948,7 @@ paths:
   /v3/manufacturers:
     get:
       tags:
-        - v3
+        - Manufacturers
       summary: Get manufacturers
       description: Provides a list of manufacturers
       operationId: manufacturers_get_v3_manufacturers_get
@@ -1022,7 +1027,8 @@ paths:
   /v3/sensors/{sensors_id}/measurements:
     get:
       tags:
-        - v3
+        - Sensors
+        - Measurements
       summary: Get measurements by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: sensor_measurements_get_v3_sensors__sensors_id__measurements_get
@@ -1116,7 +1122,9 @@ paths:
   /v3/sensors/{sensors_id}/measurements/hourly:
     get:
       tags:
-        - v3
+        - Sensors
+        - Measurements
+        - Hourly
       summary: Get measurements aggregated to hours by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
@@ -1211,7 +1219,9 @@ paths:
   /v3/sensors/{sensors_id}/measurements/daily:
     get:
       tags:
-        - v3
+        - Sensors
+        - Measurements
+        - Daily
       summary: Get measurements aggregated to days by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
@@ -1306,7 +1316,8 @@ paths:
   /v3/sensors/{sensors_id}/hours:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
       summary: Get measurements aggregated to hour by sensor ID
       description: Provides a list of hourly data by sensor ID
       operationId: sensor_hourly_measurements_get_v3_sensors__sensors_id__hours_get
@@ -1399,7 +1410,9 @@ paths:
   /v3/sensors/{sensors_id}/hours/daily:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
+        - Daily
       summary: Get measurements aggregated from hour to day by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -1493,7 +1506,9 @@ paths:
   /v3/sensors/{sensors_id}/hours/monthly:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
+        - Monthly
       summary: Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -1587,7 +1602,9 @@ paths:
   /v3/sensors/{sensors_id}/hours/yearly:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
+        - Yearly
       summary: Get measurements aggregated from hour to year by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1681,7 +1698,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/hourofday:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
       summary: Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1745,7 +1763,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/dayofweek:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
       summary: Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1809,7 +1828,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/monthofyear:
     get:
       tags:
-        - v3
+        - Sensors
+        - Hours
       summary: Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1873,7 +1893,8 @@ paths:
   /v3/sensors/{sensors_id}/days/dayofweek:
     get:
       tags:
-        - v3
+        - Sensors
+        - Days
       summary: Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of dayly data by sensor ID
       operationId: >-
@@ -1937,7 +1958,8 @@ paths:
   /v3/sensors/{sensors_id}/days/monthofyear:
     get:
       tags:
-        - v3
+        - Sensors
+        - Days
       summary: Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
       operationId: >-
@@ -2001,7 +2023,8 @@ paths:
   /v3/sensors/{sensors_id}/days:
     get:
       tags:
-        - v3
+        - Sensors
+        - Days
       summary: Get measurements aggregated to day by sensor ID
       description: Provides a list of daily data by sensor ID
       operationId: sensor_daily_get_v3_sensors__sensors_id__days_get
@@ -2094,7 +2117,9 @@ paths:
   /v3/sensors/{sensors_id}/days/monthly:
     get:
       tags:
-        - v3
+        - Sensors
+        - Days
+        - Monthly
       summary: Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -2188,7 +2213,9 @@ paths:
   /v3/sensors/{sensors_id}/days/yearly:
     get:
       tags:
-        - v3
+        - Sensors
+        - Days
+        - Yearly
       summary: Get measurements aggregated from day to year by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
       operationId: >-
@@ -2282,7 +2309,8 @@ paths:
   /v3/sensors/{sensors_id}/years:
     get:
       tags:
-        - v3
+        - Sensors
+        - Years
       summary: Get measurements aggregated to year by sensor ID
       description: Provides a list of annual data by sensor ID
       operationId: sensor_yearly_get_v3_sensors__sensors_id__years_get
@@ -2375,7 +2403,7 @@ paths:
   /v3/owners/{owners_id}:
     get:
       tags:
-        - v3
+        - Owners
       summary: Get a owner by ID
       description: Provides a owner by owner ID
       operationId: owner_get_v3_owners__owners_id__get
@@ -2406,7 +2434,7 @@ paths:
   /v3/owners:
     get:
       tags:
-        - v3
+        - Owners
       summary: Get owners
       description: Provides a list of owners
       operationId: owners_get_v3_owners_get
@@ -2485,7 +2513,7 @@ paths:
   /v3/providers/{providers_id}:
     get:
       tags:
-        - v3
+        - Providers
       summary: Get a provider by ID
       description: Provides a provider by provider ID
       operationId: provider_get_v3_providers__providers_id__get
@@ -2516,7 +2544,7 @@ paths:
   /v3/providers:
     get:
       tags:
-        - v3
+        - Providers
       summary: Get providers
       description: Provides a list of providers
       operationId: providers_get_v3_providers_get
@@ -2706,7 +2734,8 @@ paths:
   /v3/locations/{locations_id}/sensors:
     get:
       tags:
-        - v3
+        - Locations
+        - Sensors
       summary: Get sensors by location ID
       description: Provides a list of sensors by location ID
       operationId: sensors_get_v3_locations__locations_id__sensors_get
@@ -2737,7 +2766,7 @@ paths:
   /v3/sensors/{sensors_id}:
     get:
       tags:
-        - v3
+        - Sensors
       summary: Get a sensor by ID
       description: Provides a sensor by sensor ID
       operationId: sensor_get_v3_sensors__sensors_id__get
@@ -2768,7 +2797,8 @@ paths:
   /v3/parameters/{parameters_id}/latest:
     get:
       tags:
-        - v3
+        - Parameters
+        - Latest
       summary: Parameters Latest Get
       operationId: parameters_latest_get_v3_parameters__parameters_id__latest_get
       security:
@@ -2845,7 +2875,8 @@ paths:
   /v3/locations/{locations_id}/latest:
     get:
       tags:
-        - v3
+        - Locations
+        - Latest
       summary: Get a location's latest measurements
       description: Providers a location's latest measurement values
       operationId: location_latest_get_v3_locations__locations_id__latest_get
@@ -2923,7 +2954,8 @@ paths:
   /v3/locations/{locations_id}/flags:
     get:
       tags:
-        - v3
+        - Locations
+        - Flags
       summary: Get flags by location ID
       description: Provides a list of flags by location ID
       operationId: location_flags_get_v3_locations__locations_id__flags_get
@@ -3016,7 +3048,9 @@ paths:
   /v3/sensors/{sensor_id}/flags:
     get:
       tags:
-        - v3
+        - Sensors
+        - Sensor
+        - Flags
       summary: Get flags by sensor ID
       description: Provides a list of flags by sensor ID
       operationId: sensor_flags_get_v3_sensors__sensor_id__flags_get
@@ -3109,7 +3143,7 @@ paths:
   /v2/averages:
     get:
       tags:
-        - v2
+        - Averages
       summary: Get averaged values
       operationId: averages_v2_get_v2_averages_get
       deprecated: true
@@ -3235,7 +3269,7 @@ paths:
   /v2/cities:
     get:
       tags:
-        - v2
+        - Cities
       summary: Get cities
       description: Provides a list of cities supported by the platform
       operationId: cities_get_v2_cities_get
@@ -3385,7 +3419,7 @@ paths:
   /v1/cities:
     get:
       tags:
-        - v1
+        - Cities
       summary: Get cities
       description: Provides a list of cities supported by the platform
       operationId: cities_getv1_v1_cities_get
@@ -3493,7 +3527,7 @@ paths:
   /v2/countries/{country_id}:
     get:
       tags:
-        - v2
+        - Countries
       summary: Get country by ID
       description: Provides a single country by country ID
       operationId: countries_by_path_v2_countries__country_id__get
@@ -3588,7 +3622,7 @@ paths:
   /v1/countries/{country_id}:
     get:
       tags:
-        - v1
+        - Countries
       summary: Get country by ID
       description: Provides a single country by country ID
       operationId: countries_by_path_v1_countries__country_id__get
@@ -3683,7 +3717,7 @@ paths:
   /v2/countries:
     get:
       tags:
-        - v2
+        - Countries
       summary: Get countries
       description: Provides a list of countries
       operationId: countries_get_v2_countries_get
@@ -3768,7 +3802,7 @@ paths:
   /v1/countries:
     get:
       tags:
-        - v1
+        - Countries
       summary: Get countries
       description: Providecs a list of countries
       operationId: countries_getv1_v1_countries_get
@@ -3834,7 +3868,7 @@ paths:
   /v2/locations/{location_id}:
     get:
       tags:
-        - v2
+        - Locations
       summary: Get a location by ID
       description: Provides a location by location ID
       operationId: get_v2_location_by_id_v2_locations__location_id__get
@@ -3921,7 +3955,7 @@ paths:
   /v2/locations:
     get:
       tags:
-        - v2
+        - Locations
       summary: Get locations
       description: Provides a list of locations
       operationId: locations_get_v2_locations_get
@@ -4264,7 +4298,8 @@ paths:
   /v2/latest/{location_id}:
     get:
       tags:
-        - v2
+        - Latest
+        - Locations
       summary: Get latest measurements by location ID
       description: Provides latest measurements for a locations by location ID
       operationId: get_v2_latest_by_id_v2_latest__location_id__get
@@ -4351,7 +4386,7 @@ paths:
   /v2/latest:
     get:
       tags:
-        - v2
+        - Latest
       summary: Get latest measurements
       description: Provides a list of locations with latest measurements
       operationId: latest_get_v2_latest_get
@@ -4499,7 +4534,8 @@ paths:
   /v1/latest/{location_id}:
     get:
       tags:
-        - v1
+        - Latest
+        - Locations
       summary: Get latest measurements by location ID
       operationId: get_v1_latest_by_id_v1_latest__location_id__get
       deprecated: true
@@ -4584,7 +4620,7 @@ paths:
   /v1/latest:
     get:
       tags:
-        - v1
+        - Latest
       summary: Get latest measurements
       operationId: latest_v1_get_v1_latest_get
       deprecated: true
@@ -4925,7 +4961,7 @@ paths:
   /v1/locations/{location_id}:
     get:
       tags:
-        - v1
+        - Locations
       summary: Get location by ID
       operationId: get_v1_locations_by_id_v1_locations__location_id__get
       deprecated: true
@@ -5010,7 +5046,7 @@ paths:
   /v1/locations:
     get:
       tags:
-        - v1
+        - Locations
       summary: Get locations
       operationId: locationsv1_get_v1_locations_get
       deprecated: true
@@ -5351,7 +5387,7 @@ paths:
   /v2/measurements:
     get:
       tags:
-        - v2
+        - Measurements
       summary: Get measurements
       operationId: measurements_get_v2_measurements_get
       deprecated: true
@@ -5733,7 +5769,7 @@ paths:
   /v1/measurements:
     get:
       tags:
-        - v1
+        - Measurements
       summary: Get a list of measurements
       operationId: measurements_get_v1_v1_measurements_get
       deprecated: true
@@ -6114,7 +6150,7 @@ paths:
   /v2/parameters:
     get:
       tags:
-        - v2
+        - Parameters
       summary: Get parameters
       description: Provides a list of parameters supported by the platform
       operationId: parameters_get_v2_parameters_get
@@ -6204,7 +6240,7 @@ paths:
   /v1/parameters:
     get:
       tags:
-        - v1
+        - Parameters
       summary: Get parameters
       description: Provides a list of parameters supported by the platform
       operationId: parameters_getv1_v1_parameters_get
@@ -6293,7 +6329,8 @@ paths:
   /v2/projects/{project_id}:
     get:
       tags:
-        - v2
+        - Projects
+        - Project
       summary: Project by ID
       description: Provides a project by project ID
       operationId: projects_get_v2_projects__project_id__get
@@ -6323,7 +6360,7 @@ paths:
   /v2/projects:
     get:
       tags:
-        - v2
+        - Projects
       summary: Projects
       description: Provides a list of projects
       operationId: projects_get_v2_projects_get
@@ -6550,7 +6587,7 @@ paths:
   /v2/sources:
     get:
       tags:
-        - v2
+        - Sources
       summary: Sources
       description: Provides a list of sources
       operationId: sources_get_v2_sources_get
@@ -6674,7 +6711,7 @@ paths:
   /v1/sources:
     get:
       tags:
-        - v1
+        - Sources
       summary: Sources
       description: Provides a list of sources
       operationId: sources_v1_get_v1_sources_get
@@ -6750,7 +6787,9 @@ paths:
   /v2/sources/readme/{slug}:
     get:
       tags:
-        - v2
+        - Sources
+        - Readme
+        - Slug
       summary: Source Readme
       description: Provides a readme for a given source by the source slug
       operationId: readme_get_v2_sources_readme__slug__get
@@ -6782,7 +6821,7 @@ paths:
   /v2/summary:
     get:
       tags:
-        - v2
+        - Summary
       summary: Platform Summary
       description: Provides a summary of platform data
       operationId: summary_get_v2_summary_get
