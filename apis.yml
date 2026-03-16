@@ -1,5 +1,5 @@
 aid: openaq
-url: https://github.com/api-search/openaq/raw/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml
 apis:
   - aid: openaq:openaq
     name: OpenAQ
@@ -58,7 +58,7 @@ common:
     url: https://github.com/openaq
     type: GitHubOrganization
 created: '2024-11-11'
-modified: '2025-01-02'
+modified: '2026-03-16'
 description: >-
   OpenAQ is a non-profit organization that focuses on collecting and sharing air
   quality data from around the world. By providing access to this information
@@ -71,8 +71,7 @@ description: >-
   pollution and advocating for policies that prioritize clean air for all.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
-    X-twitter: apievangelist
+    email: kin@apievangelist.com
 specificationVersion: '0.18'
 position: Consuming
 access: 3rd-Party
