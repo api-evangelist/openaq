@@ -121,8 +121,8 @@ paths:
   /v3/manufacturers/{manufacturers_id}/instruments:
     get:
       tags:
-        - Manufacturers
         - Instruments
+        - Manufacturers
       summary: OpenAQ Get instruments by manufacturer ID
       description: Provides a list of instruments for a specific manufacturer
       operationId: >-
@@ -1025,8 +1025,8 @@ paths:
   /v3/sensors/{sensors_id}/measurements:
     get:
       tags:
-        - Sensors
         - Measurements
+        - Sensors
       summary: OpenAQ Get measurements by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: sensor_measurements_get_v3_sensors__sensors_id__measurements_get
@@ -1120,9 +1120,9 @@ paths:
   /v3/sensors/{sensors_id}/measurements/hourly:
     get:
       tags:
-        - Sensors
-        - Measurements
         - Hourly
+        - Measurements
+        - Sensors
       summary: OpenAQ Get measurements aggregated to hours by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
@@ -1217,9 +1217,9 @@ paths:
   /v3/sensors/{sensors_id}/measurements/daily:
     get:
       tags:
-        - Sensors
-        - Measurements
         - Daily
+        - Measurements
+        - Sensors
       summary: OpenAQ Get measurements aggregated to days by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
@@ -1314,8 +1314,8 @@ paths:
   /v3/sensors/{sensors_id}/hours:
     get:
       tags:
-        - Sensors
         - Hours
+        - Sensors
       summary: OpenAQ Get measurements aggregated to hour by sensor ID
       description: Provides a list of hourly data by sensor ID
       operationId: sensor_hourly_measurements_get_v3_sensors__sensors_id__hours_get
@@ -1408,9 +1408,9 @@ paths:
   /v3/sensors/{sensors_id}/hours/daily:
     get:
       tags:
-        - Sensors
-        - Hours
         - Daily
+        - Hours
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to day by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -1504,9 +1504,9 @@ paths:
   /v3/sensors/{sensors_id}/hours/monthly:
     get:
       tags:
-        - Sensors
         - Hours
         - Monthly
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -1600,8 +1600,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/yearly:
     get:
       tags:
-        - Sensors
         - Hours
+        - Sensors
         - Yearly
       summary: OpenAQ Get measurements aggregated from hour to year by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
@@ -1696,8 +1696,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/hourofday:
     get:
       tags:
-        - Sensors
         - Hours
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1761,8 +1761,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/dayofweek:
     get:
       tags:
-        - Sensors
         - Hours
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1826,8 +1826,8 @@ paths:
   /v3/sensors/{sensors_id}/hours/monthofyear:
     get:
       tags:
-        - Sensors
         - Hours
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
@@ -1891,8 +1891,8 @@ paths:
   /v3/sensors/{sensors_id}/days/dayofweek:
     get:
       tags:
-        - Sensors
         - Days
+        - Sensors
       summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of dayly data by sensor ID
       operationId: >-
@@ -1956,8 +1956,8 @@ paths:
   /v3/sensors/{sensors_id}/days/monthofyear:
     get:
       tags:
-        - Sensors
         - Days
+        - Sensors
       summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
       operationId: >-
@@ -2021,8 +2021,8 @@ paths:
   /v3/sensors/{sensors_id}/days:
     get:
       tags:
-        - Sensors
         - Days
+        - Sensors
       summary: OpenAQ Get measurements aggregated to day by sensor ID
       description: Provides a list of daily data by sensor ID
       operationId: sensor_daily_get_v3_sensors__sensors_id__days_get
@@ -2115,9 +2115,9 @@ paths:
   /v3/sensors/{sensors_id}/days/monthly:
     get:
       tags:
-        - Sensors
         - Days
         - Monthly
+        - Sensors
       summary: OpenAQ Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
@@ -2211,8 +2211,8 @@ paths:
   /v3/sensors/{sensors_id}/days/yearly:
     get:
       tags:
-        - Sensors
         - Days
+        - Sensors
         - Yearly
       summary: OpenAQ Get measurements aggregated from day to year by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
@@ -2795,8 +2795,8 @@ paths:
   /v3/parameters/{parameters_id}/latest:
     get:
       tags:
-        - Parameters
         - Latest
+        - Parameters
       summary: OpenAQ Parameters Latest Get
       operationId: parameters_latest_get_v3_parameters__parameters_id__latest_get
       security:
@@ -2873,8 +2873,8 @@ paths:
   /v3/locations/{locations_id}/latest:
     get:
       tags:
-        - Locations
         - Latest
+        - Locations
       summary: OpenAQ Get a location's latest measurements
       description: Providers a location's latest measurement values
       operationId: location_latest_get_v3_locations__locations_id__latest_get
@@ -2952,8 +2952,8 @@ paths:
   /v3/locations/{locations_id}/flags:
     get:
       tags:
-        - Locations
         - Flags
+        - Locations
       summary: OpenAQ Get flags by location ID
       description: Provides a list of flags by location ID
       operationId: location_flags_get_v3_locations__locations_id__flags_get
@@ -3046,9 +3046,9 @@ paths:
   /v3/sensors/{sensor_id}/flags:
     get:
       tags:
-        - Sensors
-        - Sensor
         - Flags
+        - Sensor
+        - Sensors
       summary: OpenAQ Get flags by sensor ID
       description: Provides a list of flags by sensor ID
       operationId: sensor_flags_get_v3_sensors__sensor_id__flags_get
@@ -6327,8 +6327,8 @@ paths:
   /v2/projects/{project_id}:
     get:
       tags:
-        - Projects
         - Project
+        - Projects
       summary: OpenAQ Project by ID
       description: Provides a project by project ID
       operationId: projects_get_v2_projects__project_id__get
@@ -6785,9 +6785,9 @@ paths:
   /v2/sources/readme/{slug}:
     get:
       tags:
-        - Sources
         - Readme
         - Slug
+        - Sources
       summary: OpenAQ Source Readme
       description: Provides a readme for a given source by the source slug
       operationId: readme_get_v2_sources_readme__slug__get
@@ -9668,3 +9668,32 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
+tags:
+  - name: Averages
+  - name: Cities
+  - name: Countries
+  - name: Daily
+  - name: Days
+  - name: Flags
+  - name: Hourly
+  - name: Hours
+  - name: Instruments
+  - name: Latest
+  - name: Licenses
+  - name: Locations
+  - name: Manufacturers
+  - name: Measurements
+  - name: Monthly
+  - name: Owners
+  - name: Parameters
+  - name: Project
+  - name: Projects
+  - name: Providers
+  - name: Readme
+  - name: Sensor
+  - name: Sensors
+  - name: Slug
+  - name: Sources
+  - name: Summary
+  - name: Yearly
+  - name: Years
