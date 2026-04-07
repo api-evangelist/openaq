@@ -1,5 +1,6 @@
 aid: openaq
-url: https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml
 apis:
   - aid: openaq:openaq
     name: OpenAQ
@@ -32,7 +33,8 @@ apis:
       - Readme
       - Slug
       - Summary
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: http://api.example.com
     humanURL: https://openaq.org/
     properties:
@@ -40,11 +42,10 @@ apis:
         type: Documentation
       - url: properties/openaq-openapi.yml
         type: OpenAPI
-    description: |-
-
-      OpenAQ is a nonprofit organization providing universal access to air
-      quality data to empower a global community of changemakers to solve air
-      inequality-the unequal access to clean air.
+    description: >-
+      OpenAQ is a nonprofit organization providing universal access to air quality
+      data to empower a global community of changemakers to solve air inequality-the
+      unequal access to clean air.
 name: OpenAQ
 tags:
   - Data Quality
@@ -60,15 +61,10 @@ common:
 created: '2024-11-11'
 modified: '2026-03-16'
 description: >-
-  OpenAQ is a non-profit organization that focuses on collecting and sharing air
-  quality data from around the world. By providing access to this information
-  through their open-source platform, OpenAQ aims to empower individuals,
-  communities, and organizations to take action towards improving air quality
-  and public health. They collaborate with governments, researchers, and citizen
-  scientists to gather data on air pollutants such as particulate matter and
-  ozone, and make it available in a standardized format for easy analysis and
-  comparison. OpenAQ plays a crucial role in raising awareness about air
-  pollution and advocating for policies that prioritize clean air for all.
+  OpenAQ is a non-profit organization that focuses on collecting and sharing air quality
+  data from around the world. By providing access to this information through their
+  open-source platform, OpenAQ aims to empower individuals, communities, and organizations
+  to take action towards improving air quality and public health.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

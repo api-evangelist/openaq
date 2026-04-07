@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: OpenAQ
-  description: |-
+  description: |2-
 
     OpenAQ is a nonprofit organization providing universal access to air
     quality data to empower a global community of changemakers to solve air
@@ -12,7 +12,7 @@ paths:
     get:
       tags:
         - Instruments
-      summary: Get an instrument by ID
+      summary: OpenAQ Get an instrument by ID
       description: Provides a instrument by instrument ID
       operationId: instrument_get_v3_instruments__instruments_id__get
       security:
@@ -43,7 +43,7 @@ paths:
     get:
       tags:
         - Instruments
-      summary: Get instruments
+      summary: OpenAQ Get instruments
       description: Provides a list of instruments
       operationId: instruments_get_v3_instruments_get
       security:
@@ -123,7 +123,7 @@ paths:
       tags:
         - Manufacturers
         - Instruments
-      summary: Get instruments by manufacturer ID
+      summary: OpenAQ Get instruments by manufacturer ID
       description: Provides a list of instruments for a specific manufacturer
       operationId: >-
         get_instruments_by_manufacturer_v3_manufacturers__manufacturers_id__instruments_get
@@ -155,7 +155,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get a location by ID
+      summary: OpenAQ Get a location by ID
       description: Provides a location by location ID
       operationId: location_get_v3_locations__locations_id__get
       security:
@@ -187,7 +187,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get locations
+      summary: OpenAQ Get locations
       description: Provides a list of locations
       operationId: locations_get_v3_locations_get
       security:
@@ -239,8 +239,7 @@ paths:
                   type: integer
               - type: 'null'
             description: >-
-              Limit the results to a specific provider or multiple providers 
-              with a single provider ID or a comma delimited list of IDs
+              Limit the results to a specific provider or multiple providers  with a single provider ID or a comma delimited list of IDs
             examples:
               - '1'
               - 1,2,3
@@ -453,7 +452,7 @@ paths:
     get:
       tags:
         - Licenses
-      summary: Get an instrument by ID
+      summary: OpenAQ Get an instrument by ID
       description: Provides a instrument by instrument ID
       operationId: license_get_v3_licenses__licenses_id__get
       security:
@@ -484,7 +483,7 @@ paths:
     get:
       tags:
         - Licenses
-      summary: Get licenses
+      summary: OpenAQ Get licenses
       description: Provides a list of licenses
       operationId: instruments_get_v3_licenses_get
       security:
@@ -563,7 +562,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get a parameter by ID
+      summary: OpenAQ Get a parameter by ID
       description: Provides a parameter by parameter ID
       operationId: parameter_get_v3_parameters__parameters_id__get
       security:
@@ -595,7 +594,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get a parameters
+      summary: OpenAQ Get a parameters
       description: Provides a list of parameters
       operationId: parameters_get_v3_parameters_get
       security:
@@ -779,7 +778,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get a country by ID
+      summary: OpenAQ Get a country by ID
       description: Provides a country by country ID
       operationId: country_get_v3_countries__countries_id__get
       security:
@@ -809,7 +808,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get countries
+      summary: OpenAQ Get countries
       description: Provides a list of countries
       operationId: countries_get_v3_countries_get
       security:
@@ -851,8 +850,7 @@ paths:
                   type: integer
               - type: 'null'
             description: >-
-              Limit the results to a specific provider or multiple providers 
-              with a single provider ID or a comma delimited list of IDs
+              Limit the results to a specific provider or multiple providers  with a single provider ID or a comma delimited list of IDs
             examples:
               - '1'
               - 1,2,3
@@ -918,7 +916,7 @@ paths:
     get:
       tags:
         - Manufacturers
-      summary: Get a manufacturer by ID
+      summary: OpenAQ Get a manufacturer by ID
       description: Provides a manufacturer by manufacturer ID
       operationId: manufacturer_get_v3_manufacturers__manufacturers_id__get
       security:
@@ -949,7 +947,7 @@ paths:
     get:
       tags:
         - Manufacturers
-      summary: Get manufacturers
+      summary: OpenAQ Get manufacturers
       description: Provides a list of manufacturers
       operationId: manufacturers_get_v3_manufacturers_get
       security:
@@ -1029,7 +1027,7 @@ paths:
       tags:
         - Sensors
         - Measurements
-      summary: Get measurements by sensor ID
+      summary: OpenAQ Get measurements by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: sensor_measurements_get_v3_sensors__sensors_id__measurements_get
       security:
@@ -1125,7 +1123,7 @@ paths:
         - Sensors
         - Measurements
         - Hourly
-      summary: Get measurements aggregated to hours by sensor ID
+      summary: OpenAQ Get measurements aggregated to hours by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
         sensor_measurements_aggregated_get_hourly_v3_sensors__sensors_id__measurements_hourly_get
@@ -1222,7 +1220,7 @@ paths:
         - Sensors
         - Measurements
         - Daily
-      summary: Get measurements aggregated to days by sensor ID
+      summary: OpenAQ Get measurements aggregated to days by sensor ID
       description: Provides a list of measurements by sensor ID
       operationId: >-
         sensor_measurements_aggregated_get_daily_v3_sensors__sensors_id__measurements_daily_get
@@ -1318,7 +1316,7 @@ paths:
       tags:
         - Sensors
         - Hours
-      summary: Get measurements aggregated to hour by sensor ID
+      summary: OpenAQ Get measurements aggregated to hour by sensor ID
       description: Provides a list of hourly data by sensor ID
       operationId: sensor_hourly_measurements_get_v3_sensors__sensors_id__hours_get
       security:
@@ -1413,7 +1411,7 @@ paths:
         - Sensors
         - Hours
         - Daily
-      summary: Get measurements aggregated from hour to day by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to day by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_day_get_v3_sensors__sensors_id__hours_daily_get
@@ -1509,7 +1507,7 @@ paths:
         - Sensors
         - Hours
         - Monthly
-      summary: Get measurements aggregated from hour to month by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_month_get_v3_sensors__sensors_id__hours_monthly_get
@@ -1605,7 +1603,7 @@ paths:
         - Sensors
         - Hours
         - Yearly
-      summary: Get measurements aggregated from hour to year by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to year by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_year_get_v3_sensors__sensors_id__hours_yearly_get
@@ -1700,7 +1698,7 @@ paths:
       tags:
         - Sensors
         - Hours
-      summary: Get measurements aggregated from hour to day of week by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_hod_get_v3_sensors__sensors_id__hours_hourofday_get
@@ -1765,7 +1763,7 @@ paths:
       tags:
         - Sensors
         - Hours
-      summary: Get measurements aggregated from hour to day of week by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_dow_get_v3_sensors__sensors_id__hours_dayofweek_get
@@ -1830,7 +1828,7 @@ paths:
       tags:
         - Sensors
         - Hours
-      summary: Get measurements aggregated from hour to day of week by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
       description: Provides a list of yearly summaries of hourly data by sensor ID
       operationId: >-
         sensor_hourly_measurements_aggregate_to_moy_get_v3_sensors__sensors_id__hours_monthofyear_get
@@ -1895,7 +1893,7 @@ paths:
       tags:
         - Sensors
         - Days
-      summary: Get measurements aggregated from day to day of week by sensor ID
+      summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of dayly data by sensor ID
       operationId: >-
         sensor_daily_measurements_aggregate_to_dow_get_v3_sensors__sensors_id__days_dayofweek_get
@@ -1960,7 +1958,7 @@ paths:
       tags:
         - Sensors
         - Days
-      summary: Get measurements aggregated from day to day of week by sensor ID
+      summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
       operationId: >-
         sensor_daily_measurements_aggregate_to_moy_get_v3_sensors__sensors_id__days_monthofyear_get
@@ -2025,7 +2023,7 @@ paths:
       tags:
         - Sensors
         - Days
-      summary: Get measurements aggregated to day by sensor ID
+      summary: OpenAQ Get measurements aggregated to day by sensor ID
       description: Provides a list of daily data by sensor ID
       operationId: sensor_daily_get_v3_sensors__sensors_id__days_get
       security:
@@ -2120,7 +2118,7 @@ paths:
         - Sensors
         - Days
         - Monthly
-      summary: Get measurements aggregated from hour to month by sensor ID
+      summary: OpenAQ Get measurements aggregated from hour to month by sensor ID
       description: Provides a list of daily summaries of hourly data by sensor ID
       operationId: >-
         sensor_daily_aggregate_to_month_get_v3_sensors__sensors_id__days_monthly_get
@@ -2216,7 +2214,7 @@ paths:
         - Sensors
         - Days
         - Yearly
-      summary: Get measurements aggregated from day to year by sensor ID
+      summary: OpenAQ Get measurements aggregated from day to year by sensor ID
       description: Provides a list of yearly summaries of daily data by sensor ID
       operationId: >-
         sensor_daily_aggregate_to_year_get_v3_sensors__sensors_id__days_yearly_get
@@ -2311,7 +2309,7 @@ paths:
       tags:
         - Sensors
         - Years
-      summary: Get measurements aggregated to year by sensor ID
+      summary: OpenAQ Get measurements aggregated to year by sensor ID
       description: Provides a list of annual data by sensor ID
       operationId: sensor_yearly_get_v3_sensors__sensors_id__years_get
       security:
@@ -2404,7 +2402,7 @@ paths:
     get:
       tags:
         - Owners
-      summary: Get a owner by ID
+      summary: OpenAQ Get a owner by ID
       description: Provides a owner by owner ID
       operationId: owner_get_v3_owners__owners_id__get
       security:
@@ -2435,7 +2433,7 @@ paths:
     get:
       tags:
         - Owners
-      summary: Get owners
+      summary: OpenAQ Get owners
       description: Provides a list of owners
       operationId: owners_get_v3_owners_get
       security:
@@ -2514,7 +2512,7 @@ paths:
     get:
       tags:
         - Providers
-      summary: Get a provider by ID
+      summary: OpenAQ Get a provider by ID
       description: Provides a provider by provider ID
       operationId: provider_get_v3_providers__providers_id__get
       security:
@@ -2545,7 +2543,7 @@ paths:
     get:
       tags:
         - Providers
-      summary: Get providers
+      summary: OpenAQ Get providers
       description: Provides a list of providers
       operationId: providers_get_v3_providers_get
       security:
@@ -2736,7 +2734,7 @@ paths:
       tags:
         - Locations
         - Sensors
-      summary: Get sensors by location ID
+      summary: OpenAQ Get sensors by location ID
       description: Provides a list of sensors by location ID
       operationId: sensors_get_v3_locations__locations_id__sensors_get
       security:
@@ -2767,7 +2765,7 @@ paths:
     get:
       tags:
         - Sensors
-      summary: Get a sensor by ID
+      summary: OpenAQ Get a sensor by ID
       description: Provides a sensor by sensor ID
       operationId: sensor_get_v3_sensors__sensors_id__get
       security:
@@ -2799,7 +2797,7 @@ paths:
       tags:
         - Parameters
         - Latest
-      summary: Parameters Latest Get
+      summary: OpenAQ Parameters Latest Get
       operationId: parameters_latest_get_v3_parameters__parameters_id__latest_get
       security:
         - APIKeyHeader: []
@@ -2877,7 +2875,7 @@ paths:
       tags:
         - Locations
         - Latest
-      summary: Get a location's latest measurements
+      summary: OpenAQ Get a location's latest measurements
       description: Providers a location's latest measurement values
       operationId: location_latest_get_v3_locations__locations_id__latest_get
       security:
@@ -2956,7 +2954,7 @@ paths:
       tags:
         - Locations
         - Flags
-      summary: Get flags by location ID
+      summary: OpenAQ Get flags by location ID
       description: Provides a list of flags by location ID
       operationId: location_flags_get_v3_locations__locations_id__flags_get
       security:
@@ -3051,7 +3049,7 @@ paths:
         - Sensors
         - Sensor
         - Flags
-      summary: Get flags by sensor ID
+      summary: OpenAQ Get flags by sensor ID
       description: Provides a list of flags by sensor ID
       operationId: sensor_flags_get_v3_sensors__sensor_id__flags_get
       security:
@@ -3144,7 +3142,7 @@ paths:
     get:
       tags:
         - Averages
-      summary: Get averaged values
+      summary: OpenAQ Get averaged values
       operationId: averages_v2_get_v2_averages_get
       deprecated: true
       security:
@@ -3270,7 +3268,7 @@ paths:
     get:
       tags:
         - Cities
-      summary: Get cities
+      summary: OpenAQ Get cities
       description: Provides a list of cities supported by the platform
       operationId: cities_get_v2_cities_get
       deprecated: true
@@ -3420,7 +3418,7 @@ paths:
     get:
       tags:
         - Cities
-      summary: Get cities
+      summary: OpenAQ Get cities
       description: Provides a list of cities supported by the platform
       operationId: cities_getv1_v1_cities_get
       deprecated: true
@@ -3528,7 +3526,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get country by ID
+      summary: OpenAQ Get country by ID
       description: Provides a single country by country ID
       operationId: countries_by_path_v2_countries__country_id__get
       deprecated: true
@@ -3623,7 +3621,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get country by ID
+      summary: OpenAQ Get country by ID
       description: Provides a single country by country ID
       operationId: countries_by_path_v1_countries__country_id__get
       deprecated: true
@@ -3718,7 +3716,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get countries
+      summary: OpenAQ Get countries
       description: Provides a list of countries
       operationId: countries_get_v2_countries_get
       deprecated: true
@@ -3803,7 +3801,7 @@ paths:
     get:
       tags:
         - Countries
-      summary: Get countries
+      summary: OpenAQ Get countries
       description: Providecs a list of countries
       operationId: countries_getv1_v1_countries_get
       deprecated: true
@@ -3869,7 +3867,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get a location by ID
+      summary: OpenAQ Get a location by ID
       description: Provides a location by location ID
       operationId: get_v2_location_by_id_v2_locations__location_id__get
       deprecated: true
@@ -3956,7 +3954,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get locations
+      summary: OpenAQ Get locations
       description: Provides a list of locations
       operationId: locations_get_v2_locations_get
       deprecated: true
@@ -4300,7 +4298,7 @@ paths:
       tags:
         - Latest
         - Locations
-      summary: Get latest measurements by location ID
+      summary: OpenAQ Get latest measurements by location ID
       description: Provides latest measurements for a locations by location ID
       operationId: get_v2_latest_by_id_v2_latest__location_id__get
       deprecated: true
@@ -4387,7 +4385,7 @@ paths:
     get:
       tags:
         - Latest
-      summary: Get latest measurements
+      summary: OpenAQ Get latest measurements
       description: Provides a list of locations with latest measurements
       operationId: latest_get_v2_latest_get
       deprecated: true
@@ -4536,7 +4534,7 @@ paths:
       tags:
         - Latest
         - Locations
-      summary: Get latest measurements by location ID
+      summary: OpenAQ Get latest measurements by location ID
       operationId: get_v1_latest_by_id_v1_latest__location_id__get
       deprecated: true
       security:
@@ -4621,7 +4619,7 @@ paths:
     get:
       tags:
         - Latest
-      summary: Get latest measurements
+      summary: OpenAQ Get latest measurements
       operationId: latest_v1_get_v1_latest_get
       deprecated: true
       security:
@@ -4962,7 +4960,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get location by ID
+      summary: OpenAQ Get location by ID
       operationId: get_v1_locations_by_id_v1_locations__location_id__get
       deprecated: true
       security:
@@ -5047,7 +5045,7 @@ paths:
     get:
       tags:
         - Locations
-      summary: Get locations
+      summary: OpenAQ Get locations
       operationId: locationsv1_get_v1_locations_get
       deprecated: true
       security:
@@ -5388,7 +5386,7 @@ paths:
     get:
       tags:
         - Measurements
-      summary: Get measurements
+      summary: OpenAQ Get measurements
       operationId: measurements_get_v2_measurements_get
       deprecated: true
       security:
@@ -5770,7 +5768,7 @@ paths:
     get:
       tags:
         - Measurements
-      summary: Get a list of measurements
+      summary: OpenAQ Get a list of measurements
       operationId: measurements_get_v1_v1_measurements_get
       deprecated: true
       security:
@@ -6151,7 +6149,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get parameters
+      summary: OpenAQ Get parameters
       description: Provides a list of parameters supported by the platform
       operationId: parameters_get_v2_parameters_get
       deprecated: true
@@ -6241,7 +6239,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get parameters
+      summary: OpenAQ Get parameters
       description: Provides a list of parameters supported by the platform
       operationId: parameters_getv1_v1_parameters_get
       deprecated: true
@@ -6331,7 +6329,7 @@ paths:
       tags:
         - Projects
         - Project
-      summary: Project by ID
+      summary: OpenAQ Project by ID
       description: Provides a project by project ID
       operationId: projects_get_v2_projects__project_id__get
       deprecated: true
@@ -6361,7 +6359,7 @@ paths:
     get:
       tags:
         - Projects
-      summary: Projects
+      summary: OpenAQ Projects
       description: Provides a list of projects
       operationId: projects_get_v2_projects_get
       deprecated: true
@@ -6588,7 +6586,7 @@ paths:
     get:
       tags:
         - Sources
-      summary: Sources
+      summary: OpenAQ Sources
       description: Provides a list of sources
       operationId: sources_get_v2_sources_get
       deprecated: true
@@ -6712,7 +6710,7 @@ paths:
     get:
       tags:
         - Sources
-      summary: Sources
+      summary: OpenAQ Sources
       description: Provides a list of sources
       operationId: sources_v1_get_v1_sources_get
       deprecated: true
@@ -6790,7 +6788,7 @@ paths:
         - Sources
         - Readme
         - Slug
-      summary: Source Readme
+      summary: OpenAQ Source Readme
       description: Provides a readme for a given source by the source slug
       operationId: readme_get_v2_sources_readme__slug__get
       deprecated: true
@@ -6822,7 +6820,7 @@ paths:
     get:
       tags:
         - Summary
-      summary: Platform Summary
+      summary: OpenAQ Platform Summary
       description: Provides a summary of platform data
       operationId: summary_get_v2_summary_get
       responses:
