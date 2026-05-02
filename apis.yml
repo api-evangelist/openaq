@@ -57,7 +57,7 @@ common:
     url: https://github.com/openaq
     type: GitHubOrganization
 created: '2024-11-11'
-modified: '2026-03-16'
+modified: '2026-04-28'
 description: >-
   OpenAQ is a non-profit organization that focuses on collecting and sharing air quality
   data from around the world. By providing access to this information through their
