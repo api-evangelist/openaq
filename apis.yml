@@ -56,6 +56,8 @@ common:
   - name: GitHub Organization
     url: https://github.com/openaq
     type: GitHubOrganization
+  - type: Integrations
+    url: https://openaq.org/partners/
 created: '2024-11-11'
 modified: '2026-04-28'
 description: >-
@@ -63,6 +65,46 @@ description: >-
   data from around the world. By providing access to this information through their
   open-source platform, OpenAQ aims to empower individuals, communities, and organizations
   to take action towards improving air quality and public health.
+integrations:
+  - name: Aernode
+  - name: Air Gradient
+  - name: AirQo
+  - name: Airqoon
+  - name: Clarity
+  - name: Habitat Map
+  - name: IQAir
+  - name: Miri Africa
+  - name: Senstate
+  - name: Smart Sense
+  - name: Amazon Web Services
+  - name: Atmo
+  - name: Geocode Earth
+  - name: Up Here Media
+  - name: Africa Clean Air Network
+  - name: Earth Science Information Partners (ESIP)
+  - name: Fast Forward
+  - name: LAECESS
+  - name: One Percent for the Planet
+  - name: Open Data Charter
+  - name: Planetary Health Alliance
+  - name: 'UNICEF Children''s Health Collaborative'
+  - name: APAD
+  - name: Clean Air One Atmosphere
+  - name: Green Decision Labs
+  - name: Hikma Health
+  - name: Kenyatta University
+  - name: Love My Air
+  - name: Lovexair
+  - name: Project Phoenix
+  - name: UESD
+  - name: University of the Philippines-Manila
+  - name: Actions EBMF
+  - name: Clean Air Fund
+  - name: EPIC University of Chicago
+  - name: NASA
+  - name: Splunk
+  - name: The Godley Family Foundation
+  - name: Map of Quezon City, Philippines
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
