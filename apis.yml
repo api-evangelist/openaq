@@ -48,7 +48,7 @@ name: OpenAQ
 tags:
   - Data
   - Data Quality
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 common:
   - url: https://openaq.org/developers/platform-overview/
