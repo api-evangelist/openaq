@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Summary
+  description: 'OpenAQ — Summary. 1 operations. Lead operation: OpenAQ Platform Summary. Self-contained Naftiko capability
+    covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Summary
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-summary
+    baseUri: ''
+    description: OpenAQ — Summary business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-summary
+      path: /v2/summary
+      operations:
+      - name: summarygetv2summaryget
+        method: GET
+        description: OpenAQ Platform Summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-summary-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Summary. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v2/summary
+      name: v2-summary
+      description: REST surface for v2-summary.
+      operations:
+      - method: GET
+        name: summarygetv2summaryget
+        description: OpenAQ Platform Summary
+        call: openaq-summary.summarygetv2summaryget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-summary-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Summary. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-platform-summary
+      description: OpenAQ Platform Summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-summary.summarygetv2summaryget
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Averages
+  description: 'OpenAQ — Averages. 1 operations. Lead operation: OpenAQ Get averaged values. Self-contained Naftiko capability
+    covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Averages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-averages
+    baseUri: ''
+    description: OpenAQ — Averages business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-averages
+      path: /v2/averages
+      operations:
+      - name: averagesv2getv2averagesget
+        method: GET
+        description: OpenAQ Get averaged values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: temporal
+          in: query
+          type: string
+          description: Period to aggregate. month, day, hour
+        - name: parameters_id
+          in: query
+          type: string
+          description: What measurand would you like?
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+        - name: locations_id
+          in: query
+          type: integer
+          description: Limit the results to a specific location by id
+        - name: spatial
+          in: query
+          type: string
+          description: Define how you want to aggregate in space
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-averages-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Averages. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v2/averages
+      name: v2-averages
+      description: REST surface for v2-averages.
+      operations:
+      - method: GET
+        name: averagesv2getv2averagesget
+        description: OpenAQ Get averaged values
+        call: openaq-averages.averagesv2getv2averagesget
+        with:
+          temporal: rest.temporal
+          parameters_id: rest.parameters_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+          locations_id: rest.locations_id
+          spatial: rest.spatial
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-averages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Averages. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-averaged-values
+      description: OpenAQ Get averaged values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-averages.averagesv2getv2averagesget
+      with:
+        temporal: tools.temporal
+        parameters_id: tools.parameters_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+        locations_id: tools.locations_id
+        spatial: tools.spatial
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

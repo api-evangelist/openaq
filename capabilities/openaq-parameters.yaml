@@ -1,0 +1,367 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Parameters
+  description: 'OpenAQ — Parameters. 5 operations. Lead operation: OpenAQ Get parameters. Self-contained Naftiko capability
+    covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Parameters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-parameters
+    baseUri: ''
+    description: OpenAQ — Parameters business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-parameters
+      path: /v1/parameters
+      operations:
+      - name: parametersgetv1v1parametersget
+        method: GET
+        description: OpenAQ Get parameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+        - name: order_by
+          in: query
+          type: string
+    - name: v2-parameters
+      path: /v2/parameters
+      operations:
+      - name: parametersgetv2parametersget
+        method: GET
+        description: OpenAQ Get parameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+        - name: order_by
+          in: query
+          type: string
+    - name: v3-parameters
+      path: /v3/parameters
+      operations:
+      - name: parametersgetv3parametersget
+        method: GET
+        description: OpenAQ Get a parameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_by
+          in: query
+          type: string
+          description: The field by which to order results
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort results ascending or descending. Default ASC
+        - name: parameter_type
+          in: query
+          type: string
+          description: Limit the results to a specific parameters type
+        - name: coordinates
+          in: query
+          type: string
+          description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional
+            decimal precision will be truncated in the query e.g
+        - name: radius
+          in: query
+          type: string
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km)
+            e.g. radius=1000
+        - name: bbox
+          in: query
+          type: string
+          description: 'geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points
+            of precision, addtional decimal precision will be truncated '
+        - name: iso
+          in: query
+          type: string
+          description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+        - name: countries_id
+          in: query
+          type: string
+          description: Limit the results to a specific country or countries by country ID as a single country ID or a comma
+            delimited list of IDs
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-parameters-parameters_id
+      path: /v3/parameters/{parameters_id}
+      operations:
+      - name: parametergetv3parametersparametersidget
+        method: GET
+        description: OpenAQ Get a parameter by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parameters_id
+          in: path
+          type: integer
+          description: Limit the results to a specific parameters id
+          required: true
+    - name: v3-parameters-parameters_id-latest
+      path: /v3/parameters/{parameters_id}/latest
+      operations:
+      - name: parameterslatestgetv3parametersparametersidlatestget
+        method: GET
+        description: OpenAQ Parameters Latest Get
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: parameters_id
+          in: path
+          type: integer
+          description: Limit the results to a specific parameters id
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: datetime_min
+          in: query
+          type: string
+          description: Minimum datetime
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-parameters-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Parameters. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/parameters
+      name: v1-parameters
+      description: REST surface for v1-parameters.
+      operations:
+      - method: GET
+        name: parametersgetv1v1parametersget
+        description: OpenAQ Get parameters
+        call: openaq-parameters.parametersgetv1v1parametersget
+        with:
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+          order_by: rest.order_by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/parameters
+      name: v2-parameters
+      description: REST surface for v2-parameters.
+      operations:
+      - method: GET
+        name: parametersgetv2parametersget
+        description: OpenAQ Get parameters
+        call: openaq-parameters.parametersgetv2parametersget
+        with:
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+          order_by: rest.order_by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/parameters
+      name: v3-parameters
+      description: REST surface for v3-parameters.
+      operations:
+      - method: GET
+        name: parametersgetv3parametersget
+        description: OpenAQ Get a parameters
+        call: openaq-parameters.parametersgetv3parametersget
+        with:
+          order_by: rest.order_by
+          sort_order: rest.sort_order
+          parameter_type: rest.parameter_type
+          coordinates: rest.coordinates
+          radius: rest.radius
+          bbox: rest.bbox
+          iso: rest.iso
+          countries_id: rest.countries_id
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/parameters/{parameters-id}
+      name: v3-parameters-parameters-id
+      description: REST surface for v3-parameters-parameters_id.
+      operations:
+      - method: GET
+        name: parametergetv3parametersparametersidget
+        description: OpenAQ Get a parameter by ID
+        call: openaq-parameters.parametergetv3parametersparametersidget
+        with:
+          parameters_id: rest.parameters_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/parameters/{parameters-id}/latest
+      name: v3-parameters-parameters-id-latest
+      description: REST surface for v3-parameters-parameters_id-latest.
+      operations:
+      - method: GET
+        name: parameterslatestgetv3parametersparametersidlatestget
+        description: OpenAQ Parameters Latest Get
+        call: openaq-parameters.parameterslatestgetv3parametersparametersidlatestget
+        with:
+          parameters_id: rest.parameters_id
+          limit: rest.limit
+          page: rest.page
+          datetime_min: rest.datetime_min
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-parameters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Parameters. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-parameters
+      description: OpenAQ Get parameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-parameters.parametersgetv1v1parametersget
+      with:
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+        order_by: tools.order_by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-parameters-2
+      description: OpenAQ Get parameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-parameters.parametersgetv2parametersget
+      with:
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+        order_by: tools.order_by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-parameters-3
+      description: OpenAQ Get a parameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-parameters.parametersgetv3parametersget
+      with:
+        order_by: tools.order_by
+        sort_order: tools.sort_order
+        parameter_type: tools.parameter_type
+        coordinates: tools.coordinates
+        radius: tools.radius
+        bbox: tools.bbox
+        iso: tools.iso
+        countries_id: tools.countries_id
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-parameter-id
+      description: OpenAQ Get a parameter by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-parameters.parametergetv3parametersparametersidget
+      with:
+        parameters_id: tools.parameters_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-parameters-latest-get
+      description: OpenAQ Parameters Latest Get
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-parameters.parameterslatestgetv3parametersparametersidlatestget
+      with:
+        parameters_id: tools.parameters_id
+        limit: tools.limit
+        page: tools.page
+        datetime_min: tools.datetime_min
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Sensor
+  description: 'OpenAQ — Sensor. 1 operations. Lead operation: OpenAQ Get flags by sensor ID. Self-contained Naftiko capability
+    covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Sensor
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-sensor
+    baseUri: ''
+    description: OpenAQ — Sensor business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-sensors-sensor_id-flags
+      path: /v3/sensors/{sensor_id}/flags
+      operations:
+      - name: sensorflagsgetv3sensorssensoridflagsget
+        method: GET
+        description: OpenAQ Get flags by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensor_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensor
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: datetime_from
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-sensor-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Sensor. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v3/sensors/{sensor-id}/flags
+      name: v3-sensors-sensor-id-flags
+      description: REST surface for v3-sensors-sensor_id-flags.
+      operations:
+      - method: GET
+        name: sensorflagsgetv3sensorssensoridflagsget
+        description: OpenAQ Get flags by sensor ID
+        call: openaq-sensor.sensorflagsgetv3sensorssensoridflagsget
+        with:
+          sensor_id: rest.sensor_id
+          limit: rest.limit
+          page: rest.page
+          datetime_from: rest.datetime_from
+          datetime_to: rest.datetime_to
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-sensor-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Sensor. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-flags-sensor-id
+      description: OpenAQ Get flags by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensor.sensorflagsgetv3sensorssensoridflagsget
+      with:
+        sensor_id: tools.sensor_id
+        limit: tools.limit
+        page: tools.page
+        datetime_from: tools.datetime_from
+        datetime_to: tools.datetime_to
+      outputParameters:
+      - type: object
+        mapping: $.

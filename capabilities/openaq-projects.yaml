@@ -1,0 +1,215 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Projects
+  description: 'OpenAQ — Projects. 2 operations. Lead operation: OpenAQ Projects. Self-contained Naftiko capability covering
+    one Openaq business surface.'
+  tags:
+  - Openaq
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-projects
+    baseUri: ''
+    description: OpenAQ — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-projects
+      path: /v2/projects
+      operations:
+      - name: projectsgetv2projectsget
+        method: GET
+        description: OpenAQ Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country_id
+          in: query
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: string
+          required: true
+        - name: offset
+          in: query
+          type: string
+          required: true
+        - name: sort
+          in: query
+          type: string
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+        - name: parameter_id
+          in: query
+          type: string
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+        - name: parameter
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: unit
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: project_id
+          in: query
+          type: string
+        - name: project
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+        - name: order_by
+          in: query
+          type: string
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit
+            measurement results to only PM2.5 measurements
+        - name: is_mobile
+          in: query
+          type: string
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+        - name: is_analysis
+          in: query
+          type: string
+        - name: entity
+          in: query
+          type: string
+        - name: sensor_type
+          in: query
+          type: string
+        - name: source_name
+          in: query
+          type: string
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-projects-project_id
+      path: /v2/projects/{project_id}
+      operations:
+      - name: projectsgetv2projectsprojectidget
+        method: GET
+        description: OpenAQ Project by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-projects-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Projects. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v2/projects
+      name: v2-projects
+      description: REST surface for v2-projects.
+      operations:
+      - method: GET
+        name: projectsgetv2projectsget
+        description: OpenAQ Projects
+        call: openaq-projects.projectsgetv2projectsget
+        with:
+          country_id: rest.country_id
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+          parameter_id: rest.parameter_id
+          parameter: rest.parameter
+          unit: rest.unit
+          project_id: rest.project_id
+          project: rest.project
+          order_by: rest.order_by
+          is_mobile: rest.is_mobile
+          is_analysis: rest.is_analysis
+          entity: rest.entity
+          sensor_type: rest.sensor_type
+          source_name: rest.source_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/projects/{project-id}
+      name: v2-projects-project-id
+      description: REST surface for v2-projects-project_id.
+      operations:
+      - method: GET
+        name: projectsgetv2projectsprojectidget
+        description: OpenAQ Project by ID
+        call: openaq-projects.projectsgetv2projectsprojectidget
+        with:
+          project_id: rest.project_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Projects. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-projects
+      description: OpenAQ Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-projects.projectsgetv2projectsget
+      with:
+        country_id: tools.country_id
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+        parameter_id: tools.parameter_id
+        parameter: tools.parameter
+        unit: tools.unit
+        project_id: tools.project_id
+        project: tools.project
+        order_by: tools.order_by
+        is_mobile: tools.is_mobile
+        is_analysis: tools.is_analysis
+        entity: tools.entity
+        sensor_type: tools.sensor_type
+        source_name: tools.source_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-project-id
+      description: OpenAQ Project by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-projects.projectsgetv2projectsprojectidget
+      with:
+        project_id: tools.project_id
+      outputParameters:
+      - type: object
+        mapping: $.

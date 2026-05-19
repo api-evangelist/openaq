@@ -1,0 +1,989 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Locations
+  description: 'OpenAQ — Locations. 11 operations. Lead operation: OpenAQ Get latest measurements by location ID. Self-contained
+    Naftiko capability covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-locations
+    baseUri: ''
+    description: OpenAQ — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-latest-location_id
+      path: /v1/latest/{location_id}
+      operations:
+      - name: getv1latestbyidv1latestlocationidget
+        method: GET
+        description: OpenAQ Get latest measurements by location ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: integer
+          description: The ID of the location
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+    - name: v1-locations
+      path: /v1/locations
+      operations:
+      - name: locationsv1getv1locationsget
+        method: GET
+        description: OpenAQ Get locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Sort Direction e.g. sort=desc
+        - name: parameter_id
+          in: query
+          type: string
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit
+            measurement results to only PM2.5 measurements
+        - name: parameter
+          in: query
+          type: string
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+        - name: unit
+          in: query
+          type: string
+        - name: coordinates
+          in: query
+          type: string
+          description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+        - name: radius
+          in: query
+          type: integer
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km)
+            e.g. radius=10000
+        - name: country_id
+          in: query
+          type: string
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+        - name: country
+          in: query
+          type: string
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+        - name: city
+          in: query
+          type: string
+          description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+        - name: location_id
+          in: query
+          type: string
+        - name: location
+          in: query
+          type: string
+        - name: order_by
+          in: query
+          type: string
+          description: Order by a field
+        - name: is_mobile
+          in: query
+          type: string
+          description: Location is mobile e.g. ?isMobile=true
+        - name: is_analysis
+          in: query
+          type: string
+          description: Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true
+        - name: source_name
+          in: query
+          type: string
+          description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+        - name: entity
+          in: query
+          type: string
+          description: Source entity type. e.g. ?entity=government
+        - name: sensor_type
+          in: query
+          type: string
+          description: Type of Sensor e.g. ?sensorType=reference%20grade
+        - name: model_name
+          in: query
+          type: string
+          description: Model Name of Sensor e.g. ?modelName=AE33
+        - name: manufacturer_name
+          in: query
+          type: string
+          description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+        - name: dump_raw
+          in: query
+          type: string
+    - name: v1-locations-location_id
+      path: /v1/locations/{location_id}
+      operations:
+      - name: getv1locationsbyidv1locationslocationidget
+        method: GET
+        description: OpenAQ Get location by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: integer
+          description: The ID of the location
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+    - name: v2-latest-location_id
+      path: /v2/latest/{location_id}
+      operations:
+      - name: getv2latestbyidv2latestlocationidget
+        method: GET
+        description: OpenAQ Get latest measurements by location ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: integer
+          description: The ID of the location
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+    - name: v2-locations
+      path: /v2/locations
+      operations:
+      - name: locationsgetv2locationsget
+        method: GET
+        description: OpenAQ Get locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Sort Direction e.g. sort=desc
+        - name: parameter_id
+          in: query
+          type: string
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit
+            measurement results to only PM2.5 measurements
+        - name: parameter
+          in: query
+          type: string
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+        - name: unit
+          in: query
+          type: string
+        - name: coordinates
+          in: query
+          type: string
+          description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+        - name: radius
+          in: query
+          type: integer
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km)
+            e.g. radius=10000
+        - name: country_id
+          in: query
+          type: string
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+        - name: country
+          in: query
+          type: string
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+        - name: city
+          in: query
+          type: string
+          description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+        - name: location_id
+          in: query
+          type: string
+        - name: location
+          in: query
+          type: string
+        - name: order_by
+          in: query
+          type: string
+          description: Order by a field
+        - name: is_mobile
+          in: query
+          type: string
+          description: Location is mobile e.g. ?isMobile=true
+        - name: is_analysis
+          in: query
+          type: string
+          description: Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true
+        - name: source_name
+          in: query
+          type: string
+          description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+        - name: entity
+          in: query
+          type: string
+          description: Source entity type. e.g. ?entity=government
+        - name: sensor_type
+          in: query
+          type: string
+          description: Type of Sensor e.g. ?sensorType=reference%20grade
+        - name: model_name
+          in: query
+          type: string
+          description: Model Name of Sensor e.g. ?modelName=AE33
+        - name: manufacturer_name
+          in: query
+          type: string
+          description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+        - name: dump_raw
+          in: query
+          type: string
+    - name: v2-locations-location_id
+      path: /v2/locations/{location_id}
+      operations:
+      - name: getv2locationbyidv2locationslocationidget
+        method: GET
+        description: OpenAQ Get a location by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location_id
+          in: path
+          type: integer
+          description: The ID of the location
+          required: true
+        - name: limit
+          in: query
+          type: string
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+        - name: page
+          in: query
+          type: string
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: offset
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+          description: Define sort order. e.g. ?sort=asc
+    - name: v3-locations
+      path: /v3/locations
+      operations:
+      - name: locationsgetv3locationsget
+        method: GET
+        description: OpenAQ Get locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: coordinates
+          in: query
+          type: string
+          description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional
+            decimal precision will be truncated in the query e.g
+        - name: radius
+          in: query
+          type: string
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km)
+            e.g. radius=1000
+        - name: providers_id
+          in: query
+          type: string
+          description: Limit the results to a specific provider or multiple providers  with a single provider ID or a comma
+            delimited list of IDs
+        - name: parameters_id
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: owner_contacts_id
+          in: query
+          type: string
+          description: Limit the results to a specific owner by owner ID with a single owner ID or comma delimited list of
+            IDs
+        - name: manufacturers_id
+          in: query
+          type: string
+        - name: order_by
+          in: query
+          type: string
+          description: The field by which to order results
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort results ascending or descending. Default ASC
+        - name: licenses_id
+          in: query
+          type: string
+        - name: monitor
+          in: query
+          type: string
+          description: Is the location considered a reference monitor?
+        - name: mobile
+          in: query
+          type: string
+          description: Is the location considered a mobile location?
+        - name: instruments_id
+          in: query
+          type: string
+        - name: iso
+          in: query
+          type: string
+          description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+        - name: countries_id
+          in: query
+          type: string
+          description: Limit the results to a specific country or countries by country ID as a single country ID or a comma
+            delimited list of IDs
+        - name: bbox
+          in: query
+          type: string
+          description: 'geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points
+            of precision, addtional decimal precision will be truncated '
+    - name: v3-locations-locations_id
+      path: /v3/locations/{locations_id}
+      operations:
+      - name: locationgetv3locationslocationsidget
+        method: GET
+        description: OpenAQ Get a location by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locations_id
+          in: path
+          type: integer
+          description: Limit the results to a specific location by id
+          required: true
+    - name: v3-locations-locations_id-flags
+      path: /v3/locations/{locations_id}/flags
+      operations:
+      - name: locationflagsgetv3locationslocationsidflagsget
+        method: GET
+        description: OpenAQ Get flags by location ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locations_id
+          in: path
+          type: integer
+          description: Limit the results to a specific locations
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: datetime_from
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+    - name: v3-locations-locations_id-latest
+      path: /v3/locations/{locations_id}/latest
+      operations:
+      - name: locationlatestgetv3locationslocationsidlatestget
+        method: GET
+        description: OpenAQ Get a location's latest measurements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locations_id
+          in: path
+          type: integer
+          description: Limit the results to a specific location by id
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: datetime_min
+          in: query
+          type: string
+          description: Minimum datetime
+    - name: v3-locations-locations_id-sensors
+      path: /v3/locations/{locations_id}/sensors
+      operations:
+      - name: sensorsgetv3locationslocationsidsensorsget
+        method: GET
+        description: OpenAQ Get sensors by location ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locations_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-locations-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Locations. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/latest/{location-id}
+      name: v1-latest-location-id
+      description: REST surface for v1-latest-location_id.
+      operations:
+      - method: GET
+        name: getv1latestbyidv1latestlocationidget
+        description: OpenAQ Get latest measurements by location ID
+        call: openaq-locations.getv1latestbyidv1latestlocationidget
+        with:
+          location_id: rest.location_id
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/locations
+      name: v1-locations
+      description: REST surface for v1-locations.
+      operations:
+      - method: GET
+        name: locationsv1getv1locationsget
+        description: OpenAQ Get locations
+        call: openaq-locations.locationsv1getv1locationsget
+        with:
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+          parameter_id: rest.parameter_id
+          parameter: rest.parameter
+          unit: rest.unit
+          coordinates: rest.coordinates
+          radius: rest.radius
+          country_id: rest.country_id
+          country: rest.country
+          city: rest.city
+          location_id: rest.location_id
+          location: rest.location
+          order_by: rest.order_by
+          is_mobile: rest.is_mobile
+          is_analysis: rest.is_analysis
+          source_name: rest.source_name
+          entity: rest.entity
+          sensor_type: rest.sensor_type
+          model_name: rest.model_name
+          manufacturer_name: rest.manufacturer_name
+          dump_raw: rest.dump_raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/locations/{location-id}
+      name: v1-locations-location-id
+      description: REST surface for v1-locations-location_id.
+      operations:
+      - method: GET
+        name: getv1locationsbyidv1locationslocationidget
+        description: OpenAQ Get location by ID
+        call: openaq-locations.getv1locationsbyidv1locationslocationidget
+        with:
+          location_id: rest.location_id
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/latest/{location-id}
+      name: v2-latest-location-id
+      description: REST surface for v2-latest-location_id.
+      operations:
+      - method: GET
+        name: getv2latestbyidv2latestlocationidget
+        description: OpenAQ Get latest measurements by location ID
+        call: openaq-locations.getv2latestbyidv2latestlocationidget
+        with:
+          location_id: rest.location_id
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/locations
+      name: v2-locations
+      description: REST surface for v2-locations.
+      operations:
+      - method: GET
+        name: locationsgetv2locationsget
+        description: OpenAQ Get locations
+        call: openaq-locations.locationsgetv2locationsget
+        with:
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+          parameter_id: rest.parameter_id
+          parameter: rest.parameter
+          unit: rest.unit
+          coordinates: rest.coordinates
+          radius: rest.radius
+          country_id: rest.country_id
+          country: rest.country
+          city: rest.city
+          location_id: rest.location_id
+          location: rest.location
+          order_by: rest.order_by
+          is_mobile: rest.is_mobile
+          is_analysis: rest.is_analysis
+          source_name: rest.source_name
+          entity: rest.entity
+          sensor_type: rest.sensor_type
+          model_name: rest.model_name
+          manufacturer_name: rest.manufacturer_name
+          dump_raw: rest.dump_raw
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/locations/{location-id}
+      name: v2-locations-location-id
+      description: REST surface for v2-locations-location_id.
+      operations:
+      - method: GET
+        name: getv2locationbyidv2locationslocationidget
+        description: OpenAQ Get a location by ID
+        call: openaq-locations.getv2locationbyidv2locationslocationidget
+        with:
+          location_id: rest.location_id
+          limit: rest.limit
+          page: rest.page
+          offset: rest.offset
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/locations
+      name: v3-locations
+      description: REST surface for v3-locations.
+      operations:
+      - method: GET
+        name: locationsgetv3locationsget
+        description: OpenAQ Get locations
+        call: openaq-locations.locationsgetv3locationsget
+        with:
+          coordinates: rest.coordinates
+          radius: rest.radius
+          providers_id: rest.providers_id
+          parameters_id: rest.parameters_id
+          limit: rest.limit
+          page: rest.page
+          owner_contacts_id: rest.owner_contacts_id
+          manufacturers_id: rest.manufacturers_id
+          order_by: rest.order_by
+          sort_order: rest.sort_order
+          licenses_id: rest.licenses_id
+          monitor: rest.monitor
+          mobile: rest.mobile
+          instruments_id: rest.instruments_id
+          iso: rest.iso
+          countries_id: rest.countries_id
+          bbox: rest.bbox
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/locations/{locations-id}
+      name: v3-locations-locations-id
+      description: REST surface for v3-locations-locations_id.
+      operations:
+      - method: GET
+        name: locationgetv3locationslocationsidget
+        description: OpenAQ Get a location by ID
+        call: openaq-locations.locationgetv3locationslocationsidget
+        with:
+          locations_id: rest.locations_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/locations/{locations-id}/flags
+      name: v3-locations-locations-id-flags
+      description: REST surface for v3-locations-locations_id-flags.
+      operations:
+      - method: GET
+        name: locationflagsgetv3locationslocationsidflagsget
+        description: OpenAQ Get flags by location ID
+        call: openaq-locations.locationflagsgetv3locationslocationsidflagsget
+        with:
+          locations_id: rest.locations_id
+          limit: rest.limit
+          page: rest.page
+          datetime_from: rest.datetime_from
+          datetime_to: rest.datetime_to
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/locations/{locations-id}/latest
+      name: v3-locations-locations-id-latest
+      description: REST surface for v3-locations-locations_id-latest.
+      operations:
+      - method: GET
+        name: locationlatestgetv3locationslocationsidlatestget
+        description: OpenAQ Get a location's latest measurements
+        call: openaq-locations.locationlatestgetv3locationslocationsidlatestget
+        with:
+          locations_id: rest.locations_id
+          limit: rest.limit
+          page: rest.page
+          datetime_min: rest.datetime_min
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/locations/{locations-id}/sensors
+      name: v3-locations-locations-id-sensors
+      description: REST surface for v3-locations-locations_id-sensors.
+      operations:
+      - method: GET
+        name: sensorsgetv3locationslocationsidsensorsget
+        description: OpenAQ Get sensors by location ID
+        call: openaq-locations.sensorsgetv3locationslocationsidsensorsget
+        with:
+          locations_id: rest.locations_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Locations. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-latest-measurements-location
+      description: OpenAQ Get latest measurements by location ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.getv1latestbyidv1latestlocationidget
+      with:
+        location_id: tools.location_id
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-locations
+      description: OpenAQ Get locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationsv1getv1locationsget
+      with:
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+        parameter_id: tools.parameter_id
+        parameter: tools.parameter
+        unit: tools.unit
+        coordinates: tools.coordinates
+        radius: tools.radius
+        country_id: tools.country_id
+        country: tools.country
+        city: tools.city
+        location_id: tools.location_id
+        location: tools.location
+        order_by: tools.order_by
+        is_mobile: tools.is_mobile
+        is_analysis: tools.is_analysis
+        source_name: tools.source_name
+        entity: tools.entity
+        sensor_type: tools.sensor_type
+        model_name: tools.model_name
+        manufacturer_name: tools.manufacturer_name
+        dump_raw: tools.dump_raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-location-id
+      description: OpenAQ Get location by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.getv1locationsbyidv1locationslocationidget
+      with:
+        location_id: tools.location_id
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-latest-measurements-location-2
+      description: OpenAQ Get latest measurements by location ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.getv2latestbyidv2latestlocationidget
+      with:
+        location_id: tools.location_id
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-locations-2
+      description: OpenAQ Get locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationsgetv2locationsget
+      with:
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+        parameter_id: tools.parameter_id
+        parameter: tools.parameter
+        unit: tools.unit
+        coordinates: tools.coordinates
+        radius: tools.radius
+        country_id: tools.country_id
+        country: tools.country
+        city: tools.city
+        location_id: tools.location_id
+        location: tools.location
+        order_by: tools.order_by
+        is_mobile: tools.is_mobile
+        is_analysis: tools.is_analysis
+        source_name: tools.source_name
+        entity: tools.entity
+        sensor_type: tools.sensor_type
+        model_name: tools.model_name
+        manufacturer_name: tools.manufacturer_name
+        dump_raw: tools.dump_raw
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-location-id-2
+      description: OpenAQ Get a location by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.getv2locationbyidv2locationslocationidget
+      with:
+        location_id: tools.location_id
+        limit: tools.limit
+        page: tools.page
+        offset: tools.offset
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-locations-3
+      description: OpenAQ Get locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationsgetv3locationsget
+      with:
+        coordinates: tools.coordinates
+        radius: tools.radius
+        providers_id: tools.providers_id
+        parameters_id: tools.parameters_id
+        limit: tools.limit
+        page: tools.page
+        owner_contacts_id: tools.owner_contacts_id
+        manufacturers_id: tools.manufacturers_id
+        order_by: tools.order_by
+        sort_order: tools.sort_order
+        licenses_id: tools.licenses_id
+        monitor: tools.monitor
+        mobile: tools.mobile
+        instruments_id: tools.instruments_id
+        iso: tools.iso
+        countries_id: tools.countries_id
+        bbox: tools.bbox
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-location-id-3
+      description: OpenAQ Get a location by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationgetv3locationslocationsidget
+      with:
+        locations_id: tools.locations_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-flags-location-id
+      description: OpenAQ Get flags by location ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationflagsgetv3locationslocationsidflagsget
+      with:
+        locations_id: tools.locations_id
+        limit: tools.limit
+        page: tools.page
+        datetime_from: tools.datetime_from
+        datetime_to: tools.datetime_to
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-location-s-latest-measurements
+      description: OpenAQ Get a location's latest measurements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.locationlatestgetv3locationslocationsidlatestget
+      with:
+        locations_id: tools.locations_id
+        limit: tools.limit
+        page: tools.page
+        datetime_min: tools.datetime_min
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-sensors-location-id
+      description: OpenAQ Get sensors by location ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-locations.sensorsgetv3locationslocationsidsensorsget
+      with:
+        locations_id: tools.locations_id
+      outputParameters:
+      - type: object
+        mapping: $.

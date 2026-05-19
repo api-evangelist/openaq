@@ -1,0 +1,186 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Providers
+  description: 'OpenAQ — Providers. 2 operations. Lead operation: OpenAQ Get providers. Self-contained Naftiko capability
+    covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Providers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-providers
+    baseUri: ''
+    description: OpenAQ — Providers business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-providers
+      path: /v3/providers
+      operations:
+      - name: providersgetv3providersget
+        method: GET
+        description: OpenAQ Get providers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_by
+          in: query
+          type: string
+          description: The field by which to order results
+        - name: sort_order
+          in: query
+          type: string
+          description: Sort results ascending or descending. Default ASC
+        - name: parameters_id
+          in: query
+          type: string
+        - name: monitor
+          in: query
+          type: string
+          description: Is the location considered a reference monitor?
+        - name: iso
+          in: query
+          type: string
+          description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+        - name: countries_id
+          in: query
+          type: string
+          description: Limit the results to a specific country or countries by country ID as a single country ID or a comma
+            delimited list of IDs
+        - name: bbox
+          in: query
+          type: string
+          description: 'geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points
+            of precision, addtional decimal precision will be truncated '
+        - name: coordinates
+          in: query
+          type: string
+          description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional
+            decimal precision will be truncated in the query e.g
+        - name: radius
+          in: query
+          type: string
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km)
+            e.g. radius=1000
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-providers-providers_id
+      path: /v3/providers/{providers_id}
+      operations:
+      - name: providergetv3providersprovidersidget
+        method: GET
+        description: OpenAQ Get a provider by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: providers_id
+          in: path
+          type: integer
+          description: Limit the results to a specific provider by id
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-providers-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Providers. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v3/providers
+      name: v3-providers
+      description: REST surface for v3-providers.
+      operations:
+      - method: GET
+        name: providersgetv3providersget
+        description: OpenAQ Get providers
+        call: openaq-providers.providersgetv3providersget
+        with:
+          order_by: rest.order_by
+          sort_order: rest.sort_order
+          parameters_id: rest.parameters_id
+          monitor: rest.monitor
+          iso: rest.iso
+          countries_id: rest.countries_id
+          bbox: rest.bbox
+          coordinates: rest.coordinates
+          radius: rest.radius
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/providers/{providers-id}
+      name: v3-providers-providers-id
+      description: REST surface for v3-providers-providers_id.
+      operations:
+      - method: GET
+        name: providergetv3providersprovidersidget
+        description: OpenAQ Get a provider by ID
+        call: openaq-providers.providergetv3providersprovidersidget
+        with:
+          providers_id: rest.providers_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-providers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Providers. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-providers
+      description: OpenAQ Get providers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-providers.providersgetv3providersget
+      with:
+        order_by: tools.order_by
+        sort_order: tools.sort_order
+        parameters_id: tools.parameters_id
+        monitor: tools.monitor
+        iso: tools.iso
+        countries_id: tools.countries_id
+        bbox: tools.bbox
+        coordinates: tools.coordinates
+        radius: tools.radius
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-provider-id
+      description: OpenAQ Get a provider by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-providers.providergetv3providersprovidersidget
+      with:
+        providers_id: tools.providers_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,1186 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenAQ — Sensors
+  description: 'OpenAQ — Sensors. 19 operations. Lead operation: OpenAQ Get sensors by location ID. Self-contained Naftiko
+    capability covering one Openaq business surface.'
+  tags:
+  - Openaq
+  - Sensors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENAQ_API_KEY: OPENAQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openaq-sensors
+    baseUri: ''
+    description: OpenAQ — Sensors business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-locations-locations_id-sensors
+      path: /v3/locations/{locations_id}/sensors
+      operations:
+      - name: sensorsgetv3locationslocationsidsensorsget
+        method: GET
+        description: OpenAQ Get sensors by location ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locations_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+    - name: v3-sensors-sensor_id-flags
+      path: /v3/sensors/{sensor_id}/flags
+      operations:
+      - name: sensorflagsgetv3sensorssensoridflagsget
+        method: GET
+        description: OpenAQ Get flags by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensor_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensor
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+        - name: datetime_from
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+    - name: v3-sensors-sensors_id
+      path: /v3/sensors/{sensors_id}
+      operations:
+      - name: sensorgetv3sensorssensorsidget
+        method: GET
+        description: OpenAQ Get a sensor by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+    - name: v3-sensors-sensors_id-days
+      path: /v3/sensors/{sensors_id}/days
+      operations:
+      - name: sensordailygetv3sensorssensorsiddaysget
+        method: GET
+        description: OpenAQ Get measurements aggregated to day by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-days-dayofweek
+      path: /v3/sensors/{sensors_id}/days/dayofweek
+      operations:
+      - name: sensordailymeasurementsaggregatetodowgetv3sensorssensorsiddaysdayofweekget
+        method: GET
+        description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+    - name: v3-sensors-sensors_id-days-monthly
+      path: /v3/sensors/{sensors_id}/days/monthly
+      operations:
+      - name: sensordailyaggregatetomonthgetv3sensorssensorsiddaysmonthlyget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-days-monthofyear
+      path: /v3/sensors/{sensors_id}/days/monthofyear
+      operations:
+      - name: sensordailymeasurementsaggregatetomoygetv3sensorssensorsiddaysmonthofyearget
+        method: GET
+        description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+    - name: v3-sensors-sensors_id-days-yearly
+      path: /v3/sensors/{sensors_id}/days/yearly
+      operations:
+      - name: sensordailyaggregatetoyeargetv3sensorssensorsiddaysyearlyget
+        method: GET
+        description: OpenAQ Get measurements aggregated from day to year by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-hours
+      path: /v3/sensors/{sensors_id}/hours
+      operations:
+      - name: sensorhourlymeasurementsgetv3sensorssensorsidhoursget
+        method: GET
+        description: OpenAQ Get measurements aggregated to hour by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-hours-daily
+      path: /v3/sensors/{sensors_id}/hours/daily
+      operations:
+      - name: sensorhourlymeasurementsaggregatetodaygetv3sensorssensorsidhoursdailyget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to day by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-hours-dayofweek
+      path: /v3/sensors/{sensors_id}/hours/dayofweek
+      operations:
+      - name: sensorhourlymeasurementsaggregatetodowgetv3sensorssensorsidhoursdayofweekget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+    - name: v3-sensors-sensors_id-hours-hourofday
+      path: /v3/sensors/{sensors_id}/hours/hourofday
+      operations:
+      - name: sensorhourlymeasurementsaggregatetohodgetv3sensorssensorsidhourshourofdayget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+    - name: v3-sensors-sensors_id-hours-monthly
+      path: /v3/sensors/{sensors_id}/hours/monthly
+      operations:
+      - name: sensorhourlymeasurementsaggregatetomonthgetv3sensorssensorsidhoursmonthlyget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-hours-monthofyear
+      path: /v3/sensors/{sensors_id}/hours/monthofyear
+      operations:
+      - name: sensorhourlymeasurementsaggregatetomoygetv3sensorssensorsidhoursmonthofyearget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+    - name: v3-sensors-sensors_id-hours-yearly
+      path: /v3/sensors/{sensors_id}/hours/yearly
+      operations:
+      - name: sensorhourlymeasurementsaggregatetoyeargetv3sensorssensorsidhoursyearlyget
+        method: GET
+        description: OpenAQ Get measurements aggregated from hour to year by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-measurements
+      path: /v3/sensors/{sensors_id}/measurements
+      operations:
+      - name: sensormeasurementsgetv3sensorssensorsidmeasurementsget
+        method: GET
+        description: OpenAQ Get measurements by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-measurements-daily
+      path: /v3/sensors/{sensors_id}/measurements/daily
+      operations:
+      - name: sensormeasurementsaggregatedgetdailyv3sensorssensorsidmeasurementsdailyget
+        method: GET
+        description: OpenAQ Get measurements aggregated to days by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-measurements-hourly
+      path: /v3/sensors/{sensors_id}/measurements/hourly
+      operations:
+      - name: sensormeasurementsaggregatedgethourlyv3sensorssensorsidmeasurementshourlyget
+        method: GET
+        description: OpenAQ Get measurements aggregated to hours by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: datetime_to
+          in: query
+          type: string
+          description: To when?
+        - name: datetime_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    - name: v3-sensors-sensors_id-years
+      path: /v3/sensors/{sensors_id}/years
+      operations:
+      - name: sensoryearlygetv3sensorssensorsidyearsget
+        method: GET
+        description: OpenAQ Get measurements aggregated to year by sensor ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sensors_id
+          in: path
+          type: integer
+          description: Limit the results to a specific sensors id
+          required: true
+        - name: date_to
+          in: query
+          type: string
+          description: To when?
+        - name: date_from
+          in: query
+          type: string
+          description: From when?
+        - name: limit
+          in: query
+          type: integer
+          description: Change the number of results returned.
+        - name: page
+          in: query
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.OPENAQ_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: openaq-sensors-rest
+    port: 8080
+    description: REST adapter for OpenAQ — Sensors. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v3/locations/{locations-id}/sensors
+      name: v3-locations-locations-id-sensors
+      description: REST surface for v3-locations-locations_id-sensors.
+      operations:
+      - method: GET
+        name: sensorsgetv3locationslocationsidsensorsget
+        description: OpenAQ Get sensors by location ID
+        call: openaq-sensors.sensorsgetv3locationslocationsidsensorsget
+        with:
+          locations_id: rest.locations_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensor-id}/flags
+      name: v3-sensors-sensor-id-flags
+      description: REST surface for v3-sensors-sensor_id-flags.
+      operations:
+      - method: GET
+        name: sensorflagsgetv3sensorssensoridflagsget
+        description: OpenAQ Get flags by sensor ID
+        call: openaq-sensors.sensorflagsgetv3sensorssensoridflagsget
+        with:
+          sensor_id: rest.sensor_id
+          limit: rest.limit
+          page: rest.page
+          datetime_from: rest.datetime_from
+          datetime_to: rest.datetime_to
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}
+      name: v3-sensors-sensors-id
+      description: REST surface for v3-sensors-sensors_id.
+      operations:
+      - method: GET
+        name: sensorgetv3sensorssensorsidget
+        description: OpenAQ Get a sensor by ID
+        call: openaq-sensors.sensorgetv3sensorssensorsidget
+        with:
+          sensors_id: rest.sensors_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/days
+      name: v3-sensors-sensors-id-days
+      description: REST surface for v3-sensors-sensors_id-days.
+      operations:
+      - method: GET
+        name: sensordailygetv3sensorssensorsiddaysget
+        description: OpenAQ Get measurements aggregated to day by sensor ID
+        call: openaq-sensors.sensordailygetv3sensorssensorsiddaysget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/days/dayofweek
+      name: v3-sensors-sensors-id-days-dayofweek
+      description: REST surface for v3-sensors-sensors_id-days-dayofweek.
+      operations:
+      - method: GET
+        name: sensordailymeasurementsaggregatetodowgetv3sensorssensorsiddaysdayofweekget
+        description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+        call: openaq-sensors.sensordailymeasurementsaggregatetodowgetv3sensorssensorsiddaysdayofweekget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/days/monthly
+      name: v3-sensors-sensors-id-days-monthly
+      description: REST surface for v3-sensors-sensors_id-days-monthly.
+      operations:
+      - method: GET
+        name: sensordailyaggregatetomonthgetv3sensorssensorsiddaysmonthlyget
+        description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+        call: openaq-sensors.sensordailyaggregatetomonthgetv3sensorssensorsiddaysmonthlyget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/days/monthofyear
+      name: v3-sensors-sensors-id-days-monthofyear
+      description: REST surface for v3-sensors-sensors_id-days-monthofyear.
+      operations:
+      - method: GET
+        name: sensordailymeasurementsaggregatetomoygetv3sensorssensorsiddaysmonthofyearget
+        description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+        call: openaq-sensors.sensordailymeasurementsaggregatetomoygetv3sensorssensorsiddaysmonthofyearget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/days/yearly
+      name: v3-sensors-sensors-id-days-yearly
+      description: REST surface for v3-sensors-sensors_id-days-yearly.
+      operations:
+      - method: GET
+        name: sensordailyaggregatetoyeargetv3sensorssensorsiddaysyearlyget
+        description: OpenAQ Get measurements aggregated from day to year by sensor ID
+        call: openaq-sensors.sensordailyaggregatetoyeargetv3sensorssensorsiddaysyearlyget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours
+      name: v3-sensors-sensors-id-hours
+      description: REST surface for v3-sensors-sensors_id-hours.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsgetv3sensorssensorsidhoursget
+        description: OpenAQ Get measurements aggregated to hour by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsgetv3sensorssensorsidhoursget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/daily
+      name: v3-sensors-sensors-id-hours-daily
+      description: REST surface for v3-sensors-sensors_id-hours-daily.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetodaygetv3sensorssensorsidhoursdailyget
+        description: OpenAQ Get measurements aggregated from hour to day by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetodaygetv3sensorssensorsidhoursdailyget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/dayofweek
+      name: v3-sensors-sensors-id-hours-dayofweek
+      description: REST surface for v3-sensors-sensors_id-hours-dayofweek.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetodowgetv3sensorssensorsidhoursdayofweekget
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetodowgetv3sensorssensorsidhoursdayofweekget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/hourofday
+      name: v3-sensors-sensors-id-hours-hourofday
+      description: REST surface for v3-sensors-sensors_id-hours-hourofday.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetohodgetv3sensorssensorsidhourshourofdayget
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetohodgetv3sensorssensorsidhourshourofdayget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/monthly
+      name: v3-sensors-sensors-id-hours-monthly
+      description: REST surface for v3-sensors-sensors_id-hours-monthly.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetomonthgetv3sensorssensorsidhoursmonthlyget
+        description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetomonthgetv3sensorssensorsidhoursmonthlyget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/monthofyear
+      name: v3-sensors-sensors-id-hours-monthofyear
+      description: REST surface for v3-sensors-sensors_id-hours-monthofyear.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetomoygetv3sensorssensorsidhoursmonthofyearget
+        description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetomoygetv3sensorssensorsidhoursmonthofyearget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/hours/yearly
+      name: v3-sensors-sensors-id-hours-yearly
+      description: REST surface for v3-sensors-sensors_id-hours-yearly.
+      operations:
+      - method: GET
+        name: sensorhourlymeasurementsaggregatetoyeargetv3sensorssensorsidhoursyearlyget
+        description: OpenAQ Get measurements aggregated from hour to year by sensor ID
+        call: openaq-sensors.sensorhourlymeasurementsaggregatetoyeargetv3sensorssensorsidhoursyearlyget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/measurements
+      name: v3-sensors-sensors-id-measurements
+      description: REST surface for v3-sensors-sensors_id-measurements.
+      operations:
+      - method: GET
+        name: sensormeasurementsgetv3sensorssensorsidmeasurementsget
+        description: OpenAQ Get measurements by sensor ID
+        call: openaq-sensors.sensormeasurementsgetv3sensorssensorsidmeasurementsget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/measurements/daily
+      name: v3-sensors-sensors-id-measurements-daily
+      description: REST surface for v3-sensors-sensors_id-measurements-daily.
+      operations:
+      - method: GET
+        name: sensormeasurementsaggregatedgetdailyv3sensorssensorsidmeasurementsdailyget
+        description: OpenAQ Get measurements aggregated to days by sensor ID
+        call: openaq-sensors.sensormeasurementsaggregatedgetdailyv3sensorssensorsidmeasurementsdailyget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/measurements/hourly
+      name: v3-sensors-sensors-id-measurements-hourly
+      description: REST surface for v3-sensors-sensors_id-measurements-hourly.
+      operations:
+      - method: GET
+        name: sensormeasurementsaggregatedgethourlyv3sensorssensorsidmeasurementshourlyget
+        description: OpenAQ Get measurements aggregated to hours by sensor ID
+        call: openaq-sensors.sensormeasurementsaggregatedgethourlyv3sensorssensorsidmeasurementshourlyget
+        with:
+          sensors_id: rest.sensors_id
+          datetime_to: rest.datetime_to
+          datetime_from: rest.datetime_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/sensors/{sensors-id}/years
+      name: v3-sensors-sensors-id-years
+      description: REST surface for v3-sensors-sensors_id-years.
+      operations:
+      - method: GET
+        name: sensoryearlygetv3sensorssensorsidyearsget
+        description: OpenAQ Get measurements aggregated to year by sensor ID
+        call: openaq-sensors.sensoryearlygetv3sensorssensorsidyearsget
+        with:
+          sensors_id: rest.sensors_id
+          date_to: rest.date_to
+          date_from: rest.date_from
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openaq-sensors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenAQ — Sensors. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openaq-get-sensors-location-id
+      description: OpenAQ Get sensors by location ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorsgetv3locationslocationsidsensorsget
+      with:
+        locations_id: tools.locations_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-flags-sensor-id
+      description: OpenAQ Get flags by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorflagsgetv3sensorssensoridflagsget
+      with:
+        sensor_id: tools.sensor_id
+        limit: tools.limit
+        page: tools.page
+        datetime_from: tools.datetime_from
+        datetime_to: tools.datetime_to
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-sensor-id
+      description: OpenAQ Get a sensor by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorgetv3sensorssensorsidget
+      with:
+        sensors_id: tools.sensors_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-day
+      description: OpenAQ Get measurements aggregated to day by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensordailygetv3sensorssensorsiddaysget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-day-2
+      description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensordailymeasurementsaggregatetodowgetv3sensorssensorsiddaysdayofweekget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour
+      description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensordailyaggregatetomonthgetv3sensorssensorsiddaysmonthlyget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-day-3
+      description: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensordailymeasurementsaggregatetomoygetv3sensorssensorsiddaysmonthofyearget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-day-4
+      description: OpenAQ Get measurements aggregated from day to year by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensordailyaggregatetoyeargetv3sensorssensorsiddaysyearlyget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-2
+      description: OpenAQ Get measurements aggregated to hour by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsgetv3sensorssensorsidhoursget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-3
+      description: OpenAQ Get measurements aggregated from hour to day by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetodaygetv3sensorssensorsidhoursdailyget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-4
+      description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetodowgetv3sensorssensorsidhoursdayofweekget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-5
+      description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetohodgetv3sensorssensorsidhourshourofdayget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-6
+      description: OpenAQ Get measurements aggregated from hour to month by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetomonthgetv3sensorssensorsidhoursmonthlyget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-7
+      description: OpenAQ Get measurements aggregated from hour to day of week by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetomoygetv3sensorssensorsidhoursmonthofyearget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hour-8
+      description: OpenAQ Get measurements aggregated from hour to year by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensorhourlymeasurementsaggregatetoyeargetv3sensorssensorsidhoursyearlyget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-sensor-id
+      description: OpenAQ Get measurements by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensormeasurementsgetv3sensorssensorsidmeasurementsget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-days
+      description: OpenAQ Get measurements aggregated to days by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensormeasurementsaggregatedgetdailyv3sensorssensorsidmeasurementsdailyget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-hours
+      description: OpenAQ Get measurements aggregated to hours by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensormeasurementsaggregatedgethourlyv3sensorssensorsidmeasurementshourlyget
+      with:
+        sensors_id: tools.sensors_id
+        datetime_to: tools.datetime_to
+        datetime_from: tools.datetime_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: openaq-get-measurements-aggregated-year
+      description: OpenAQ Get measurements aggregated to year by sensor ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openaq-sensors.sensoryearlygetv3sensorssensorsidyearsget
+      with:
+        sensors_id: tools.sensors_id
+        date_to: tools.date_to
+        date_from: tools.date_from
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
