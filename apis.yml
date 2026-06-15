@@ -1,167 +1,113 @@
 aid: openaq
 url: https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml
 apis:
-- aid: openaq:openaq
-  name: OpenAQ
-  tags:
-  - Averages
-  - Cities
-  - Countries
-  - Daily
-  - Days
-  - Flags
-  - Hourly
-  - Hours
-  - Instruments
-  - Latest
-  - Licenses
-  - Locations
-  - Manufacturers
-  - Measurements
-  - Monthly
-  - Owners
-  - Parameters
-  - Project
-  - Projects
-  - Providers
-  - Readme
-  - Sensor
-  - Sensors
-  - Slug
-  - Sources
-  - Summary
-  - Yearly
-  - Years
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-  baseURL: http://api.example.com
-  humanURL: https://openaq.org/
-  properties:
-  - url: https://docs.openaq.org/
-    type: Documentation
-  - url: properties/openaq-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/openaq-averages.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-cities.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-countries.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-daily.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-days.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-flags.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-hourly.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-hours.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-instruments.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-latest.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-licenses.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-locations.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-manufacturers.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-measurements.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-monthly.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-owners.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-parameters.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-project.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-projects.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-providers.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-readme.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-sensor.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-sensors.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-slug.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-sources.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-summary.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-yearly.yaml
-  - type: NaftikoCapability
-    url: capabilities/openaq-years.yaml
-  description: OpenAQ is a nonprofit organization providing universal access to air quality data to empower a global community
-    of changemakers to solve air inequality-the unequal access to clean air.
+  - aid: openaq:openaq
+    name: OpenAQ
+    tags:
+      - Averages
+      - Cities
+      - Countries
+      - Daily
+      - Days
+      - Flags
+      - Hourly
+      - Hours
+      - Instruments
+      - Latest
+      - Licenses
+      - Locations
+      - Manufacturers
+      - Measurements
+      - Monthly
+      - Owners
+      - Parameters
+      - Project
+      - Projects
+      - Providers
+      - Readme
+      - Sensor
+      - Sensors
+      - Slug
+      - Sources
+      - Summary
+      - Yearly
+      - Years
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: http://api.example.com
+    humanURL: https://openaq.org/
+    properties:
+      - url: https://docs.openaq.org/
+        type: Documentation
+      - url: properties/openaq-openapi.yml
+        type: OpenAPI
+    description: >-
+      OpenAQ is a nonprofit organization providing universal access to air quality data to empower a global community of
+      changemakers to solve air inequality-the unequal access to clean air.
 name: OpenAQ
 tags:
-- Data
-- Data Quality
+  - Data
+  - Data Quality
 kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/openaq
-- url: https://openaq.org/developers/platform-overview/
-  type: Portal
-- name: GitHub Organization
-  url: https://github.com/openaq
-  type: GitHubOrganization
-- type: Integrations
-  url: https://openaq.org/partners/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/openaq
+  - url: https://openaq.org/developers/platform-overview/
+    type: Portal
+  - name: GitHub Organization
+    url: https://github.com/openaq
+    type: GitHubOrganization
+  - type: Integrations
+    url: https://openaq.org/partners/
 created: '2024-11-11'
 modified: '2026-05-19'
-description: OpenAQ is a non-profit organization that focuses on collecting and sharing air quality data from around the world.
-  By providing access to this information through their open-source platform, OpenAQ aims to empower individuals, communities,
-  and organizations to take action towards improving air quality and public health.
+description: >-
+  OpenAQ is a non-profit organization that focuses on collecting and sharing air quality data from around the world. By
+  providing access to this information through their open-source platform, OpenAQ aims to empower individuals,
+  communities, and organizations to take action towards improving air quality and public health.
 integrations:
-- name: Aernode
-- name: Air Gradient
-- name: AirQo
-- name: Airqoon
-- name: Clarity
-- name: Habitat Map
-- name: IQAir
-- name: Miri Africa
-- name: Senstate
-- name: Smart Sense
-- name: Amazon Web Services
-- name: Atmo
-- name: Geocode Earth
-- name: Up Here Media
-- name: Africa Clean Air Network
-- name: Earth Science Information Partners (ESIP)
-- name: Fast Forward
-- name: LAECESS
-- name: One Percent for the Planet
-- name: Open Data Charter
-- name: Planetary Health Alliance
-- name: UNICEF Children's Health Collaborative
-- name: APAD
-- name: Clean Air One Atmosphere
-- name: Green Decision Labs
-- name: Hikma Health
-- name: Kenyatta University
-- name: Love My Air
-- name: Lovexair
-- name: Project Phoenix
-- name: UESD
-- name: University of the Philippines-Manila
-- name: Actions EBMF
-- name: Clean Air Fund
-- name: EPIC University of Chicago
-- name: NASA
-- name: Splunk
-- name: The Godley Family Foundation
-- name: Map of Quezon City, Philippines
+  - name: Aernode
+  - name: Air Gradient
+  - name: AirQo
+  - name: Airqoon
+  - name: Clarity
+  - name: Habitat Map
+  - name: IQAir
+  - name: Miri Africa
+  - name: Senstate
+  - name: Smart Sense
+  - name: Amazon Web Services
+  - name: Atmo
+  - name: Geocode Earth
+  - name: Up Here Media
+  - name: Africa Clean Air Network
+  - name: Earth Science Information Partners (ESIP)
+  - name: Fast Forward
+  - name: LAECESS
+  - name: One Percent for the Planet
+  - name: Open Data Charter
+  - name: Planetary Health Alliance
+  - name: UNICEF Children's Health Collaborative
+  - name: APAD
+  - name: Clean Air One Atmosphere
+  - name: Green Decision Labs
+  - name: Hikma Health
+  - name: Kenyatta University
+  - name: Love My Air
+  - name: Lovexair
+  - name: Project Phoenix
+  - name: UESD
+  - name: University of the Philippines-Manila
+  - name: Actions EBMF
+  - name: Clean Air Fund
+  - name: EPIC University of Chicago
+  - name: NASA
+  - name: Splunk
+  - name: The Godley Family Foundation
+  - name: Map of Quezon City, Philippines
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 specificationVersion: '0.18'
 position: Consuming
 access: 3rd-Party
