@@ -32,7 +32,7 @@ apis:
       - Summary
       - Yearly
       - Years
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: http://api.example.com
     humanURL: https://openaq.org/
     properties:
@@ -48,7 +48,7 @@ tags:
   - Data
   - Data Quality
 kind: contract
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/openaq
