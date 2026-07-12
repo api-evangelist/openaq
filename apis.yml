@@ -50,6 +50,12 @@ tags:
 kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 common:
+  - type: VulnerabilityDisclosure
+    url: security/openaq-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/openaq-domain-security.yml
+  - type: Authentication
+    url: authentication/openaq-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/openaq
   - url: https://openaq.org/developers/platform-overview/
