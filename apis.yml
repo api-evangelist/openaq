@@ -50,6 +50,8 @@ tags:
 kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 common:
+  - type: AgenticAccess
+    url: agentic-access/openaq-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/openaq-vulnerability-disclosure.yml
   - type: DomainSecurity

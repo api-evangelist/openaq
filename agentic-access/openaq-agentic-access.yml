@@ -1,0 +1,654 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/openaq-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 64
+  by_action_class:
+    connected: 64
+  by_consequence:
+    read: 64
+  human_in_the_loop_required: 0
+operations:
+- path: /v3/instruments/{instruments_id}
+  method: get
+  operationId: instrument_get_v3_instruments__instruments_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/instruments
+  method: get
+  operationId: instruments_get_v3_instruments_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/manufacturers/{manufacturers_id}/instruments
+  method: get
+  operationId: get_instruments_by_manufacturer_v3_manufacturers__manufacturers_id__instruments_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/locations/{locations_id}
+  method: get
+  operationId: location_get_v3_locations__locations_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/locations
+  method: get
+  operationId: locations_get_v3_locations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/licenses/{licenses_id}
+  method: get
+  operationId: license_get_v3_licenses__licenses_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/licenses
+  method: get
+  operationId: instruments_get_v3_licenses_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/parameters/{parameters_id}
+  method: get
+  operationId: parameter_get_v3_parameters__parameters_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/parameters
+  method: get
+  operationId: parameters_get_v3_parameters_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/countries/{countries_id}
+  method: get
+  operationId: country_get_v3_countries__countries_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/countries
+  method: get
+  operationId: countries_get_v3_countries_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/manufacturers/{manufacturers_id}
+  method: get
+  operationId: manufacturer_get_v3_manufacturers__manufacturers_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/manufacturers
+  method: get
+  operationId: manufacturers_get_v3_manufacturers_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/measurements
+  method: get
+  operationId: sensor_measurements_get_v3_sensors__sensors_id__measurements_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/measurements/hourly
+  method: get
+  operationId: sensor_measurements_aggregated_get_hourly_v3_sensors__sensors_id__measurements_hourly_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/measurements/daily
+  method: get
+  operationId: sensor_measurements_aggregated_get_daily_v3_sensors__sensors_id__measurements_daily_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours
+  method: get
+  operationId: sensor_hourly_measurements_get_v3_sensors__sensors_id__hours_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/daily
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_day_get_v3_sensors__sensors_id__hours_daily_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/monthly
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_month_get_v3_sensors__sensors_id__hours_monthly_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/yearly
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_year_get_v3_sensors__sensors_id__hours_yearly_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/hourofday
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_hod_get_v3_sensors__sensors_id__hours_hourofday_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/dayofweek
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_dow_get_v3_sensors__sensors_id__hours_dayofweek_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/hours/monthofyear
+  method: get
+  operationId: sensor_hourly_measurements_aggregate_to_moy_get_v3_sensors__sensors_id__hours_monthofyear_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/days/dayofweek
+  method: get
+  operationId: sensor_daily_measurements_aggregate_to_dow_get_v3_sensors__sensors_id__days_dayofweek_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/days/monthofyear
+  method: get
+  operationId: sensor_daily_measurements_aggregate_to_moy_get_v3_sensors__sensors_id__days_monthofyear_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/days
+  method: get
+  operationId: sensor_daily_get_v3_sensors__sensors_id__days_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/days/monthly
+  method: get
+  operationId: sensor_daily_aggregate_to_month_get_v3_sensors__sensors_id__days_monthly_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/days/yearly
+  method: get
+  operationId: sensor_daily_aggregate_to_year_get_v3_sensors__sensors_id__days_yearly_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}/years
+  method: get
+  operationId: sensor_yearly_get_v3_sensors__sensors_id__years_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/owners/{owners_id}
+  method: get
+  operationId: owner_get_v3_owners__owners_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/owners
+  method: get
+  operationId: owners_get_v3_owners_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/providers/{providers_id}
+  method: get
+  operationId: provider_get_v3_providers__providers_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/providers
+  method: get
+  operationId: providers_get_v3_providers_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/locations/{locations_id}/sensors
+  method: get
+  operationId: sensors_get_v3_locations__locations_id__sensors_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensors_id}
+  method: get
+  operationId: sensor_get_v3_sensors__sensors_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/parameters/{parameters_id}/latest
+  method: get
+  operationId: parameters_latest_get_v3_parameters__parameters_id__latest_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/locations/{locations_id}/latest
+  method: get
+  operationId: location_latest_get_v3_locations__locations_id__latest_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/locations/{locations_id}/flags
+  method: get
+  operationId: location_flags_get_v3_locations__locations_id__flags_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/sensors/{sensor_id}/flags
+  method: get
+  operationId: sensor_flags_get_v3_sensors__sensor_id__flags_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/averages
+  method: get
+  operationId: averages_v2_get_v2_averages_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cities
+  method: get
+  operationId: cities_get_v2_cities_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/cities
+  method: get
+  operationId: cities_getv1_v1_cities_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/countries/{country_id}
+  method: get
+  operationId: countries_by_path_v2_countries__country_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/countries/{country_id}
+  method: get
+  operationId: countries_by_path_v1_countries__country_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/countries
+  method: get
+  operationId: countries_get_v2_countries_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/countries
+  method: get
+  operationId: countries_getv1_v1_countries_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/locations/{location_id}
+  method: get
+  operationId: get_v2_location_by_id_v2_locations__location_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/locations
+  method: get
+  operationId: locations_get_v2_locations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/latest/{location_id}
+  method: get
+  operationId: get_v2_latest_by_id_v2_latest__location_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/latest
+  method: get
+  operationId: latest_get_v2_latest_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/latest/{location_id}
+  method: get
+  operationId: get_v1_latest_by_id_v1_latest__location_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/latest
+  method: get
+  operationId: latest_v1_get_v1_latest_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/locations/{location_id}
+  method: get
+  operationId: get_v1_locations_by_id_v1_locations__location_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/locations
+  method: get
+  operationId: locationsv1_get_v1_locations_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/measurements
+  method: get
+  operationId: measurements_get_v2_measurements_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/measurements
+  method: get
+  operationId: measurements_get_v1_v1_measurements_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/parameters
+  method: get
+  operationId: parameters_get_v2_parameters_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/parameters
+  method: get
+  operationId: parameters_getv1_v1_parameters_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/projects/{project_id}
+  method: get
+  operationId: projects_get_v2_projects__project_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/projects
+  method: get
+  operationId: projects_get_v2_projects_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/sources
+  method: get
+  operationId: sources_get_v2_sources_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/sources
+  method: get
+  operationId: sources_v1_get_v1_sources_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/sources/readme/{slug}
+  method: get
+  operationId: readme_get_v2_sources_readme__slug__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/summary
+  method: get
+  operationId: summary_get_v2_summary_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
