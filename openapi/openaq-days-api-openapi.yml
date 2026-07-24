@@ -1,0 +1,727 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Days API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Days
+paths:
+  /v3/sensors/{sensors_id}/days/dayofweek:
+    get:
+      tags:
+      - Days
+      summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+      description: Provides a list of yearly summaries of dayly data by sensor ID
+      operationId: sensor_daily_measurements_aggregate_to_dow_get_v3_sensors__sensors_id__days_dayofweek_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensors_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Sensors Id
+        description: Limit the results to a specific sensors id
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HourlyDataResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/sensors/{sensors_id}/days/monthofyear:
+    get:
+      tags:
+      - Days
+      summary: OpenAQ Get measurements aggregated from day to day of week by sensor ID
+      description: Provides a list of yearly summaries of daily data by sensor ID
+      operationId: sensor_daily_measurements_aggregate_to_moy_get_v3_sensors__sensors_id__days_monthofyear_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensors_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Sensors Id
+        description: Limit the results to a specific sensors id
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HourlyDataResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/sensors/{sensors_id}/days:
+    get:
+      tags:
+      - Days
+      summary: OpenAQ Get measurements aggregated to day by sensor ID
+      description: Provides a list of daily data by sensor ID
+      operationId: sensor_daily_get_v3_sensors__sensors_id__days_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensors_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Sensors Id
+        description: Limit the results to a specific sensors id
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyDataResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/sensors/{sensors_id}/days/monthly:
+    get:
+      tags:
+      - Days
+      summary: OpenAQ Get measurements aggregated from hour to month by sensor ID
+      description: Provides a list of daily summaries of hourly data by sensor ID
+      operationId: sensor_daily_aggregate_to_month_get_v3_sensors__sensors_id__days_monthly_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensors_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Sensors Id
+        description: Limit the results to a specific sensors id
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HourlyDataResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/sensors/{sensors_id}/days/yearly:
+    get:
+      tags:
+      - Days
+      summary: OpenAQ Get measurements aggregated from day to year by sensor ID
+      description: Provides a list of yearly summaries of daily data by sensor ID
+      operationId: sensor_daily_aggregate_to_year_get_v3_sensors__sensors_id__days_yearly_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensors_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Sensors Id
+        description: Limit the results to a specific sensors id
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HourlyDataResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    Summary:
+      properties:
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        q02:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q02
+        q25:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q25
+        median:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Median
+        q75:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q75
+        q98:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q98
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        avg:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg
+        sd:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sd
+      type: object
+      title: Summary
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HourlyDataResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/HourlyData'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: HourlyDataResponse
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
+    ParameterBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    HourlyData:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
+      type: object
+      required:
+      - flagInfo
+      - parameter
+      title: HourlyData
+    Period:
+      properties:
+        label:
+          type: string
+          title: Label
+        interval:
+          type: string
+          title: Interval
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - label
+      - interval
+      title: Period
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Coverage:
+      properties:
+        expectedCount:
+          type: integer
+          title: Expectedcount
+        expectedInterval:
+          type: string
+          title: Expectedinterval
+        observedCount:
+          type: integer
+          title: Observedcount
+        observedInterval:
+          type: string
+          title: Observedinterval
+        percentComplete:
+          type: number
+          title: Percentcomplete
+        percentCoverage:
+          type: number
+          title: Percentcoverage
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - expectedCount
+      - expectedInterval
+      - observedCount
+      - observedInterval
+      - percentComplete
+      - percentCoverage
+      title: Coverage
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    DailyData:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
+      type: object
+      required:
+      - flagInfo
+      - parameter
+      title: DailyData
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    DailyDataResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/DailyData'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: DailyDataResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

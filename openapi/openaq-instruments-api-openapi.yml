@@ -1,0 +1,272 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Instruments API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Instruments
+paths:
+  /v3/instruments/{instruments_id}:
+    get:
+      tags:
+      - Instruments
+      summary: OpenAQ Get an instrument by ID
+      description: Provides a instrument by instrument ID
+      operationId: instrument_get_v3_instruments__instruments_id__get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: instruments_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific instruments id
+          title: Instruments Id
+        description: Limit the results to a specific instruments id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/instruments:
+    get:
+      tags:
+      - Instruments
+      summary: OpenAQ Get instruments
+      description: Provides a list of instruments
+      operationId: instruments_get_v3_instruments_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/InstrumentsSortFields'
+          - type: 'null'
+          description: The field by which to order results
+          examples:
+          - order_by=id
+          default: id
+          title: Order By
+        description: The field by which to order results
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sort results ascending or descending. Default ASC
+          examples:
+          - sort=desc
+          default: asc
+          title: Sort Order
+        description: Sort results ascending or descending. Default ASC
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/manufacturers/{manufacturers_id}/instruments:
+    get:
+      tags:
+      - Instruments
+      summary: OpenAQ Get instruments by manufacturer ID
+      description: Provides a list of instruments for a specific manufacturer
+      operationId: get_instruments_by_manufacturer_v3_manufacturers__manufacturers_id__instruments_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: manufacturers_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit results to a specific manufacturer id
+          title: Manufacturers Id
+        description: Limit results to a specific manufacturer id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    InstrumentsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Instrument'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: InstrumentsResponse
+    InstrumentsSortFields:
+      type: string
+      const: id
+      title: InstrumentsSortFields
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ManufacturerBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: ManufacturerBase
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    Instrument:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        isMonitor:
+          type: boolean
+          title: Ismonitor
+        manufacturer:
+          $ref: '#/components/schemas/ManufacturerBase'
+      type: object
+      required:
+      - id
+      - name
+      - isMonitor
+      - manufacturer
+      title: Instrument
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

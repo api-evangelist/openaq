@@ -1,0 +1,425 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Cities API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Cities
+paths:
+  /v2/cities:
+    get:
+      tags:
+      - Cities
+      summary: OpenAQ Get cities
+      description: Provides a list of cities supported by the platform
+      operationId: cities_get_v2_cities_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      - name: country_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+          examples:
+          - 13
+          title: Country Id
+        description: Limit results by a certain country using two digit country ID. e.g. 13
+      - name: country
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+          examples:
+          - US
+          title: Country
+        description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+      - name: city
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+          examples:
+          - Chicago
+          title: City
+        description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/CitiesOrder'
+          description: Order by a field e.g. ?order_by=city
+          examples:
+          - city
+          default: city
+          title: Order By
+        description: Order by a field e.g. ?order_by=city
+      - name: entity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Entity
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/cities:
+    get:
+      tags:
+      - Cities
+      summary: OpenAQ Get cities
+      description: Provides a list of cities supported by the platform
+      operationId: cities_getv1_v1_cities_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/CitiesOrderV1'
+          description: Order by a field e.g. ?order_by=city
+          examples:
+          - city
+          default: city
+          title: Order By
+        description: Order by a field e.g. ?order_by=city
+      - name: country
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+          examples:
+          - US
+          title: Country
+        description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    CitiesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CityRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CitiesResponseV1
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CityRow:
+      properties:
+        country:
+          type: string
+          title: Country
+        city:
+          type: string
+          title: City
+        count:
+          type: integer
+          title: Count
+        locations:
+          type: integer
+          title: Locations
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameters:
+          items:
+            type: string
+          type: array
+          title: Parameters
+      type: object
+      required:
+      - country
+      - city
+      - count
+      - locations
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      title: CityRow
+    CityRowV1:
+      properties:
+        country:
+          type: string
+          title: Country
+        city:
+          type: string
+          title: City
+        count:
+          type: integer
+          title: Count
+        locations:
+          type: integer
+          title: Locations
+      type: object
+      required:
+      - country
+      - city
+      - count
+      - locations
+      title: CityRowV1
+    CitiesOrderV1:
+      type: string
+      enum:
+      - city
+      - country
+      - locations
+      - count
+      title: CitiesOrderV1
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CitiesOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - firstUpdated
+      - lastUpdated
+      title: CitiesOrder
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    CitiesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CityRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CitiesResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

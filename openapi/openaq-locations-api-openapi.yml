@@ -1,0 +1,2516 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Locations API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Locations
+paths:
+  /v3/locations/{locations_id}:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get a location by ID
+      description: Provides a location by location ID
+      operationId: location_get_v3_locations__locations_id__get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: locations_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific location by id
+          title: Locations Id
+        description: Limit the results to a specific location by id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__LocationsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/locations:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get locations
+      description: Provides a list of locations
+      operationId: locations_get_v3_locations_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373
+          examples:
+          - 38.907,-77.037
+          title: Coordinates
+        description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373
+      - name: radius
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 25000
+            exclusiveMinimum: 0
+          - type: 'null'
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000
+          examples:
+          - '1000'
+          title: Radius
+        description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000
+      - name: providers_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Limit the results to a specific provider or multiple providers  with a single provider ID or a comma delimited list of IDs
+          examples:
+          - '1'
+          - 1,2,3
+          title: Providers Id
+        description: Limit the results to a specific provider or multiple providers  with a single provider ID or a comma delimited list of IDs
+      - name: parameters_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Parameters Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: owner_contacts_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Limit the results to a specific owner by owner ID with a single owner ID or comma delimited list of IDs
+          title: Owner Contacts Id
+        description: Limit the results to a specific owner by owner ID with a single owner ID or comma delimited list of IDs
+      - name: manufacturers_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Manufacturers Id
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/LocationsSortFields'
+          - type: 'null'
+          description: The field by which to order results
+          examples:
+          - order_by=id
+          default: id
+          title: Order By
+        description: The field by which to order results
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sort results ascending or descending. Default ASC
+          examples:
+          - sort=desc
+          default: asc
+          title: Sort Order
+        description: Sort results ascending or descending. Default ASC
+      - name: licenses_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Licenses Id
+      - name: monitor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Is the location considered a reference monitor?
+          title: Monitor
+        description: Is the location considered a reference monitor?
+      - name: mobile
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Is the location considered a mobile location?
+          title: Mobile
+        description: Is the location considered a mobile location?
+      - name: instruments_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Instruments Id
+      - name: iso
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+          examples:
+          - US
+          title: Iso
+        description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+      - name: countries_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs
+          examples:
+          - '1'
+          - 1,2,3
+          title: Countries Id
+        description: Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs
+      - name: bbox
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910
+          examples:
+          - -77.1200,38.7916,-76.9094,38.9955
+          title: Bbox
+        description: geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__LocationsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/locations/{locations_id}/sensors:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get sensors by location ID
+      description: Provides a list of sensors by location ID
+      operationId: sensors_get_v3_locations__locations_id__sensors_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: locations_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensors id
+          title: Locations Id
+        description: Limit the results to a specific sensors id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/locations/{locations_id}/latest:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get a location's latest measurements
+      description: Providers a location's latest measurement values
+      operationId: location_latest_get_v3_locations__locations_id__latest_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: locations_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific location by id
+          title: Locations Id
+        description: Limit the results to a specific location by id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: datetime_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: Minimum datetime
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime Min
+        description: Minimum datetime
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__LatestResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/locations/{locations_id}/flags:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get flags by location ID
+      description: Provides a list of flags by location ID
+      operationId: location_flags_get_v3_locations__locations_id__flags_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: locations_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific locations
+          title: Locations Id
+        description: Limit the results to a specific locations
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: datetime_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime From
+        description: To when?
+      - name: datetime_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime To
+        description: To when?
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationFlagsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/locations/{location_id}:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get a location by ID
+      description: Provides a location by location ID
+      operationId: get_v2_location_by_id_v2_locations__location_id__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: location_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the location
+          title: Location Id
+        description: The ID of the location
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__models__responses__LocationsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/locations:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get locations
+      description: Provides a list of locations
+      operationId: locations_get_v2_locations_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Sort Direction e.g. sort=desc
+          examples:
+          - desc
+          default: desc
+          title: Sort
+        description: Sort Direction e.g. sort=desc
+      - name: parameter_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+          examples:
+          - '2'
+          title: Parameter Id
+        description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+      - name: parameter
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+          examples:
+          - pm25
+          title: Parameter
+        description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+      - name: unit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Unit
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+          examples:
+          - 38.907,-77.037
+          title: Coordinates
+        description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+      - name: radius
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000
+          examples:
+          - '10000'
+          default: 1000
+          title: Radius
+        description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000
+      - name: country_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+          examples:
+          - 13
+          title: Country Id
+        description: Limit results by a certain country using two digit country ID. e.g. 13
+      - name: country
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+          examples:
+          - US
+          title: Country
+        description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+      - name: city
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+          examples:
+          - Chicago
+          title: City
+        description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+      - name: location_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Location Id
+      - name: location
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Location
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/LocationsOrder'
+          description: Order by a field
+          default: lastUpdated
+          title: Order By
+        description: Order by a field
+      - name: is_mobile
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Location is mobile e.g. ?isMobile=true
+          examples:
+          - 'true'
+          title: Is Mobile
+        description: Location is mobile e.g. ?isMobile=true
+      - name: is_analysis
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: 'Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true '
+          examples:
+          - 'true'
+          title: Is Analysis
+        description: 'Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true '
+      - name: source_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+          examples:
+          - Houston%20Mobile
+          title: Source Name
+        description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+      - name: entity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/EntityTypes'
+          - type: 'null'
+          description: Source entity type. e.g. ?entity=government
+          examples:
+          - government
+          title: Entity
+        description: Source entity type. e.g. ?entity=government
+      - name: sensor_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SensorTypes'
+          - type: 'null'
+          description: Type of Sensor e.g. ?sensorType=reference%20grade
+          examples:
+          - reference%20grade
+          title: Sensor Type
+        description: Type of Sensor e.g. ?sensorType=reference%20grade
+      - name: model_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Model Name of Sensor e.g. ?modelName=AE33
+          examples:
+          - AE33
+          title: Model Name
+        description: Model Name of Sensor e.g. ?modelName=AE33
+      - name: manufacturer_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+          examples:
+          - Ecotech
+          title: Manufacturer Name
+        description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+      - name: dump_raw
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Dump Raw
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__models__responses__LocationsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/latest/{location_id}:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get latest measurements by location ID
+      description: Provides latest measurements for a locations by location ID
+      operationId: get_v2_latest_by_id_v2_latest__location_id__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: location_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the location
+          title: Location Id
+        description: The ID of the location
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__models__responses__LatestResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/latest/{location_id}:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get latest measurements by location ID
+      operationId: get_v1_latest_by_id_v1_latest__location_id__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: location_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the location
+          title: Location Id
+        description: The ID of the location
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/locations/{location_id}:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get location by ID
+      operationId: get_v1_locations_by_id_v1_locations__location_id__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: location_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: The ID of the location
+          title: Location Id
+        description: The ID of the location
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/locations:
+    get:
+      tags:
+      - Locations
+      summary: OpenAQ Get locations
+      operationId: locationsv1_get_v1_locations_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Sort Direction e.g. sort=desc
+          examples:
+          - desc
+          default: desc
+          title: Sort
+        description: Sort Direction e.g. sort=desc
+      - name: parameter_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+          examples:
+          - '2'
+          title: Parameter Id
+        description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+      - name: parameter
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+          examples:
+          - pm25
+          title: Parameter
+        description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+      - name: unit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Unit
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+          examples:
+          - 38.907,-77.037
+          title: Coordinates
+        description: Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037
+      - name: radius
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000
+          examples:
+          - '10000'
+          default: 1000
+          title: Radius
+        description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000
+      - name: country_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+          examples:
+          - 13
+          title: Country Id
+        description: Limit results by a certain country using two digit country ID. e.g. 13
+      - name: country
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+          examples:
+          - US
+          title: Country
+        description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+      - name: city
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+          examples:
+          - Chicago
+          title: City
+        description: Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)
+      - name: location_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Location Id
+      - name: location
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Location
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/LocationsOrder'
+          description: Order by a field
+          default: lastUpdated
+          title: Order By
+        description: Order by a field
+      - name: is_mobile
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: Location is mobile e.g. ?isMobile=true
+          examples:
+          - 'true'
+          title: Is Mobile
+        description: Location is mobile e.g. ?isMobile=true
+      - name: is_analysis
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: 'Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true '
+          examples:
+          - 'true'
+          title: Is Analysis
+        description: 'Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true '
+      - name: source_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+          examples:
+          - Houston%20Mobile
+          title: Source Name
+        description: Name of the data source e.g. ?sourceName=Houston%20Mobile
+      - name: entity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/EntityTypes'
+          - type: 'null'
+          description: Source entity type. e.g. ?entity=government
+          examples:
+          - government
+          title: Entity
+        description: Source entity type. e.g. ?entity=government
+      - name: sensor_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SensorTypes'
+          - type: 'null'
+          description: Type of Sensor e.g. ?sensorType=reference%20grade
+          examples:
+          - reference%20grade
+          title: Sensor Type
+        description: Type of Sensor e.g. ?sensorType=reference%20grade
+      - name: model_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Model Name of Sensor e.g. ?modelName=AE33
+          examples:
+          - AE33
+          title: Model Name
+        description: Model Name of Sensor e.g. ?modelName=AE33
+      - name: manufacturer_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+          examples:
+          - Ecotech
+          title: Manufacturer Name
+        description: Manufacturer of Sensor e.g. ?manufacturer=Ecotech
+      - name: dump_raw
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          default: false
+          title: Dump Raw
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    LatestResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LatestRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponseV1
+    EntityTypes:
+      type: string
+      enum:
+      - government
+      - community
+      - research
+      title: EntityTypes
+    openaq_api__models__responses__Manufacturer:
+      properties:
+        modelName:
+          type: string
+          title: Modelname
+        manufacturerName:
+          type: string
+          title: Manufacturername
+      type: object
+      required:
+      - modelName
+      - manufacturerName
+      title: Manufacturer
+    LatestRowV1:
+      properties:
+        location:
+          type: string
+          title: Location
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        measurements:
+          items:
+            $ref: '#/components/schemas/LatestMeasurementRow'
+          type: array
+          title: Measurements
+      type: object
+      required:
+      - location
+      - coordinates
+      - measurements
+      title: LatestRowV1
+    Latest:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        sensorsId:
+          type: integer
+          title: Sensorsid
+        locationsId:
+          type: integer
+          title: Locationsid
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      - sensorsId
+      - locationsId
+      title: Latest
+    LocationFlag:
+      properties:
+        locationId:
+          type: integer
+          title: Locationid
+        flagType:
+          $ref: '#/components/schemas/FlagType'
+        datetimeFrom:
+          $ref: '#/components/schemas/DatetimeObject'
+        datetimeTo:
+          $ref: '#/components/schemas/DatetimeObject'
+        sensorIds:
+          items:
+            type: integer
+          type: array
+          title: Sensorids
+          default: []
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+      type: object
+      required:
+      - locationId
+      - flagType
+      - datetimeFrom
+      - datetimeTo
+      title: LocationFlag
+    LocationLicense:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        attribution:
+          $ref: '#/components/schemas/AttributionEntity'
+        dateFrom:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Datefrom
+        dateTo:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Dateto
+      type: object
+      required:
+      - id
+      - name
+      - attribution
+      title: LocationLicense
+    ProviderBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: ProviderBase
+    Source:
+      properties:
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        name:
+          type: string
+          title: Name
+        id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Id
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        organization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Organization
+        lifecycle_stage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lifecycle Stage
+      type: object
+      required:
+      - name
+      title: Source
+    openaq_api__models__responses__Parameter:
+      properties:
+        id:
+          type: integer
+          title: Id
+        unit:
+          type: string
+          title: Unit
+        count:
+          type: integer
+          title: Count
+        average:
+          type: number
+          title: Average
+        parameter:
+          type: string
+          title: Parameter
+        lastValue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Lastvalue
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameterId:
+          type: integer
+          title: Parameterid
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        manufacturers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+            type: array
+          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+          title: Manufacturers
+      type: object
+      required:
+      - id
+      - unit
+      - count
+      - average
+      - parameter
+      - lastUpdated
+      - parameterId
+      - firstUpdated
+      title: Parameter
+    AttributionEntity:
+      properties:
+        name:
+          type: string
+          title: Name
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+      type: object
+      required:
+      - name
+      title: AttributionEntity
+    Location:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        locality:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Locality
+        timezone:
+          type: string
+          title: Timezone
+        country:
+          $ref: '#/components/schemas/CountryBase'
+        owner:
+          $ref: '#/components/schemas/EntityBase'
+        provider:
+          $ref: '#/components/schemas/ProviderBase'
+        isMobile:
+          type: boolean
+          title: Ismobile
+        isMonitor:
+          type: boolean
+          title: Ismonitor
+        instruments:
+          items:
+            $ref: '#/components/schemas/InstrumentBase'
+          type: array
+          title: Instruments
+        sensors:
+          items:
+            $ref: '#/components/schemas/SensorBase'
+          type: array
+          title: Sensors
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        licenses:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/LocationLicense'
+            type: array
+          - type: 'null'
+          title: Licenses
+        bounds:
+          items:
+            type: number
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Bounds
+        distance:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Distance
+        datetimeFirst:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeLast:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - timezone
+      - country
+      - owner
+      - provider
+      - isMobile
+      - isMonitor
+      - instruments
+      - sensors
+      - coordinates
+      - bounds
+      title: Location
+    FlagType:
+      properties:
+        id:
+          type: integer
+          title: Id
+        label:
+          type: string
+          title: Label
+        level:
+          type: string
+          title: Level
+      type: object
+      required:
+      - id
+      - label
+      - level
+      title: FlagType
+    EntityBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: EntityBase
+    CountsByMeasurementItem:
+      properties:
+        parameter:
+          type: string
+          title: Parameter
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - parameter
+      - count
+      title: CountsByMeasurementItem
+    LatestMeasurementRow:
+      properties:
+        parameter:
+          type: string
+          title: Parameter
+        value:
+          type: number
+          title: Value
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        unit:
+          type: string
+          title: Unit
+        sourceName:
+          type: string
+          title: Sourcename
+        averagingPeriod:
+          $ref: '#/components/schemas/AveragingPeriodV1'
+      type: object
+      required:
+      - parameter
+      - value
+      - lastUpdated
+      - unit
+      - sourceName
+      - averagingPeriod
+      title: LatestMeasurementRow
+    Sensor:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        datetimeFirst:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeLast:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
+        latest:
+          anyOf:
+          - $ref: '#/components/schemas/LatestBase'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+      type: object
+      required:
+      - id
+      - name
+      - parameter
+      title: Sensor
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    LocationsRow:
+      properties:
+        id:
+          type: integer
+          title: Id
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        entity:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Entity
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        sources:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/Source'
+            type: array
+          - $ref: '#/components/schemas/Source'
+          title: Sources
+        isMobile:
+          type: boolean
+          title: Ismobile
+        isAnalysis:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Isanalysis
+        parameters:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Parameter'
+            type: array
+          - type: 'null'
+          title: Parameters
+        sensorType:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sensortype
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        lastUpdated:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lastupdated
+        firstUpdated:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Firstupdated
+        measurements:
+          type: integer
+          title: Measurements
+        bounds:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Bounds
+        manufacturers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+            type: array
+          - type: 'null'
+          title: Manufacturers
+      type: object
+      required:
+      - id
+      - isMobile
+      - measurements
+      title: LocationsRow
+    Summary:
+      properties:
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        q02:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q02
+        q25:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q25
+        median:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Median
+        q75:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q75
+        q98:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q98
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        avg:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg
+        sd:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sd
+      type: object
+      title: Summary
+    ParameterBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    InstrumentBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: InstrumentBase
+    LatestRow:
+      properties:
+        location:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Location
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        measurements:
+          items:
+            $ref: '#/components/schemas/LatestMeasurement'
+          type: array
+          title: Measurements
+      type: object
+      required:
+      - measurements
+      title: LatestRow
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    LatestMeasurement:
+      properties:
+        parameter:
+          type: string
+          title: Parameter
+        value:
+          type: number
+          title: Value
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        unit:
+          type: string
+          title: Unit
+      type: object
+      required:
+      - parameter
+      - value
+      - lastUpdated
+      - unit
+      title: LatestMeasurement
+    LocationsSortFields:
+      type: string
+      const: id
+      title: LocationsSortFields
+    SensorBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+      type: object
+      required:
+      - id
+      - name
+      - parameter
+      title: SensorBase
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    LocationFlagsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationFlag'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationFlagsResponse
+    openaq_api__v3__models__responses__LatestResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Latest'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponse
+    openaq_api__models__responses__LocationsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationsRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationsResponse
+    LocationsRowV1:
+      properties:
+        id:
+          type: integer
+          title: Id
+        country:
+          type: string
+          title: Country
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        cities:
+          anyOf:
+          - items:
+              anyOf:
+              - type: string
+              - type: 'null'
+            type: array
+          - type: 'null'
+          title: Cities
+        location:
+          type: string
+          title: Location
+        locations:
+          items:
+            type: string
+          type: array
+          title: Locations
+        sourceName:
+          type: string
+          title: Sourcename
+        sourceNames:
+          items:
+            type: string
+          type: array
+          title: Sourcenames
+        sourceType:
+          type: string
+          title: Sourcetype
+        sourceTypes:
+          items:
+            type: string
+          type: array
+          title: Sourcetypes
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameters:
+          items:
+            type: string
+          type: array
+          title: Parameters
+        countsByMeasurement:
+          items:
+            $ref: '#/components/schemas/CountsByMeasurementItem'
+          type: array
+          title: Countsbymeasurement
+        count:
+          type: integer
+          title: Count
+      type: object
+      required:
+      - id
+      - country
+      - location
+      - locations
+      - sourceName
+      - sourceNames
+      - sourceType
+      - sourceTypes
+      - coordinates
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      - countsByMeasurement
+      - count
+      title: LocationsRowV1
+    openaq_api__models__responses__LatestResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LatestRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SensorsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Sensor'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SensorsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AveragingPeriodV1:
+      properties:
+        value:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Value
+        unit:
+          type: string
+          title: Unit
+      type: object
+      required:
+      - unit
+      title: AveragingPeriodV1
+    Coverage:
+      properties:
+        expectedCount:
+          type: integer
+          title: Expectedcount
+        expectedInterval:
+          type: string
+          title: Expectedinterval
+        observedCount:
+          type: integer
+          title: Observedcount
+        observedInterval:
+          type: string
+          title: Observedinterval
+        percentComplete:
+          type: number
+          title: Percentcomplete
+        percentCoverage:
+          type: number
+          title: Percentcoverage
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - expectedCount
+      - expectedInterval
+      - observedCount
+      - observedInterval
+      - percentComplete
+      - percentCoverage
+      title: Coverage
+    CountryBase:
+      properties:
+        id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Id
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: CountryBase
+    SensorTypes:
+      type: string
+      enum:
+      - reference grade
+      - low-cost sensor
+      title: SensorTypes
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    LocationsResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationsRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationsResponseV1
+    LatestBase:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      title: LatestBase
+    openaq_api__v3__models__responses__LocationsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Location'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationsResponse
+    LocationsOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - location
+      - sourceName
+      - firstUpdated
+      - lastUpdated
+      - count
+      - random
+      - distance
+      title: LocationsOrder
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

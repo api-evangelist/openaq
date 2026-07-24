@@ -1,0 +1,245 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Licenses API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Licenses
+paths:
+  /v3/licenses/{licenses_id}:
+    get:
+      tags:
+      - Licenses
+      summary: OpenAQ Get an instrument by ID
+      description: Provides a instrument by instrument ID
+      operationId: license_get_v3_licenses__licenses_id__get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: licenses_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific licenses id
+          title: Licenses Id
+        description: Limit the results to a specific licenses id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicensesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/licenses:
+    get:
+      tags:
+      - Licenses
+      summary: OpenAQ Get licenses
+      description: Provides a list of licenses
+      operationId: instruments_get_v3_licenses_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/LicensesSortFields'
+          - type: 'null'
+          description: The field by which to order results
+          examples:
+          - order_by=id
+          default: id
+          title: Order By
+        description: The field by which to order results
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sort results ascending or descending. Default ASC
+          examples:
+          - sort=desc
+          default: asc
+          title: Sort Order
+        description: Sort results ascending or descending. Default ASC
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicensesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    LicensesSortFields:
+      type: string
+      const: id
+      title: LicensesSortFields
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    License:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        commercialUseAllowed:
+          type: boolean
+          title: Commercialuseallowed
+        attributionRequired:
+          type: boolean
+          title: Attributionrequired
+        shareAlikeRequired:
+          type: boolean
+          title: Sharealikerequired
+        modificationAllowed:
+          type: boolean
+          title: Modificationallowed
+        redistributionAllowed:
+          type: boolean
+          title: Redistributionallowed
+        sourceUrl:
+          type: string
+          title: Sourceurl
+      type: object
+      required:
+      - id
+      - name
+      - commercialUseAllowed
+      - attributionRequired
+      - shareAlikeRequired
+      - modificationAllowed
+      - redistributionAllowed
+      - sourceUrl
+      title: License
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    LicensesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/License'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LicensesResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

@@ -1,0 +1,465 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Sources API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Sources
+paths:
+  /v2/sources:
+    get:
+      tags:
+      - Sources
+      summary: OpenAQ Sources
+      description: Provides a list of sources
+      operationId: sources_get_v2_sources_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      - name: source_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Source Name
+      - name: source_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          title: Source Id
+      - name: source_slug
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          title: Source Slug
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/SourcesOrder'
+          description: Field by which to order the results e.g. ?order_by=sourceName or ?order_by=firstUpdated
+          examples:
+          - sourceName
+          default: sourceName
+          title: Order By
+        description: Field by which to order the results e.g. ?order_by=sourceName or ?order_by=firstUpdated
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourcesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/sources:
+    get:
+      tags:
+      - Sources
+      summary: OpenAQ Sources
+      description: Provides a list of sources
+      operationId: sources_v1_get_v1_sources_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 100
+          title: Limit
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 1
+          title: Page
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          default: asc
+          title: Sort
+      - name: name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/SourcesV1Order'
+          default: name
+          title: Order By
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourcesResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/sources/readme/{slug}:
+    get:
+      tags:
+      - Sources
+      summary: OpenAQ Source Readme
+      description: Provides a readme for a given source by the source slug
+      operationId: readme_get_v2_sources_readme__slug__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+          examples:
+          - london_mobile
+          title: Slug
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SourcesRowV1:
+      properties:
+        url:
+          type: string
+          title: Url
+        adapter:
+          type: string
+          title: Adapter
+        name:
+          type: string
+          title: Name
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        country:
+          type: string
+          title: Country
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        sourceURL:
+          type: string
+          minLength: 1
+          format: uri
+          title: Sourceurl
+        resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Resolution
+        contacts:
+          items:
+            type: string
+          type: array
+          title: Contacts
+        active:
+          type: boolean
+          title: Active
+      type: object
+      required:
+      - url
+      - adapter
+      - name
+      - country
+      - sourceURL
+      - contacts
+      - active
+      title: SourcesRowV1
+    Datum:
+      properties:
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
+        data_avg_dur:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Avg Dur
+        organization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Organization
+        lifecycle_stage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lifecycle Stage
+      type: object
+      title: Datum
+    SourcesV1Order:
+      type: string
+      const: name
+      title: SourcesV1Order
+    SourcesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SourcesRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SourcesResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    SourcesRow:
+      properties:
+        data:
+          anyOf:
+          - $ref: '#/components/schemas/Datum'
+          - type: 'null'
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        sourceId:
+          type: integer
+          title: Sourceid
+        locations:
+          type: integer
+          title: Locations
+        sourceName:
+          type: string
+          title: Sourcename
+        sourceSlug:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sourceslug
+      type: object
+      required:
+      - sourceId
+      - locations
+      - sourceName
+      title: SourcesRow
+    SourcesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SourcesRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SourcesResponseV1
+    SourcesOrder:
+      type: string
+      enum:
+      - sourceName
+      - firstUpdated
+      - lastUpdated
+      title: SourcesOrder
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

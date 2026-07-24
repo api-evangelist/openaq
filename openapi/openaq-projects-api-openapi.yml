@@ -1,0 +1,530 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Projects API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Projects
+paths:
+  /v2/projects/{project_id}:
+    get:
+      tags:
+      - Projects
+      summary: OpenAQ Project by ID
+      description: Provides a project by project ID
+      operationId: projects_get_v2_projects__project_id__get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Project Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/projects:
+    get:
+      tags:
+      - Projects
+      summary: OpenAQ Projects
+      description: Provides a list of projects
+      operationId: projects_get_v2_projects_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: country_id
+        in: query
+        required: true
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Country Id
+      - name: limit
+        in: query
+        required: true
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Limit
+      - name: page
+        in: query
+        required: true
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Page
+      - name: offset
+        in: query
+        required: true
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Limit results by a certain country using two digit country ID. e.g. 13
+          examples:
+          - 13
+          title: Sort
+        description: Limit results by a certain country using two digit country ID. e.g. 13
+      - name: parameter_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+          examples:
+          - US
+          title: Parameter Id
+        description: Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX
+      - name: parameter
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Parameter
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: unit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Unit
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: project_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Project Id
+      - name: project
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Project
+        description: Define sort order. e.g. ?sort=asc
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/ProjectsOrder'
+          description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+          examples:
+          - '2'
+          title: Order By
+        description: (optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements
+      - name: is_mobile
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+          examples:
+          - pm25
+          title: Is Mobile
+        description: (optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10
+      - name: is_analysis
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Analysis
+      - name: entity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Entity
+      - name: sensor_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sensor Type
+      - name: source_name
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+          default: lastUpdated
+          title: Source Name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              anyOf:
+              - type: array
+                items:
+                  type: string
+              - type: 'null'
+              title: Country
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    ProjectsOrder:
+      type: string
+      enum:
+      - id
+      - name
+      - subtitle
+      - firstUpdated
+      - lastUpdated
+      title: ProjectsOrder
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    openaq_api__models__responses__Parameter:
+      properties:
+        id:
+          type: integer
+          title: Id
+        unit:
+          type: string
+          title: Unit
+        count:
+          type: integer
+          title: Count
+        average:
+          type: number
+          title: Average
+        parameter:
+          type: string
+          title: Parameter
+        lastValue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Lastvalue
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameterId:
+          type: integer
+          title: Parameterid
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        manufacturers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+            type: array
+          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+          title: Manufacturers
+      type: object
+      required:
+      - id
+      - unit
+      - count
+      - average
+      - parameter
+      - lastUpdated
+      - parameterId
+      - firstUpdated
+      title: Parameter
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ProjectsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ProjectsRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ProjectsResponse
+    openaq_api__models__responses__Manufacturer:
+      properties:
+        modelName:
+          type: string
+          title: Modelname
+        manufacturerName:
+          type: string
+          title: Manufacturername
+      type: object
+      required:
+      - modelName
+      - manufacturerName
+      title: Manufacturer
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    ProjectsRow:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        subtitle:
+          type: string
+          title: Subtitle
+        isMobile:
+          type: boolean
+          title: Ismobile
+        isAnalysis:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Isanalysis
+        entity:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Entity
+        sensorType:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sensortype
+        locations:
+          type: integer
+          title: Locations
+        locationIds:
+          items:
+            type: integer
+          type: array
+          title: Locationids
+        countries:
+          items:
+            type: string
+          type: array
+          title: Countries
+        parameters:
+          items:
+            $ref: '#/components/schemas/openaq_api__models__responses__Parameter'
+          type: array
+          title: Parameters
+        bbox:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Bbox
+        measurements:
+          type: integer
+          title: Measurements
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        sources:
+          items:
+            $ref: '#/components/schemas/ProjectsSource'
+          type: array
+          title: Sources
+      type: object
+      required:
+      - id
+      - name
+      - subtitle
+      - isMobile
+      - locations
+      - locationIds
+      - countries
+      - parameters
+      - measurements
+      - firstUpdated
+      - lastUpdated
+      - sources
+      title: ProjectsRow
+    ProjectsSource:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        data_avg_dur:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Avg Dur
+        organization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Organization
+        lifecycle_stage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lifecycle Stage
+      type: object
+      required:
+      - id
+      - name
+      title: ProjectsSource
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

@@ -1,0 +1,340 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Averages
+paths:
+  /v2/averages:
+    get:
+      tags:
+      - Averages
+      summary: OpenAQ Get averaged values
+      operationId: averages_v2_get_v2_averages_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: temporal
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/PeriodNames'
+          - type: 'null'
+          description: Period to aggregate. month, day, hour
+          default: hour
+          title: Temporal
+        description: Period to aggregate. month, day, hour
+      - name: parameters_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: What measurand would you like?
+          title: Parameters Id
+        description: What measurand would you like?
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date To
+        description: To when?
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: From when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Date From
+        description: From when?
+      - name: locations_id
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Limit the results to a specific location by id
+          default: 70084
+          title: Locations Id
+        description: Limit the results to a specific location by id
+      - name: spatial
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SpatialTypes'
+          - type: 'null'
+          description: Define how you want to aggregate in space
+          default: location
+          title: Spatial
+        description: Define how you want to aggregate in space
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AveragesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    PeriodNames:
+      type: string
+      enum:
+      - hour
+      - day
+      - month
+      - year
+      - hod
+      - dow
+      - moy
+      - raw
+      title: PeriodNames
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    AveragesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/AveragesRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: AveragesResponse
+    AveragesRow:
+      properties:
+        id:
+          anyOf:
+          - items:
+              type: integer
+            type: array
+          - type: integer
+          - type: 'null'
+          title: Id
+        name:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: string
+          - type: 'null'
+          title: Name
+        hour:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Hour
+        day:
+          anyOf:
+          - type: string
+            format: date
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Day
+        month:
+          anyOf:
+          - type: string
+            format: date
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Month
+        year:
+          anyOf:
+          - type: string
+            format: date
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Year
+        hod:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Hod
+        dow:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Dow
+        average:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Average
+        measurement_count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Measurement Count
+        parameter:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Parameter
+        parameterId:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Parameterid
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        unit:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Unit
+        first_datetime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: First Datetime
+        last_datetime:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Last Datetime
+      type: object
+      title: AveragesRow
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    SpatialTypes:
+      type: string
+      enum:
+      - country
+      - location
+      - total
+      title: SpatialTypes
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

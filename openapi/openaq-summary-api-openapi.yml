@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Summary API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Summary
+paths:
+  /v2/summary:
+    get:
+      tags:
+      - Summary
+      summary: OpenAQ Platform Summary
+      description: Provides a summary of platform data
+      operationId: summary_get_v2_summary_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryResponse'
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+components:
+  schemas:
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    SummaryRow:
+      properties:
+        count:
+          type: integer
+          title: Count
+        cities:
+          type: integer
+          title: Cities
+        sources:
+          type: integer
+          title: Sources
+        countries:
+          type: integer
+          title: Countries
+        locations:
+          type: integer
+          title: Locations
+      type: object
+      required:
+      - count
+      - cities
+      - sources
+      - countries
+      - locations
+      title: SummaryRow
+    SummaryResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SummaryRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SummaryResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

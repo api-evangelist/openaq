@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Sensor API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Sensor
+paths:
+  /v3/sensors/{sensor_id}/flags:
+    get:
+      tags:
+      - Sensor
+      summary: OpenAQ Get flags by sensor ID
+      description: Provides a list of flags by sensor ID
+      operationId: sensor_flags_get_v3_sensors__sensor_id__flags_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: sensor_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific sensor
+          title: Sensor Id
+        description: Limit the results to a specific sensor
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: datetime_from
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime From
+        description: To when?
+      - name: datetime_to
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: To when?
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime To
+        description: To when?
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationFlagsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    FlagType:
+      properties:
+        id:
+          type: integer
+          title: Id
+        label:
+          type: string
+          title: Label
+        level:
+          type: string
+          title: Level
+      type: object
+      required:
+      - id
+      - label
+      - level
+      title: FlagType
+    LocationFlag:
+      properties:
+        locationId:
+          type: integer
+          title: Locationid
+        flagType:
+          $ref: '#/components/schemas/FlagType'
+        datetimeFrom:
+          $ref: '#/components/schemas/DatetimeObject'
+        datetimeTo:
+          $ref: '#/components/schemas/DatetimeObject'
+        sensorIds:
+          items:
+            type: integer
+          type: array
+          title: Sensorids
+          default: []
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+      type: object
+      required:
+      - locationId
+      - flagType
+      - datetimeFrom
+      - datetimeTo
+      title: LocationFlag
+    LocationFlagsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationFlag'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationFlagsResponse
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

@@ -1,0 +1,749 @@
+openapi: 3.1.0
+info:
+  title: OpenAQ Averages Parameters API
+  description: '
+
+    OpenAQ is a nonprofit organization providing universal access to air
+
+    quality data to empower a global community of changemakers to solve air
+
+    inequality-the unequal access to clean air.'
+  version: 2.0.0
+tags:
+- name: Parameters
+paths:
+  /v3/parameters/{parameters_id}:
+    get:
+      tags:
+      - Parameters
+      summary: OpenAQ Get a parameter by ID
+      description: Provides a parameter by parameter ID
+      operationId: parameter_get_v3_parameters__parameters_id__get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: parameters_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific parameters id
+          title: Parameters Id
+        description: Limit the results to a specific parameters id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__ParametersResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/parameters:
+    get:
+      tags:
+      - Parameters
+      summary: OpenAQ Get a parameters
+      description: Provides a list of parameters
+      operationId: parameters_get_v3_parameters_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ParametersSortFields'
+          - type: 'null'
+          description: The field by which to order results
+          examples:
+          - order_by=id
+          default: id
+          title: Order By
+        description: The field by which to order results
+      - name: sort_order
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/SortOrder'
+          - type: 'null'
+          description: Sort results ascending or descending. Default ASC
+          examples:
+          - sort=desc
+          default: asc
+          title: Sort Order
+        description: Sort results ascending or descending. Default ASC
+      - name: parameter_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/ParameterType'
+          - type: 'null'
+          description: Limit the results to a specific parameters type
+          examples:
+          - pollutant
+          - meteorological
+          title: Parameter Type
+        description: Limit the results to a specific parameters type
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373
+          examples:
+          - 38.907,-77.037
+          title: Coordinates
+        description: WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373
+      - name: radius
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+            maximum: 25000
+            exclusiveMinimum: 0
+          - type: 'null'
+          description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000
+          examples:
+          - '1000'
+          title: Radius
+        description: Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000
+      - name: bbox
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910
+          examples:
+          - -77.1200,38.7916,-76.9094,38.9955
+          title: Bbox
+        description: geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910
+      - name: iso
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+          examples:
+          - US
+          title: Iso
+        description: Limit the results to a specific country using ISO 3166-1 alpha-2 code
+      - name: countries_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: array
+            items:
+              type: integer
+          - type: 'null'
+          description: Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs
+          examples:
+          - '1'
+          - 1,2,3
+          title: Countries Id
+        description: Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__ParametersResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v3/parameters/{parameters_id}/latest:
+    get:
+      tags:
+      - Parameters
+      summary: OpenAQ Parameters Latest Get
+      operationId: parameters_latest_get_v3_parameters__parameters_id__latest_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: parameters_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Limit the results to a specific parameters id
+          title: Parameters Id
+        description: Limit the results to a specific parameters id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+          examples:
+          - '100'
+          default: 100
+          title: Limit
+        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: datetime_min
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: string
+            format: date
+          - type: 'null'
+          description: Minimum datetime
+          examples:
+          - '2022-10-01T11:19:38-06:00'
+          - '2022-10-01'
+          title: Datetime Min
+        description: Minimum datetime
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__v3__models__responses__LatestResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/parameters:
+    get:
+      tags:
+      - Parameters
+      summary: OpenAQ Get parameters
+      description: Provides a list of parameters supported by the platform
+      operationId: parameters_get_v2_parameters_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          enum:
+          - id
+          - name
+          - preferredUnit
+          type: string
+          default: id
+          title: Order By
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/openaq_api__models__responses__ParametersResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v1/parameters:
+    get:
+      tags:
+      - Parameters
+      summary: OpenAQ Get parameters
+      description: Provides a list of parameters supported by the platform
+      operationId: parameters_getv1_v1_parameters_get
+      deprecated: true
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+          examples:
+          - '1000'
+          default: 100
+          title: Limit
+        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
+      - name: page
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Paginate through results. e.g. page=1 will return first page of results
+          examples:
+          - '1'
+          default: 1
+          title: Page
+        description: Paginate through results. e.g. page=1 will return first page of results
+      - name: offset
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 0
+          title: Offset
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Sort'
+          - type: 'null'
+          description: Define sort order. e.g. ?sort=asc
+          default: asc
+          title: Sort
+        description: Define sort order. e.g. ?sort=asc
+      - name: order_by
+        in: query
+        required: false
+        schema:
+          enum:
+          - id
+          - name
+          - preferredUnit
+          type: string
+          default: id
+          title: Order By
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParametersResponseV1'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    ParameterType:
+      type: string
+      enum:
+      - pollutant
+      - meteorological
+      title: ParameterType
+    ParametersSortFields:
+      type: string
+      const: id
+      title: ParametersSortFields
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ParametersRow:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          type: string
+          title: Description
+        preferredUnit:
+          type: string
+          title: Preferredunit
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - preferredUnit
+      title: ParametersRow
+    openaq_api__v3__models__responses__Parameter:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: Parameter
+    openaq_api__v3__models__responses__ParametersResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/openaq_api__v3__models__responses__Parameter'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ParametersResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    ParametersRowV1:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        preferredUnit:
+          type: string
+          title: Preferredunit
+      type: object
+      required:
+      - id
+      - name
+      - preferredUnit
+      title: ParametersRowV1
+    openaq_api__models__responses__ParametersResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ParametersRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ParametersResponse
+    ParametersResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ParametersRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ParametersResponseV1
+    Latest:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        sensorsId:
+          type: integer
+          title: Sensorsid
+        locationsId:
+          type: integer
+          title: Locationsid
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      - sensorsId
+      - locationsId
+      title: Latest
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    openaq_api__v3__models__responses__LatestResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Latest'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponse
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
