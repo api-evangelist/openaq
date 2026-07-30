@@ -1,54 +1,361 @@
 aid: openaq
 url: https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml
 apis:
-  - aid: openaq:openaq
-    name: OpenAQ
-    tags:
-      - Averages
-      - Cities
-      - Countries
-      - Daily
-      - Days
-      - Flags
-      - Hourly
-      - Hours
-      - Instruments
-      - Latest
-      - Licenses
-      - Locations
-      - Manufacturers
-      - Measurements
-      - Monthly
-      - Owners
-      - Parameters
-      - Project
-      - Projects
-      - Providers
-      - Readme
-      - Sensor
-      - Sensors
-      - Slug
-      - Sources
-      - Summary
-      - Yearly
-      - Years
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: http://api.example.com
-    humanURL: https://openaq.org/
-    properties:
-      - url: https://docs.openaq.org/
-        type: Documentation
-      - url: properties/openaq-openapi.yml
-        type: OpenAPI
-    description: >-
-      OpenAQ is a nonprofit organization providing universal access to air quality data to empower a global community of
-      changemakers to solve air inequality-the unequal access to clean air.
+- aid: openaq:openaq-averages-api
+  name: OpenAQ Averages API
+  description: The Averages API from OpenAQ — 1 operation(s) for averages.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Averages
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-averages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-cities-api
+  name: OpenAQ Cities API
+  description: The Cities API from OpenAQ — 2 operation(s) for cities.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Cities
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-cities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-countries-api
+  name: OpenAQ Countries API
+  description: The Countries API from OpenAQ — 6 operation(s) for countries.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Countries
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-countries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-daily-api
+  name: OpenAQ Daily API
+  description: The Daily API from OpenAQ — 2 operation(s) for daily.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Daily
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-daily-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-days-api
+  name: OpenAQ Days API
+  description: The Days API from OpenAQ — 5 operation(s) for days.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Days
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-days-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-flags-api
+  name: OpenAQ Flags API
+  description: The Flags API from OpenAQ — 2 operation(s) for flags.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Flags
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-flags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-hourly-api
+  name: OpenAQ Hourly API
+  description: The Hourly API from OpenAQ — 1 operation(s) for hourly.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Hourly
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-hourly-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-hours-api
+  name: OpenAQ Hours API
+  description: The Hours API from OpenAQ — 7 operation(s) for hours.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Hours
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-hours-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-instruments-api
+  name: OpenAQ Instruments API
+  description: The Instruments API from OpenAQ — 3 operation(s) for instruments.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Instruments
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-instruments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-latest-api
+  name: OpenAQ Latest API
+  description: The Latest API from OpenAQ — 6 operation(s) for latest.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Latest
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-latest-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-licenses-api
+  name: OpenAQ Licenses API
+  description: The Licenses API from OpenAQ — 2 operation(s) for licenses.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-locations-api
+  name: OpenAQ Locations API
+  description: The Locations API from OpenAQ — 11 operation(s) for locations.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-locations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-manufacturers-api
+  name: OpenAQ Manufacturers API
+  description: The Manufacturers API from OpenAQ — 3 operation(s) for manufacturers.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Manufacturers
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-manufacturers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-measurements-api
+  name: OpenAQ Measurements API
+  description: The Measurements API from OpenAQ — 5 operation(s) for measurements.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Measurements
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-measurements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-monthly-api
+  name: OpenAQ Monthly API
+  description: The Monthly API from OpenAQ — 2 operation(s) for monthly.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Monthly
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-monthly-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-owners-api
+  name: OpenAQ Owners API
+  description: The Owners API from OpenAQ — 2 operation(s) for owners.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Owners
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-owners-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-parameters-api
+  name: OpenAQ Parameters API
+  description: The Parameters API from OpenAQ — 5 operation(s) for parameters.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Parameters
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-parameters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-project-api
+  name: OpenAQ Project API
+  description: The Project API from OpenAQ — 1 operation(s) for project.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Project
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-project-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-projects-api
+  name: OpenAQ Projects API
+  description: The Projects API from OpenAQ — 2 operation(s) for projects.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-providers-api
+  name: OpenAQ Providers API
+  description: The Providers API from OpenAQ — 2 operation(s) for providers.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-readme-api
+  name: OpenAQ Readme API
+  description: The Readme API from OpenAQ — 1 operation(s) for readme.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Readme
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-readme-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-sensor-api
+  name: OpenAQ Sensor API
+  description: The Sensor API from OpenAQ — 1 operation(s) for sensor.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Sensor
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-sensor-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-sensors-api
+  name: OpenAQ Sensors API
+  description: The Sensors API from OpenAQ — 19 operation(s) for sensors.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Sensors
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-sensors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-slug-api
+  name: OpenAQ Slug API
+  description: The Slug API from OpenAQ — 1 operation(s) for slug.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Slug
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-slug-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-sources-api
+  name: OpenAQ Sources API
+  description: The Sources API from OpenAQ — 3 operation(s) for sources.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-sources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-summary-api
+  name: OpenAQ Summary API
+  description: The Summary API from OpenAQ — 1 operation(s) for summary.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Summary
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-summary-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-yearly-api
+  name: OpenAQ Yearly API
+  description: The Yearly API from OpenAQ — 2 operation(s) for yearly.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Yearly
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-yearly-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
+- aid: openaq:openaq-years-api
+  name: OpenAQ Years API
+  description: The Years API from OpenAQ — 1 operation(s) for years.
+  humanURL: https://openaq.org/
+  baseURL: http://api.example.com
+  tags:
+  - Years
+  properties:
+  - type: OpenAPI
+    url: openapi/openaq-years-api-openapi.yml
+  - type: Documentation
+    url: https://docs.openaq.org/
 name: OpenAQ
 tags:
   - Data
   - Data Quality
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openaq.png
 common:
   - type: AgenticAccess
     url: agentic-access/openaq-agentic-access.yml
