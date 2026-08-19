@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Cities API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/cities",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Define sort order. e.g. ?sort=asc"
+              },
+              {
+                "name": "country_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order by a field e.g. ?order_by=city"
+              },
+              {
+                "name": "entity",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of cities supported by the platform"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/cities",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Define sort order. e.g. ?sort=asc"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "Order by a field e.g. ?order_by=city"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of cities supported by the platform"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

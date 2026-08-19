@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Licenses API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get an instrument by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/licenses/:licenses_id",
+            "params": [
+              {
+                "name": "licenses_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific licenses id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a instrument by instrument ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/licenses",
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which to order results"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort results ascending or descending. Default ASC"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of licenses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

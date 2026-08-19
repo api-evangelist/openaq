@@ -1,0 +1,128 @@
+{
+  "item": [
+    {
+      "id": "21f03b92-01b7-4775-a708-b08a33c8cb71",
+      "name": "Summary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64e6b8cc-660a-4a7e-81c3-0c669a491a22",
+          "name": "OpenAQ Platform Summary",
+          "request": {
+            "name": "OpenAQ Platform Summary",
+            "description": {
+              "content": "Provides a summary of platform data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b90ac05f-7429-4fbe-a238-ed1cac3a8ee4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"count\": 647,\n      \"cities\": 8212,\n      \"sources\": 2185,\n      \"countries\": 4251,\n      \"locations\": 875\n    },\n    {\n      \"count\": 7036,\n      \"cities\": 7882,\n      \"sources\": 6429,\n      \"countries\": 2821,\n      \"locations\": 5998\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1b1ea4e6-6f7f-4b50-b536-afb014d918f8",
+    "name": "OpenAQ Averages Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "7e59565e-cc1b-4b0d-af91-c86c68364d64",
+      "name": "Providers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "918b8013-0247-4cbe-802f-02e7a0007a2a",
+          "name": "OpenAQ Get a provider by ID",
+          "request": {
+            "name": "OpenAQ Get a provider by ID",
+            "description": {
+              "content": "Provides a provider by provider ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "providers",
+                ":providers_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "providers_id",
+                  "description": "(Required) Limit the results to a specific provider by id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "73e9c67f-f0c1-46c5-a05c-2b9a3e253c3f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "providers",
+                    ":providers_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "providers_id",
+                      "description": "(Required) Limit the results to a specific provider by id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 3596,\n      \"name\": \"string\",\n      \"sourceName\": \"string\",\n      \"exportPrefix\": \"string\",\n      \"datetimeAdded\": \"1946-10-03T23:24:01.468Z\",\n      \"datetimeFirst\": \"2021-05-09T16:40:07.792Z\",\n      \"datetimeLast\": \"1960-08-11T11:21:23.583Z\",\n      \"entitiesId\": 337,\n      \"parameters\": [\n        {\n          \"id\": 8366,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"id\": 8368,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"bbox\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"id\": 401,\n      \"name\": \"string\",\n      \"sourceName\": \"string\",\n      \"exportPrefix\": \"string\",\n      \"datetimeAdded\": \"1985-05-29T02:48:30.128Z\",\n      \"datetimeFirst\": \"1989-05-30T13:12:02.295Z\",\n      \"datetimeLast\": \"2023-03-24T15:48:43.355Z\",\n      \"entitiesId\": 9233,\n      \"parameters\": [\n        {\n          \"id\": 3695,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"id\": 5999,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"bbox\": {\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "421f8653-64af-4457-bd04-83a33c21643e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "providers",
+                    ":providers_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "providers_id",
+                      "description": "(Required) Limit the results to a specific provider by id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1ce7ef5-60c5-4d04-8e01-6d18dce156bf",
+          "name": "OpenAQ Get providers",
+          "request": {
+            "name": "OpenAQ Get providers",
+            "description": {
+              "content": "Provides a list of providers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "The field by which to order results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_order",
+                  "value": "<string>",
+                  "description": "Sort results ascending or descending. Default ASC"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameters_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameters_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitor",
+                  "value": "<boolean>",
+                  "description": "Is the location considered a reference monitor?"
+                },
+                {
+                  "disabled": false,
+                  "key": "iso",
+                  "value": "<string>",
+                  "description": "Limit the results to a specific country using ISO 3166-1 alpha-2 code"
+                },
+                {
+                  "disabled": false,
+                  "key": "countries_id",
+                  "value": "<integer>",
+                  "description": "Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "countries_id",
+                  "value": "<integer>",
+                  "description": "Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "bbox",
+                  "value": "<string>",
+                  "description": "geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>",
+                  "description": "WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<integer>",
+                  "description": "Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ac305d0-b09d-440f-9a12-60b77ec5596b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "string"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "monitor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countries_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "countries_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 3596,\n      \"name\": \"string\",\n      \"sourceName\": \"string\",\n      \"exportPrefix\": \"string\",\n      \"datetimeAdded\": \"1946-10-03T23:24:01.468Z\",\n      \"datetimeFirst\": \"2021-05-09T16:40:07.792Z\",\n      \"datetimeLast\": \"1960-08-11T11:21:23.583Z\",\n      \"entitiesId\": 337,\n      \"parameters\": [\n        {\n          \"id\": 8366,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"id\": 8368,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"bbox\": {\n        \"type\": \"string\"\n      }\n    },\n    {\n      \"id\": 401,\n      \"name\": \"string\",\n      \"sourceName\": \"string\",\n      \"exportPrefix\": \"string\",\n      \"datetimeAdded\": \"1985-05-29T02:48:30.128Z\",\n      \"datetimeFirst\": \"1989-05-30T13:12:02.295Z\",\n      \"datetimeLast\": \"2023-03-24T15:48:43.355Z\",\n      \"entitiesId\": 9233,\n      \"parameters\": [\n        {\n          \"id\": 3695,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"id\": 5999,\n          \"name\": \"string\",\n          \"units\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"bbox\": {\n        \"type\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecb6c184-6f76-4deb-86a6-1cf1f6227376",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "order_by",
+                      "value": "string"
+                    },
+                    {
+                      "key": "sort_order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "monitor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countries_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "countries_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "bbox",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9bcc7ee8-6220-40ff-ac5d-6d363043b9ae",
+    "name": "OpenAQ Averages Providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,490 @@
+{
+  "item": [
+    {
+      "id": "324d79dd-b28c-485d-8424-95a95f57f8c2",
+      "name": "Flags",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "027c0bd9-5e1c-450d-b4c3-f1c2ff5db170",
+          "name": "OpenAQ Get flags by location ID",
+          "request": {
+            "name": "OpenAQ Get flags by location ID",
+            "description": {
+              "content": "Provides a list of flags by location ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "locations",
+                ":locations_id",
+                "flags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "locations_id",
+                  "description": "(Required) Limit the results to a specific locations"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f3db1721-7073-4c5f-8787-6313ebcd916b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "locations",
+                    ":locations_id",
+                    "flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "locations_id",
+                      "description": "(Required) Limit the results to a specific locations"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"locationId\": 871,\n      \"flagType\": {\n        \"id\": 7907,\n        \"label\": \"string\",\n        \"level\": \"string\"\n      },\n      \"datetimeFrom\": {\n        \"utc\": \"2003-09-11T23:40:12.465Z\",\n        \"local\": \"1949-04-14T19:39:54.815Z\"\n      },\n      \"datetimeTo\": {\n        \"utc\": \"1957-11-06T06:15:14.684Z\",\n        \"local\": \"1990-11-09T01:14:01.250Z\"\n      },\n      \"note\": \"string\"\n    },\n    {\n      \"locationId\": 2348,\n      \"flagType\": {\n        \"id\": 3725,\n        \"label\": \"string\",\n        \"level\": \"string\"\n      },\n      \"datetimeFrom\": {\n        \"utc\": \"2004-04-11T09:21:38.918Z\",\n        \"local\": \"1953-12-05T21:35:11.865Z\"\n      },\n      \"datetimeTo\": {\n        \"utc\": \"1987-06-04T13:13:45.717Z\",\n        \"local\": \"1991-05-10T06:30:10.932Z\"\n      },\n      \"note\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "818f5676-11a9-4e11-a5d1-818dc4a42831",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "locations",
+                    ":locations_id",
+                    "flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "locations_id",
+                      "description": "(Required) Limit the results to a specific locations"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d19923bf-fc34-4ef3-bd9e-bc9e1274dbb4",
+          "name": "OpenAQ Get flags by sensor ID",
+          "request": {
+            "name": "OpenAQ Get flags by sensor ID",
+            "description": {
+              "content": "Provides a list of flags by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensor_id",
+                "flags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensor_id",
+                  "description": "(Required) Limit the results to a specific sensor"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bee9e53-e33e-4fc1-8d17-b793297c63ab",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensor_id",
+                    "flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensor_id",
+                      "description": "(Required) Limit the results to a specific sensor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"locationId\": 871,\n      \"flagType\": {\n        \"id\": 7907,\n        \"label\": \"string\",\n        \"level\": \"string\"\n      },\n      \"datetimeFrom\": {\n        \"utc\": \"2003-09-11T23:40:12.465Z\",\n        \"local\": \"1949-04-14T19:39:54.815Z\"\n      },\n      \"datetimeTo\": {\n        \"utc\": \"1957-11-06T06:15:14.684Z\",\n        \"local\": \"1990-11-09T01:14:01.250Z\"\n      },\n      \"note\": \"string\"\n    },\n    {\n      \"locationId\": 2348,\n      \"flagType\": {\n        \"id\": 3725,\n        \"label\": \"string\",\n        \"level\": \"string\"\n      },\n      \"datetimeFrom\": {\n        \"utc\": \"2004-04-11T09:21:38.918Z\",\n        \"local\": \"1953-12-05T21:35:11.865Z\"\n      },\n      \"datetimeTo\": {\n        \"utc\": \"1987-06-04T13:13:45.717Z\",\n        \"local\": \"1991-05-10T06:30:10.932Z\"\n      },\n      \"note\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a277c1f-7a3e-421a-b84f-f2ac828a20f0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensor_id",
+                    "flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensor_id",
+                      "description": "(Required) Limit the results to a specific sensor"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7e316c7b-60c3-4d55-a3ff-47f088e8ea51",
+    "name": "OpenAQ Averages Flags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,496 @@
+{
+  "item": [
+    {
+      "id": "96e05576-672c-4673-91da-0eba45b7ca38",
+      "name": "Yearly",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f5232f7-b95a-4bd6-bef6-891e7b23469d",
+          "name": "OpenAQ Get measurements aggregated from hour to year by sensor ID",
+          "request": {
+            "name": "OpenAQ Get measurements aggregated from hour to year by sensor ID",
+            "description": {
+              "content": "Provides a list of yearly summaries of hourly data by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensors_id",
+                "hours",
+                "yearly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensors_id",
+                  "description": "(Required) Limit the results to a specific sensors id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "61daf3fb-139e-40c3-a999-1cd81e5e4deb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "hours",
+                    "yearly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"flagInfo\": {\n        \"hasFlags\": true\n      },\n      \"parameter\": {\n        \"id\": 6367,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"value\": 6949.898207364154,\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 6134.397923134607,\n        \"longitude\": 9796.149867292468\n      },\n      \"summary\": {\n        \"min\": 5033.7518612788635,\n        \"q02\": 358.52938992323556,\n        \"q25\": 3209.527447290771,\n        \"median\": 7140.382719217438,\n        \"q75\": 6459.355959515913,\n        \"q98\": 4762.1839006231985,\n        \"max\": 2097.9622813845567,\n        \"avg\": 6088.804918440167,\n        \"sd\": 9985.792346437815\n      },\n      \"coverage\": {\n        \"expectedCount\": 3032,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 2461,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 9935.62164989213,\n        \"percentCoverage\": 3184.6224609135265,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"flagInfo\": {\n        \"hasFlags\": false\n      },\n      \"parameter\": {\n        \"id\": 4821,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"value\": 6599.749911002156,\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 3650.9485303762535,\n        \"longitude\": 6029.0228871332165\n      },\n      \"summary\": {\n        \"min\": 5601.862591278964,\n        \"q02\": 4802.69779819313,\n        \"q25\": 9339.326666321698,\n        \"median\": 80.32180626432073,\n        \"q75\": 1669.9401164007322,\n        \"q98\": 9297.088644239531,\n        \"max\": 8795.807248781317,\n        \"avg\": 7399.336669550174,\n        \"sd\": 139.6933703671366\n      },\n      \"coverage\": {\n        \"expectedCount\": 8089,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 7080,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 4606.435781532042,\n        \"percentCoverage\": 7723.466659923787,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "876c46d3-e26b-4dc5-8f13-c787d682faa3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "hours",
+                    "yearly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ed55e11-6cb8-47fd-89bc-7ad56945dfc6",
+          "name": "OpenAQ Get measurements aggregated from day to year by sensor ID",
+          "request": {
+            "name": "OpenAQ Get measurements aggregated from day to year by sensor ID",
+            "description": {
+              "content": "Provides a list of yearly summaries of daily data by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensors_id",
+                "days",
+                "yearly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensors_id",
+                  "description": "(Required) Limit the results to a specific sensors id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6320e486-88c4-44ff-97d0-7e37bb9648fa",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "days",
+                    "yearly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"flagInfo\": {\n        \"hasFlags\": true\n      },\n      \"parameter\": {\n        \"id\": 6367,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"value\": 6949.898207364154,\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 6134.397923134607,\n        \"longitude\": 9796.149867292468\n      },\n      \"summary\": {\n        \"min\": 5033.7518612788635,\n        \"q02\": 358.52938992323556,\n        \"q25\": 3209.527447290771,\n        \"median\": 7140.382719217438,\n        \"q75\": 6459.355959515913,\n        \"q98\": 4762.1839006231985,\n        \"max\": 2097.9622813845567,\n        \"avg\": 6088.804918440167,\n        \"sd\": 9985.792346437815\n      },\n      \"coverage\": {\n        \"expectedCount\": 3032,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 2461,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 9935.62164989213,\n        \"percentCoverage\": 3184.6224609135265,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"flagInfo\": {\n        \"hasFlags\": false\n      },\n      \"parameter\": {\n        \"id\": 4821,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"value\": 6599.749911002156,\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 3650.9485303762535,\n        \"longitude\": 6029.0228871332165\n      },\n      \"summary\": {\n        \"min\": 5601.862591278964,\n        \"q02\": 4802.69779819313,\n        \"q25\": 9339.326666321698,\n        \"median\": 80.32180626432073,\n        \"q75\": 1669.9401164007322,\n        \"q98\": 9297.088644239531,\n        \"max\": 8795.807248781317,\n        \"avg\": 7399.336669550174,\n        \"sd\": 139.6933703671366\n      },\n      \"coverage\": {\n        \"expectedCount\": 8089,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 7080,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 4606.435781532042,\n        \"percentCoverage\": 7723.466659923787,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c3be41f-4184-4c2c-aacf-b0a974017d86",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "days",
+                    "yearly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c9c59ba-4e3f-4c8f-b1fc-31dd76152b71",
+    "name": "OpenAQ Averages Yearly API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

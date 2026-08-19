@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Manufacturers API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manufacturers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get instruments by manufacturer ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/manufacturers/:manufacturers_id/instruments",
+            "params": [
+              {
+                "name": "manufacturers_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit results to a specific manufacturer id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of instruments for a specific manufacturer"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get a manufacturer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/manufacturers/:manufacturers_id",
+            "params": [
+              {
+                "name": "manufacturers_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific manufacturers id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a manufacturer by manufacturer ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get manufacturers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/manufacturers",
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which to order results"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort results ascending or descending. Default ASC"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of manufacturers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

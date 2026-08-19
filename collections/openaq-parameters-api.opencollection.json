@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Parameters API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parameters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get a parameter by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/parameters/:parameters_id",
+            "params": [
+              {
+                "name": "parameters_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific parameters id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a parameter by parameter ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get a parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/parameters",
+            "params": [
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which to order results"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort results ascending or descending. Default ASC"
+              },
+              {
+                "name": "parameter_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit the results to a specific parameters type"
+              },
+              {
+                "name": "coordinates",
+                "value": "",
+                "type": "query",
+                "description": "WGS 84 Coordinate pair in form latitude,longitude. Supports up to 4 decimal points of precision, additional decimal precision will be truncated in the query e.g. 38.9074,-77.0373"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=1000"
+              },
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "geospatial bounding box of Min X, min Y, max X, max Y in WGS 84 coordinates. Up to 4 decimal points of precision, addtional decimal precision will be truncated to 4 decimal points precision e.g. -77.037,38.907,-77.0,39.910"
+              },
+              {
+                "name": "iso",
+                "value": "",
+                "type": "query",
+                "description": "Limit the results to a specific country using ISO 3166-1 alpha-2 code"
+              },
+              {
+                "name": "countries_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit the results to a specific country or countries by country ID as a single country ID or a comma delimited list of IDs"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of parameters"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Parameters Latest Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/parameters/:parameters_id/latest",
+            "params": [
+              {
+                "name": "parameters_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific parameters id"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "datetime_min",
+                "value": "",
+                "type": "query",
+                "description": "Minimum datetime"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "OpenAQ Parameters Latest Get"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/parameters",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Define sort order. e.g. ?sort=asc"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of parameters supported by the platform"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/parameters",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Define sort order. e.g. ?sort=asc"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of parameters supported by the platform"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

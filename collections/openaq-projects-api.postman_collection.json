@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "32d64253-a354-48b6-b183-e7cd835788da",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b6d89fc-b332-4b46-b44b-0988b192ed61",
+          "name": "OpenAQ Project by ID",
+          "request": {
+            "name": "OpenAQ Project by ID",
+            "description": {
+              "content": "Provides a project by project ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "projects",
+                ":project_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "567d25ed-78be-46d5-b402-f757bb8934a7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects",
+                    ":project_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 8350,\n      \"name\": \"string\",\n      \"subtitle\": \"string\",\n      \"isMobile\": false,\n      \"locations\": 3514,\n      \"locationIds\": [\n        7026,\n        2123\n      ],\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"parameters\": [\n        {\n          \"id\": 8477,\n          \"unit\": \"string\",\n          \"count\": 9067,\n          \"average\": 7435.878288000173,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 4,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 4796.942333628772,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": 6039,\n          \"unit\": \"string\",\n          \"count\": 9801,\n          \"average\": 6702.532407309025,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 1418,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 8381.025389013466,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"measurements\": 5119,\n      \"firstUpdated\": \"string\",\n      \"lastUpdated\": \"string\",\n      \"sources\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        }\n      ],\n      \"isAnalysis\": true,\n      \"entity\": \"string\",\n      \"sensorType\": \"string\",\n      \"bbox\": [\n        9150.001913048149,\n        7801.55588826837\n      ]\n    },\n    {\n      \"id\": 661,\n      \"name\": \"string\",\n      \"subtitle\": \"string\",\n      \"isMobile\": false,\n      \"locations\": 9634,\n      \"locationIds\": [\n        3339,\n        7993\n      ],\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"parameters\": [\n        {\n          \"id\": 3043,\n          \"unit\": \"string\",\n          \"count\": 824,\n          \"average\": 8119.878429999075,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 7610,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 7798.574384153427,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": 7664,\n          \"unit\": \"string\",\n          \"count\": 7778,\n          \"average\": 3138.5987098911082,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 8331,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 3425.6344303589026,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"measurements\": 5672,\n      \"firstUpdated\": \"string\",\n      \"lastUpdated\": \"string\",\n      \"sources\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        }\n      ],\n      \"isAnalysis\": true,\n      \"entity\": \"string\",\n      \"sensorType\": \"string\",\n      \"bbox\": [\n        5882.337995842641,\n        4015.3776589068534\n      ]\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b87ee41-031e-48e0-9cac-4bf54f1750f9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects",
+                    ":project_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8136a5df-ce2d-4fc4-ab10-c9894b7dc8fe",
+          "name": "OpenAQ Projects",
+          "request": {
+            "name": "OpenAQ Projects",
+            "description": {
+              "content": "Provides a list of projects",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter_id",
+                  "value": "<integer>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<string>",
+                  "description": "Define sort order. e.g. ?sort=asc"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<string>",
+                  "description": "Define sort order. e.g. ?sort=asc"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "(optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_mobile",
+                  "value": "<boolean>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_analysis",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sensor_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db0d09d2-859d-460a-b465-c5e0cfa36e78",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "subtitle"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": 8350,\n      \"name\": \"string\",\n      \"subtitle\": \"string\",\n      \"isMobile\": false,\n      \"locations\": 3514,\n      \"locationIds\": [\n        7026,\n        2123\n      ],\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"parameters\": [\n        {\n          \"id\": 8477,\n          \"unit\": \"string\",\n          \"count\": 9067,\n          \"average\": 7435.878288000173,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 4,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 4796.942333628772,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": 6039,\n          \"unit\": \"string\",\n          \"count\": 9801,\n          \"average\": 6702.532407309025,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 1418,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 8381.025389013466,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"measurements\": 5119,\n      \"firstUpdated\": \"string\",\n      \"lastUpdated\": \"string\",\n      \"sources\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        }\n      ],\n      \"isAnalysis\": true,\n      \"entity\": \"string\",\n      \"sensorType\": \"string\",\n      \"bbox\": [\n        9150.001913048149,\n        7801.55588826837\n      ]\n    },\n    {\n      \"id\": 661,\n      \"name\": \"string\",\n      \"subtitle\": \"string\",\n      \"isMobile\": false,\n      \"locations\": 9634,\n      \"locationIds\": [\n        3339,\n        7993\n      ],\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"parameters\": [\n        {\n          \"id\": 3043,\n          \"unit\": \"string\",\n          \"count\": 824,\n          \"average\": 8119.878429999075,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 7610,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 7798.574384153427,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": 7664,\n          \"unit\": \"string\",\n          \"count\": 7778,\n          \"average\": 3138.5987098911082,\n          \"parameter\": \"string\",\n          \"lastUpdated\": \"string\",\n          \"parameterId\": 8331,\n          \"firstUpdated\": \"string\",\n          \"lastValue\": 3425.6344303589026,\n          \"displayName\": \"string\",\n          \"manufacturers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"measurements\": 5672,\n      \"firstUpdated\": \"string\",\n      \"lastUpdated\": \"string\",\n      \"sources\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"readme\": \"string\",\n          \"data_avg_dur\": \"string\",\n          \"organization\": \"string\",\n          \"lifecycle_stage\": \"string\"\n        }\n      ],\n      \"isAnalysis\": true,\n      \"entity\": \"string\",\n      \"sensorType\": \"string\",\n      \"bbox\": [\n        5882.337995842641,\n        4015.3776589068534\n      ]\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e08de02-9cfd-483f-bd07-ac8b2c6f4beb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "subtitle"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2e5d222d-4abd-414c-886f-ec7a92562f6b",
+    "name": "OpenAQ Averages Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

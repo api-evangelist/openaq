@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "ebd45806-a273-4bfe-9fd9-7c703b95474b",
+      "name": "Averages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f6890f2-9243-4b14-b900-975089cd22ce",
+          "name": "OpenAQ Get averaged values",
+          "request": {
+            "name": "OpenAQ Get averaged values",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "averages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "temporal",
+                  "value": "<string>",
+                  "description": "Period to aggregate. month, day, hour"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameters_id",
+                  "value": "<integer>",
+                  "description": "What measurand would you like?"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "locations_id",
+                  "value": "70084",
+                  "description": "Limit the results to a specific location by id"
+                },
+                {
+                  "disabled": false,
+                  "key": "spatial",
+                  "value": "<string>",
+                  "description": "Define how you want to aggregate in space"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "010f44b2-b9e7-430d-9c7b-617c74ba77d7",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "averages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "temporal",
+                      "value": "hod"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "locations_id",
+                      "value": "70084"
+                    },
+                    {
+                      "key": "spatial",
+                      "value": "country"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": [\n        1511,\n        3682\n      ],\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hour\": \"1970-02-24T11:48:53.730Z\",\n      \"day\": \"1992-12-31\",\n      \"month\": \"2014-05-07\",\n      \"year\": \"2023-10-24\",\n      \"hod\": 9941,\n      \"dow\": 9667,\n      \"average\": 7955.628695076964,\n      \"measurement_count\": 6305,\n      \"parameter\": \"string\",\n      \"parameterId\": 1174,\n      \"displayName\": \"string\",\n      \"unit\": \"string\",\n      \"first_datetime\": \"1991-03-19T23:24:11.463Z\",\n      \"last_datetime\": \"2004-02-07T10:52:06.883Z\"\n    },\n    {\n      \"id\": [\n        2857,\n        5026\n      ],\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hour\": \"1969-01-30T08:28:43.825Z\",\n      \"day\": \"1955-01-11\",\n      \"month\": \"1975-04-12\",\n      \"year\": \"2011-07-24\",\n      \"hod\": 1468,\n      \"dow\": 1850,\n      \"average\": 3947.3387065608367,\n      \"measurement_count\": 8732,\n      \"parameter\": \"string\",\n      \"parameterId\": 8388,\n      \"displayName\": \"string\",\n      \"unit\": \"string\",\n      \"first_datetime\": \"1983-12-02T23:34:32.939Z\",\n      \"last_datetime\": \"1948-11-07T07:43:01.401Z\"\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2902f51e-00df-4c97-98cc-c1ad5886b644",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "averages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "temporal",
+                      "value": "hod"
+                    },
+                    {
+                      "key": "parameters_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "locations_id",
+                      "value": "70084"
+                    },
+                    {
+                      "key": "spatial",
+                      "value": "country"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aaf71038-4ad9-46d4-b618-acc6dbbe4af6",
+    "name": "OpenAQ Averages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

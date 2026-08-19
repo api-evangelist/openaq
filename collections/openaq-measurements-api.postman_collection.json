@@ -1,0 +1,1899 @@
+{
+  "item": [
+    {
+      "id": "d407e2f5-a7d2-4ca7-b94f-0b5fd59d6aa2",
+      "name": "Measurements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aabf4b58-137d-4b82-a764-aefd2e9c5604",
+          "name": "OpenAQ Get measurements by sensor ID",
+          "request": {
+            "name": "OpenAQ Get measurements by sensor ID",
+            "description": {
+              "content": "Provides a list of measurements by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensors_id",
+                "measurements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensors_id",
+                  "description": "(Required) Limit the results to a specific sensors id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a617e815-4f7b-4cdc-ba7d-1f8db63980c0",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"value\": 776.4501700899895,\n      \"flagInfo\": {\n        \"hasFlags\": false\n      },\n      \"parameter\": {\n        \"id\": 2869,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 6475.9543317157295,\n        \"longitude\": 3126.127555780982\n      },\n      \"summary\": {\n        \"min\": 1395.5667133039517,\n        \"q02\": 6634.059806924376,\n        \"q25\": 6201.240422086676,\n        \"median\": 3039.2788249441314,\n        \"q75\": 9098.355557247347,\n        \"q98\": 1390.58812454395,\n        \"max\": 7065.519954013609,\n        \"avg\": 360.4155883204418,\n        \"sd\": 9397.120084709824\n      },\n      \"coverage\": {\n        \"expectedCount\": 8666,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 9981,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 6490.937031629994,\n        \"percentCoverage\": 8700.325639709803,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"value\": 5057.796942597177,\n      \"flagInfo\": {\n        \"hasFlags\": true\n      },\n      \"parameter\": {\n        \"id\": 9816,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 7140.6172790617575,\n        \"longitude\": 9063.129659655615\n      },\n      \"summary\": {\n        \"min\": 8322.01145986729,\n        \"q02\": 2437.313230093889,\n        \"q25\": 9689.617902471937,\n        \"median\": 2479.6131418824284,\n        \"q75\": 8168.040504173485,\n        \"q98\": 8126.971850613503,\n        \"max\": 2552.517450274255,\n        \"avg\": 4629.093980125969,\n        \"sd\": 3668.128905752911\n      },\n      \"coverage\": {\n        \"expectedCount\": 6238,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 1289,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 3537.3350804441384,\n        \"percentCoverage\": 4421.531405991564,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa212b8-8b13-4311-96ec-87b8a0008345",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60591b39-ff97-4dcf-a495-8c285a50b183",
+          "name": "OpenAQ Get measurements aggregated to hours by sensor ID",
+          "request": {
+            "name": "OpenAQ Get measurements aggregated to hours by sensor ID",
+            "description": {
+              "content": "Provides a list of measurements by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensors_id",
+                "measurements",
+                "hourly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensors_id",
+                  "description": "(Required) Limit the results to a specific sensors id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e90960e2-3251-4231-966e-b09eef0631fe",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements",
+                    "hourly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"value\": 776.4501700899895,\n      \"flagInfo\": {\n        \"hasFlags\": false\n      },\n      \"parameter\": {\n        \"id\": 2869,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 6475.9543317157295,\n        \"longitude\": 3126.127555780982\n      },\n      \"summary\": {\n        \"min\": 1395.5667133039517,\n        \"q02\": 6634.059806924376,\n        \"q25\": 6201.240422086676,\n        \"median\": 3039.2788249441314,\n        \"q75\": 9098.355557247347,\n        \"q98\": 1390.58812454395,\n        \"max\": 7065.519954013609,\n        \"avg\": 360.4155883204418,\n        \"sd\": 9397.120084709824\n      },\n      \"coverage\": {\n        \"expectedCount\": 8666,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 9981,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 6490.937031629994,\n        \"percentCoverage\": 8700.325639709803,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"value\": 5057.796942597177,\n      \"flagInfo\": {\n        \"hasFlags\": true\n      },\n      \"parameter\": {\n        \"id\": 9816,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 7140.6172790617575,\n        \"longitude\": 9063.129659655615\n      },\n      \"summary\": {\n        \"min\": 8322.01145986729,\n        \"q02\": 2437.313230093889,\n        \"q25\": 9689.617902471937,\n        \"median\": 2479.6131418824284,\n        \"q75\": 8168.040504173485,\n        \"q98\": 8126.971850613503,\n        \"max\": 2552.517450274255,\n        \"avg\": 4629.093980125969,\n        \"sd\": 3668.128905752911\n      },\n      \"coverage\": {\n        \"expectedCount\": 6238,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 1289,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 3537.3350804441384,\n        \"percentCoverage\": 4421.531405991564,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8929eff0-5594-4382-97a7-ecdaa831de7c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements",
+                    "hourly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d17cc8e3-1dec-4ac4-8799-3d168a8fa422",
+          "name": "OpenAQ Get measurements aggregated to days by sensor ID",
+          "request": {
+            "name": "OpenAQ Get measurements aggregated to days by sensor ID",
+            "description": {
+              "content": "Provides a list of measurements by sensor ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "sensors",
+                ":sensors_id",
+                "measurements",
+                "daily"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "datetime_to",
+                  "value": "<dateTime>",
+                  "description": "To when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sensors_id",
+                  "description": "(Required) Limit the results to a specific sensors id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1fab0558-588f-44e1-9281-2c07f9477eae",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements",
+                    "daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"value\": 776.4501700899895,\n      \"flagInfo\": {\n        \"hasFlags\": false\n      },\n      \"parameter\": {\n        \"id\": 2869,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 6475.9543317157295,\n        \"longitude\": 3126.127555780982\n      },\n      \"summary\": {\n        \"min\": 1395.5667133039517,\n        \"q02\": 6634.059806924376,\n        \"q25\": 6201.240422086676,\n        \"median\": 3039.2788249441314,\n        \"q75\": 9098.355557247347,\n        \"q98\": 1390.58812454395,\n        \"max\": 7065.519954013609,\n        \"avg\": 360.4155883204418,\n        \"sd\": 9397.120084709824\n      },\n      \"coverage\": {\n        \"expectedCount\": 8666,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 9981,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 6490.937031629994,\n        \"percentCoverage\": 8700.325639709803,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"value\": 5057.796942597177,\n      \"flagInfo\": {\n        \"hasFlags\": true\n      },\n      \"parameter\": {\n        \"id\": 9816,\n        \"name\": \"string\",\n        \"units\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"period\": {\n        \"label\": \"string\",\n        \"interval\": \"string\",\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"coordinates\": {\n        \"latitude\": 7140.6172790617575,\n        \"longitude\": 9063.129659655615\n      },\n      \"summary\": {\n        \"min\": 8322.01145986729,\n        \"q02\": 2437.313230093889,\n        \"q25\": 9689.617902471937,\n        \"median\": 2479.6131418824284,\n        \"q75\": 8168.040504173485,\n        \"q98\": 8126.971850613503,\n        \"max\": 2552.517450274255,\n        \"avg\": 4629.093980125969,\n        \"sd\": 3668.128905752911\n      },\n      \"coverage\": {\n        \"expectedCount\": 6238,\n        \"expectedInterval\": \"string\",\n        \"observedCount\": 1289,\n        \"observedInterval\": \"string\",\n        \"percentComplete\": 3537.3350804441384,\n        \"percentCoverage\": 4421.531405991564,\n        \"datetimeFrom\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"datetimeTo\": {\n          \"utc\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"local\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd03f350-3eaf-48d8-85f5-7aba48bf0ed0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "sensors",
+                    ":sensors_id",
+                    "measurements",
+                    "daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "datetime_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datetime_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sensors_id",
+                      "description": "(Required) Limit the results to a specific sensors id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1a25d53-7bf4-4300-afc4-5b04376b15b2",
+          "name": "OpenAQ Get measurements",
+          "request": {
+            "name": "OpenAQ Get measurements",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "measurements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<dateTime>",
+                  "description": "to when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_geo",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter_id",
+                  "value": "<integer>",
+                  "description": "(optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>",
+                  "description": "Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_id",
+                  "value": "<integer>",
+                  "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_mobile",
+                  "value": "<boolean>",
+                  "description": "Location is mobile e.g. ?isMobile=true"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_analysis",
+                  "value": "<boolean>",
+                  "description": "Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=false"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sensor_type",
+                  "value": "<string>",
+                  "description": "Filter by sensor type (i,e. reference grade, low-cost sensor) e.g. ?sensorType=reference%20grade"
+                },
+                {
+                  "disabled": false,
+                  "key": "value_from",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "value_to",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_fields",
+                  "value": "<string>",
+                  "description": "Additional fields to include in response e.g. ?include_fields=sourceName"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f286992-cf0d-4f91-a434-8d76ead4c3bb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "has_geo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "datetime"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "value_from",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "value_to",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "include_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"locationId\": 4127,\n      \"location\": \"string\",\n      \"parameter\": \"string\",\n      \"value\": 1190.5975188432594,\n      \"date\": {\n        \"utc\": \"string\",\n        \"local\": \"string\"\n      },\n      \"unit\": \"string\",\n      \"isMobile\": true,\n      \"sensorType\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 1803.5101067245796,\n        \"longitude\": 4190.803920815351\n      },\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"isAnalysis\": true,\n      \"entity\": \"string\"\n    },\n    {\n      \"locationId\": 9029,\n      \"location\": \"string\",\n      \"parameter\": \"string\",\n      \"value\": 8696.624767748428,\n      \"date\": {\n        \"utc\": \"string\",\n        \"local\": \"string\"\n      },\n      \"unit\": \"string\",\n      \"isMobile\": false,\n      \"sensorType\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 8977.449368543648,\n        \"longitude\": 2950.343588547979\n      },\n      \"country\": \"string\",\n      \"city\": \"string\",\n      \"isAnalysis\": true,\n      \"entity\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6863001-f114-4360-bf3c-4243595a027e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "has_geo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "datetime"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "value_from",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "value_to",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "include_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22b9ab1e-b257-4e3d-8970-765745a13ffc",
+          "name": "OpenAQ Get a list of measurements",
+          "request": {
+            "name": "OpenAQ Get a list of measurements",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "measurements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<dateTime>",
+                  "description": "From when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<dateTime>",
+                  "description": "to when?"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_geo",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter_id",
+                  "value": "<integer>",
+                  "description": "(optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>",
+                  "description": "Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_id",
+                  "value": "<integer>",
+                  "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "datetime"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_mobile",
+                  "value": "<boolean>",
+                  "description": "Location is mobile e.g. ?isMobile=true"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_analysis",
+                  "value": "<boolean>",
+                  "description": "Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=false"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sensor_type",
+                  "value": "<string>",
+                  "description": "Filter by sensor type (i,e. reference grade, low-cost sensor) e.g. ?sensorType=reference%20grade"
+                },
+                {
+                  "disabled": false,
+                  "key": "value_from",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "value_to",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_fields",
+                  "value": "<string>",
+                  "description": "Additional fields to include in response e.g. ?include_fields=sourceName"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c99ef73f-b9cf-454c-9956-a7a25d262d25",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "has_geo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "datetime"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "value_from",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "value_to",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "include_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"location\": \"string\",\n      \"parameter\": \"string\",\n      \"value\": 3982.247792444177,\n      \"date\": {\n        \"utc\": \"string\",\n        \"local\": \"string\"\n      },\n      \"unit\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 358.23067061153347,\n        \"longitude\": 2380.7089063581043\n      },\n      \"country\": \"string\",\n      \"city\": \"string\"\n    },\n    {\n      \"location\": \"string\",\n      \"parameter\": \"string\",\n      \"value\": 830.9771717597437,\n      \"date\": {\n        \"utc\": \"string\",\n        \"local\": \"string\"\n      },\n      \"unit\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 6019.2614816151645,\n        \"longitude\": 2376.0275113586417\n      },\n      \"country\": \"string\",\n      \"city\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7dbaa07-153f-47dc-989d-c38d36127c62",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "measurements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "has_geo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "datetime"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "value_from",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "value_to",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "include_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9755566-6a52-4fa0-98b3-52fe304731bc",
+    "name": "OpenAQ Averages Measurements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

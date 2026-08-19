@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Hourly API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hourly",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated to hours by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/measurements/hourly",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of measurements by sensor ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

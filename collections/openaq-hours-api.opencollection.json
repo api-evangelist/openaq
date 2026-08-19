@@ -1,0 +1,325 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Hours API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hours",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated to hour by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to day by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/daily",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of daily summaries of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to month by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/monthly",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of daily summaries of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to year by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/yearly",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of yearly summaries of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to day of week by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/hourofday",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of yearly summaries of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to day of week by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/dayofweek",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of yearly summaries of hourly data by sensor ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Get measurements aggregated from hour to day of week by sensor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v3/sensors/:sensors_id/hours/monthofyear",
+            "params": [
+              {
+                "name": "sensors_id",
+                "value": "",
+                "type": "path",
+                "description": "Limit the results to a specific sensors id"
+              },
+              {
+                "name": "datetime_to",
+                "value": "",
+                "type": "query",
+                "description": "To when?"
+              },
+              {
+                "name": "datetime_from",
+                "value": "",
+                "type": "query",
+                "description": "From when?"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of yearly summaries of hourly data by sensor ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

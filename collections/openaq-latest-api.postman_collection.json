@@ -1,0 +1,1840 @@
+{
+  "item": [
+    {
+      "id": "79e13902-c58c-4e7c-bede-7474722ff7e5",
+      "name": "Latest",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9abaefa7-d580-4069-9e91-dc5802f8648f",
+          "name": "OpenAQ Parameters Latest Get",
+          "request": {
+            "name": "OpenAQ Parameters Latest Get",
+            "description": {},
+            "url": {
+              "path": [
+                "v3",
+                "parameters",
+                ":parameters_id",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_min",
+                  "value": "<dateTime>",
+                  "description": "Minimum datetime"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "parameters_id",
+                  "description": "(Required) Limit the results to a specific parameters id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2fa7f1e3-81b9-4ca0-a71e-402746225286",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "parameters",
+                    ":parameters_id",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_min",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "parameters_id",
+                      "description": "(Required) Limit the results to a specific parameters id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"datetime\": {\n        \"utc\": \"1965-07-21T02:21:31.247Z\",\n        \"local\": \"1973-05-31T05:04:31.793Z\"\n      },\n      \"value\": 3460.6121500901622,\n      \"coordinates\": {\n        \"latitude\": 6391.222640789596,\n        \"longitude\": 4105.78990925118\n      },\n      \"sensorsId\": 572,\n      \"locationsId\": 9994\n    },\n    {\n      \"datetime\": {\n        \"utc\": \"1961-02-10T05:51:04.020Z\",\n        \"local\": \"1987-05-18T02:16:16.800Z\"\n      },\n      \"value\": 9980.084570556905,\n      \"coordinates\": {\n        \"latitude\": 3208.846031200702,\n        \"longitude\": 7157.094699596267\n      },\n      \"sensorsId\": 7302,\n      \"locationsId\": 6577\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3590936d-b4b3-4c6b-b95c-c602c9ca5996",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "parameters",
+                    ":parameters_id",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_min",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "parameters_id",
+                      "description": "(Required) Limit the results to a specific parameters id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "173214ec-816a-4213-ae49-97e66ff17d7f",
+          "name": "OpenAQ Get a location's latest measurements",
+          "request": {
+            "name": "OpenAQ Get a location's latest measurements",
+            "description": {
+              "content": "Providers a location's latest measurement values",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "locations",
+                ":locations_id",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "datetime_min",
+                  "value": "<dateTime>",
+                  "description": "Minimum datetime"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "locations_id",
+                  "description": "(Required) Limit the results to a specific location by id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d26bf781-6ff9-4754-b95a-4a92524e0d82",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "locations",
+                    ":locations_id",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_min",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "locations_id",
+                      "description": "(Required) Limit the results to a specific location by id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"datetime\": {\n        \"utc\": \"1965-07-21T02:21:31.247Z\",\n        \"local\": \"1973-05-31T05:04:31.793Z\"\n      },\n      \"value\": 3460.6121500901622,\n      \"coordinates\": {\n        \"latitude\": 6391.222640789596,\n        \"longitude\": 4105.78990925118\n      },\n      \"sensorsId\": 572,\n      \"locationsId\": 9994\n    },\n    {\n      \"datetime\": {\n        \"utc\": \"1961-02-10T05:51:04.020Z\",\n        \"local\": \"1987-05-18T02:16:16.800Z\"\n      },\n      \"value\": 9980.084570556905,\n      \"coordinates\": {\n        \"latitude\": 3208.846031200702,\n        \"longitude\": 7157.094699596267\n      },\n      \"sensorsId\": 7302,\n      \"locationsId\": 6577\n    }\n  ],\n  \"meta\": {\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4867e83-da61-431f-92d4-68e972505773",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "locations",
+                    ":locations_id",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "datetime_min",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "locations_id",
+                      "description": "(Required) Limit the results to a specific location by id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d984e084-704c-443e-91d3-84fcf1792c22",
+          "name": "OpenAQ Get latest measurements by location ID",
+          "request": {
+            "name": "OpenAQ Get latest measurements by location ID",
+            "description": {
+              "content": "Provides latest measurements for a locations by location ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "latest",
+                ":location_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Define sort order. e.g. ?sort=asc"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "location_id",
+                  "description": "(Required) The ID of the location"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1196e36b-f2ed-40dd-b0aa-63932a66c17c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "latest",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "location_id",
+                      "description": "(Required) The ID of the location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 5796.799768107348,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 8508.023926073252,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        }\n      ],\n      \"location\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 1619.2931087494333,\n        \"longitude\": 8674.925633280303\n      }\n    },\n    {\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 5054.969968872842,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 2784.957771927009,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        }\n      ],\n      \"location\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 8733.526300051302,\n        \"longitude\": 8739.279819656305\n      }\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d57185-3b73-4eb1-affd-2e824680eb14",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "latest",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "location_id",
+                      "description": "(Required) The ID of the location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba07223c-2a7d-47f8-a02a-a20a2d694f67",
+          "name": "OpenAQ Get latest measurements",
+          "request": {
+            "name": "OpenAQ Get latest measurements",
+            "description": {
+              "content": "Provides a list of locations with latest measurements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "lastUpdated"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_mobile",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_analysis",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sensor_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dump_raw",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unit\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"city\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"location_id\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"location\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"source_name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model_name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"manufacturer_name\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ec37647-8af5-45c2-92fe-d103c6914555",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "lastUpdated"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "dump_raw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"unit\": [\n    \"string\",\n    \"string\"\n  ],\n  \"country\": [\n    \"string\",\n    \"string\"\n  ],\n  \"city\": [\n    \"string\",\n    \"string\"\n  ],\n  \"location_id\": [\n    5259,\n    9798\n  ],\n  \"location\": [\n    \"string\",\n    \"string\"\n  ],\n  \"source_name\": [\n    \"string\",\n    \"string\"\n  ],\n  \"model_name\": [\n    \"string\",\n    \"string\"\n  ],\n  \"manufacturer_name\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 5796.799768107348,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 8508.023926073252,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        }\n      ],\n      \"location\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 1619.2931087494333,\n        \"longitude\": 8674.925633280303\n      }\n    },\n    {\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 5054.969968872842,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 2784.957771927009,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\"\n        }\n      ],\n      \"location\": \"string\",\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 8733.526300051302,\n        \"longitude\": 8739.279819656305\n      }\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70d1c429-f4d1-4dc0-bdcc-f4e9cf39c6e3",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "lastUpdated"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "dump_raw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parameter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"unit\": [\n    \"string\",\n    \"string\"\n  ],\n  \"country\": [\n    \"string\",\n    \"string\"\n  ],\n  \"city\": [\n    \"string\",\n    \"string\"\n  ],\n  \"location_id\": [\n    5259,\n    9798\n  ],\n  \"location\": [\n    \"string\",\n    \"string\"\n  ],\n  \"source_name\": [\n    \"string\",\n    \"string\"\n  ],\n  \"model_name\": [\n    \"string\",\n    \"string\"\n  ],\n  \"manufacturer_name\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d9d74b7-2522-4d59-a32c-570373b53a50",
+          "name": "OpenAQ Get latest measurements by location ID",
+          "request": {
+            "name": "OpenAQ Get latest measurements by location ID",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "latest",
+                ":location_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Define sort order. e.g. ?sort=asc"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "location_id",
+                  "description": "(Required) The ID of the location"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed814bac-70ca-4840-8ad9-49721f7fac99",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "latest",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "location_id",
+                      "description": "(Required) The ID of the location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"location\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 6634.954303739174,\n        \"longitude\": 9615.742023767285\n      },\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 818.5079814210394,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 2273.4960471503564,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"city\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"location\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 995.2745352096592,\n        \"longitude\": 8822.720460283253\n      },\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 6036.491022437397,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 248.94027455945934,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"city\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91dd6fed-4738-4171-bc50-7906205ab27e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "latest",
+                    ":location_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "location_id",
+                      "description": "(Required) The ID of the location"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccea787d-946b-4e82-9982-09eee65a7860",
+          "name": "OpenAQ Get latest measurements",
+          "request": {
+            "name": "OpenAQ Get latest measurements",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Paginate through results. e.g. page=1 will return first page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort Direction e.g. sort=desc"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter_id",
+                  "value": "<integer>",
+                  "description": "(optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "parameter",
+                  "value": "<string>",
+                  "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "<string>",
+                  "description": "Coordinate pair in form lat,lng. Up to 8 decimal points of precision e.g. 38.907,-77.037"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "Search radius from coordinates as center in meters. Maximum of 25,000 (25km) defaults to 1000 (1km) e.g. radius=10000"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_id",
+                  "value": "<integer>",
+                  "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "Limit results by a certain city or cities. (e.g. ?city=Chicago or ?city=Chicago&city=Boston)"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "lastUpdated",
+                  "description": "Order by a field"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_mobile",
+                  "value": "<boolean>",
+                  "description": "Location is mobile e.g. ?isMobile=true"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_analysis",
+                  "value": "<boolean>",
+                  "description": "Data is the product of a previous analysis/aggregation and not raw measurements e.g. ?isAnalysis=true "
+                },
+                {
+                  "disabled": false,
+                  "key": "source_name",
+                  "value": "<string>",
+                  "description": "Name of the data source e.g. ?sourceName=Houston%20Mobile"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_name",
+                  "value": "<string>",
+                  "description": "Name of the data source e.g. ?sourceName=Houston%20Mobile"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>",
+                  "description": "Source entity type. e.g. ?entity=government"
+                },
+                {
+                  "disabled": false,
+                  "key": "sensor_type",
+                  "value": "<string>",
+                  "description": "Type of Sensor e.g. ?sensorType=reference%20grade"
+                },
+                {
+                  "disabled": false,
+                  "key": "model_name",
+                  "value": "<string>",
+                  "description": "Model Name of Sensor e.g. ?modelName=AE33"
+                },
+                {
+                  "disabled": false,
+                  "key": "model_name",
+                  "value": "<string>",
+                  "description": "Model Name of Sensor e.g. ?modelName=AE33"
+                },
+                {
+                  "disabled": false,
+                  "key": "manufacturer_name",
+                  "value": "<string>",
+                  "description": "Manufacturer of Sensor e.g. ?manufacturer=Ecotech"
+                },
+                {
+                  "disabled": false,
+                  "key": "manufacturer_name",
+                  "value": "<string>",
+                  "description": "Manufacturer of Sensor e.g. ?manufacturer=Ecotech"
+                },
+                {
+                  "disabled": false,
+                  "key": "dump_raw",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b400ced7-b71b-4a95-90e9-a91aa648ecba",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "lastUpdated"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "model_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "manufacturer_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "manufacturer_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dump_raw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"location\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 6634.954303739174,\n        \"longitude\": 9615.742023767285\n      },\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 818.5079814210394,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 2273.4960471503564,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"city\": \"string\",\n      \"country\": \"string\"\n    },\n    {\n      \"location\": \"string\",\n      \"coordinates\": {\n        \"latitude\": 995.2745352096592,\n        \"longitude\": 8822.720460283253\n      },\n      \"measurements\": [\n        {\n          \"parameter\": \"string\",\n          \"value\": 6036.491022437397,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"parameter\": \"string\",\n          \"value\": 248.94027455945934,\n          \"lastUpdated\": \"string\",\n          \"unit\": \"string\",\n          \"sourceName\": \"string\",\n          \"averagingPeriod\": {\n            \"unit\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"city\": \"string\",\n      \"country\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"license\": \"\",\n    \"limit\": 100,\n    \"name\": \"openaq-api\",\n    \"page\": 1,\n    \"website\": \"/\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c6b4938-67cf-4b46-bb28-6a0ba20a8c8d",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "parameter_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parameter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "coordinates",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "country_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "lastUpdated"
+                    },
+                    {
+                      "key": "is_mobile",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "is_analysis",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entity",
+                      "value": "research"
+                    },
+                    {
+                      "key": "sensor_type",
+                      "value": "low-cost sensor"
+                    },
+                    {
+                      "key": "model_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "manufacturer_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "manufacturer_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dump_raw",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c3fbb5d4-dd00-4f68-bdaa-3b4dd459d377",
+    "name": "OpenAQ Averages Latest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nOpenAQ is a nonprofit organization providing universal access to air\nquality data to empower a global community of changemakers to solve air\ninequality-the unequal access to clean air.",
+      "type": "text/plain"
+    }
+  }
+}

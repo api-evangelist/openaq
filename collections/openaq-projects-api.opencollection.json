@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenAQ Averages Projects API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAQ Project by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a project by project ID"
+        },
+        {
+          "info": {
+            "name": "OpenAQ Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/projects",
+            "params": [
+              {
+                "name": "country_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain country using two digit country ID. e.g. 13"
+              },
+              {
+                "name": "parameter_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit results by a certain country using two letter country code. e.g. ?country=US or ?country=US&country=MX"
+              },
+              {
+                "name": "parameter",
+                "value": "",
+                "type": "query",
+                "description": "Change the number of results returned. e.g. limit=1000 will return up to 1000 results"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Paginate through results. e.g. page=1 will return first page of results"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "Define sort order. e.g. ?sort=asc"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "(optional) A parameter ID to filter measurement results. e.g. parameter_id=2 (i.e. PM2.5) will limit measurement results to only PM2.5 measurements"
+              },
+              {
+                "name": "is_mobile",
+                "value": "",
+                "type": "query",
+                "description": "(optional) A parameter name or ID by which to filter measurement results. e.g. parameter=pm25 or parameter=pm25&parameter=pm10"
+              },
+              {
+                "name": "is_analysis",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sensor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source_name",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provides a list of projects"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
