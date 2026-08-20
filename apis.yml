@@ -223,6 +223,8 @@ apis:
   humanURL: https://openaq.org/
   baseURL: http://api.example.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
