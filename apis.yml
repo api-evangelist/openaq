@@ -169,18 +169,6 @@ apis:
     url: openapi/openaq-measurements-api-openapi.yml
   - type: Documentation
     url: https://docs.openaq.org/
-- aid: openaq:openaq-monthly-api
-  name: OpenAQ Monthly API
-  description: The Monthly API from OpenAQ — 2 operation(s) for monthly.
-  humanURL: https://openaq.org/
-  baseURL: http://api.example.com
-  tags:
-  - Monthly
-  properties:
-  - type: OpenAPI
-    url: openapi/openaq-monthly-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openaq.org/
 - aid: openaq:openaq-owners-api
   name: OpenAQ Owners API
   description: The Owners API from OpenAQ — 2 operation(s) for owners.
@@ -255,18 +243,6 @@ apis:
     url: openapi/openaq-readme-api-openapi.yml
   - type: Documentation
     url: https://docs.openaq.org/
-- aid: openaq:openaq-sensor-api
-  name: OpenAQ Sensor API
-  description: The Sensor API from OpenAQ — 1 operation(s) for sensor.
-  humanURL: https://openaq.org/
-  baseURL: http://api.example.com
-  tags:
-  - Sensor
-  properties:
-  - type: OpenAPI
-    url: openapi/openaq-sensor-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openaq.org/
 - aid: openaq:openaq-sensors-api
   name: OpenAQ Sensors API
   description: The Sensors API from OpenAQ — 19 operation(s) for sensors.
@@ -277,18 +253,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/openaq-sensors-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openaq.org/
-- aid: openaq:openaq-slug-api
-  name: OpenAQ Slug API
-  description: The Slug API from OpenAQ — 1 operation(s) for slug.
-  humanURL: https://openaq.org/
-  baseURL: http://api.example.com
-  tags:
-  - Slug
-  properties:
-  - type: OpenAPI
-    url: openapi/openaq-slug-api-openapi.yml
   - type: Documentation
     url: https://docs.openaq.org/
 - aid: openaq:openaq-sources-api
@@ -313,30 +277,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/openaq-summary-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openaq.org/
-- aid: openaq:openaq-yearly-api
-  name: OpenAQ Yearly API
-  description: The Yearly API from OpenAQ — 2 operation(s) for yearly.
-  humanURL: https://openaq.org/
-  baseURL: http://api.example.com
-  tags:
-  - Yearly
-  properties:
-  - type: OpenAPI
-    url: openapi/openaq-yearly-api-openapi.yml
-  - type: Documentation
-    url: https://docs.openaq.org/
-- aid: openaq:openaq-years-api
-  name: OpenAQ Years API
-  description: The Years API from OpenAQ — 1 operation(s) for years.
-  humanURL: https://openaq.org/
-  baseURL: http://api.example.com
-  tags:
-  - Years
-  properties:
-  - type: OpenAPI
-    url: openapi/openaq-years-api-openapi.yml
   - type: Documentation
     url: https://docs.openaq.org/
 name: OpenAQ
