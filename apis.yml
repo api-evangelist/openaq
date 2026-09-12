@@ -312,6 +312,8 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openaq.png
 common:
+  - type: Website
+    url: https://openaq.org/
   - type: AgenticAccess
     url: agentic-access/openaq-agentic-access.yml
   - type: VulnerabilityDisclosure
