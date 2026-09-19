@@ -139,6 +139,8 @@ apis:
   humanURL: https://openaq.org/
   baseURL: http://api.example.com
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -151,6 +153,8 @@ apis:
   humanURL: https://openaq.org/
   baseURL: http://api.example.com
   tags:
+  - Manufacturer
+  tags_raw:
   - Manufacturers
   properties:
   - type: OpenAPI
