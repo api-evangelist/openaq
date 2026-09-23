@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Instruments API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Instruments API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -147,29 +145,16 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    InstrumentsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Instrument'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: InstrumentsResponse
     InstrumentsSortFields:
       type: string
       const: id
       title: InstrumentsSortFields
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
     ValidationError:
       properties:
         loc:
@@ -204,15 +189,45 @@ components:
       - id
       - name
       title: ManufacturerBase
-    HTTPValidationError:
+    InstrumentsResponse:
       properties:
-        detail:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/Instrument'
           type: array
-          title: Detail
+          title: Results
       type: object
-      title: HTTPValidationError
+      required:
+      - results
+      title: InstrumentsResponse
+    Instrument:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        isMonitor:
+          type: boolean
+          title: Ismonitor
+        manufacturer:
+          $ref: '#/components/schemas/ManufacturerBase'
+      type: object
+      required:
+      - id
+      - name
+      - isMonitor
+      - manufacturer
+      title: Instrument
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -239,32 +254,15 @@ components:
           title: Found
       type: object
       title: Meta
-    Instrument:
+    HTTPValidationError:
       properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        isMonitor:
-          type: boolean
-          title: Ismonitor
-        manufacturer:
-          $ref: '#/components/schemas/ManufacturerBase'
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - id
-      - name
-      - isMonitor
-      - manufacturer
-      title: Instrument
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

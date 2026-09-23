@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Daily API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Daily API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -184,51 +182,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    Coordinates:
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
-    Measurement:
-      properties:
-        value:
-          type: number
-          title: Value
-        flagInfo:
-          $ref: '#/components/schemas/FlagInfo'
-        parameter:
-          $ref: '#/components/schemas/ParameterBase'
-        period:
-          anyOf:
-          - $ref: '#/components/schemas/Period'
-          - type: 'null'
-        coordinates:
-          anyOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - type: 'null'
-        summary:
-          anyOf:
-          - $ref: '#/components/schemas/Summary'
-          - type: 'null'
-        coverage:
-          anyOf:
-          - $ref: '#/components/schemas/Coverage'
-          - type: 'null'
-      type: object
-      required:
-      - value
-      - flagInfo
-      - parameter
-      title: Measurement
     Summary:
       properties:
         min:
@@ -278,55 +231,6 @@ components:
           title: Sd
       type: object
       title: Summary
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HourlyDataResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/HourlyData'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: HourlyDataResponse
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
     ParameterBase:
       properties:
         id:
@@ -349,6 +253,70 @@ components:
       - name
       - units
       title: ParameterBase
+    openaq_api__v3__models__responses__MeasurementsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Measurement'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: MeasurementsResponse
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HourlyData:
       properties:
         value:
@@ -402,15 +370,32 @@ components:
       - label
       - interval
       title: Period
-    HTTPValidationError:
+    openaq_api__v3__models__responses__Meta:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
       type: object
-      title: HTTPValidationError
+      title: Meta
     Coverage:
       properties:
         expectedCount:
@@ -448,48 +433,61 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
-    openaq_api__v3__models__responses__Meta:
+    HTTPValidationError:
       properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: Meta
-    DatetimeObject:
+      title: HTTPValidationError
+    Measurement:
       properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
+        value:
+          type: number
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
       type: object
       required:
-      - utc
-      - local
-      title: DatetimeObject
-    openaq_api__v3__models__responses__MeasurementsResponse:
+      - value
+      - flagInfo
+      - parameter
+      title: Measurement
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    HourlyDataResponse:
       properties:
         meta:
           allOf:
@@ -501,13 +499,13 @@ components:
             website: /
         results:
           items:
-            $ref: '#/components/schemas/Measurement'
+            $ref: '#/components/schemas/HourlyData'
           type: array
           title: Results
       type: object
       required:
       - results
-      title: MeasurementsResponse
+      title: HourlyDataResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey

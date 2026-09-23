@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Cities API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Cities API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -240,53 +238,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    CitiesResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CityRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CitiesResponseV1
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     CityRow:
       properties:
         country:
@@ -343,6 +294,53 @@ components:
       - count
       - locations
       title: CityRowV1
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CitiesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CityRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CitiesResponse
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     CitiesOrderV1:
       type: string
       enum:
@@ -368,6 +366,26 @@ components:
       - firstUpdated
       - lastUpdated
       title: CitiesOrder
+    CitiesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CityRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CitiesResponseV1
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -398,26 +416,6 @@ components:
           title: Found
       type: object
       title: Meta
-    CitiesResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CityRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CitiesResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey

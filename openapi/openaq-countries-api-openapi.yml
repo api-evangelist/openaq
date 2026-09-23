@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Countries API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Countries API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -461,73 +459,44 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    Sort:
+    CountriesRowV1:
+      properties:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+        locations:
+          type: integer
+          title: Locations
+        count:
+          type: integer
+          title: Count
+        cities:
+          type: integer
+          title: Cities
+      type: object
+      required:
+      - code
+      - name
+      - locations
+      - count
+      - cities
+      title: CountriesRowV1
+    CountriesOrder:
       type: string
       enum:
-      - asc
-      - desc
-      title: Sort
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    CountriesResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CountriesRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CountriesResponseV1
-    openaq_api__models__responses__CountriesResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CountriesRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CountriesResponse
+      - code
+      - name
+      - locations
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      - count
+      - cities
+      - sources
+      title: CountriesOrder
     ParameterBase:
       properties:
         id:
@@ -550,15 +519,80 @@ components:
       - name
       - units
       title: ParameterBase
-    HTTPValidationError:
+    CountriesRow:
       properties:
-        detail:
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+        locations:
+          type: integer
+          title: Locations
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameters:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: string
           type: array
-          title: Detail
+          title: Parameters
+        count:
+          type: integer
+          title: Count
+        cities:
+          type: integer
+          title: Cities
+        sources:
+          type: integer
+          title: Sources
       type: object
-      title: HTTPValidationError
+      required:
+      - code
+      - name
+      - locations
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      - count
+      - cities
+      - sources
+      title: CountriesRow
+    CountriesSortFields:
+      type: string
+      const: id
+      title: CountriesSortFields
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     Country:
       properties:
         id:
@@ -621,6 +655,80 @@ components:
           title: Found
       type: object
       title: Meta
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    CountriesOrderV1:
+      type: string
+      enum:
+      - code
+      - count
+      - locations
+      - cities
+      - name
+      title: CountriesOrderV1
+    CountriesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CountriesRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CountriesResponseV1
+    openaq_api__models__responses__CountriesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CountriesRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CountriesResponse
+    openaq_api__v3__models__responses__CountriesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Country'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CountriesResponse
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -651,125 +759,15 @@ components:
           title: Found
       type: object
       title: Meta
-    CountriesRowV1:
+    HTTPValidationError:
       properties:
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-        locations:
-          type: integer
-          title: Locations
-        count:
-          type: integer
-          title: Count
-        cities:
-          type: integer
-          title: Cities
-      type: object
-      required:
-      - code
-      - name
-      - locations
-      - count
-      - cities
-      title: CountriesRowV1
-    openaq_api__v3__models__responses__CountriesResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
+        detail:
           items:
-            $ref: '#/components/schemas/Country'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Results
+          title: Detail
       type: object
-      required:
-      - results
-      title: CountriesResponse
-    CountriesSortFields:
-      type: string
-      const: id
-      title: CountriesSortFields
-    CountriesOrderV1:
-      type: string
-      enum:
-      - code
-      - count
-      - locations
-      - cities
-      - name
-      title: CountriesOrderV1
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
-    CountriesOrder:
-      type: string
-      enum:
-      - code
-      - name
-      - locations
-      - firstUpdated
-      - lastUpdated
-      - parameters
-      - count
-      - cities
-      - sources
-      title: CountriesOrder
-    CountriesRow:
-      properties:
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-        locations:
-          type: integer
-          title: Locations
-        firstUpdated:
-          type: string
-          title: Firstupdated
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        parameters:
-          items:
-            type: string
-          type: array
-          title: Parameters
-        count:
-          type: integer
-          title: Count
-        cities:
-          type: integer
-          title: Cities
-        sources:
-          type: integer
-          title: Sources
-      type: object
-      required:
-      - code
-      - name
-      - locations
-      - firstUpdated
-      - lastUpdated
-      - parameters
-      - count
-      - cities
-      - sources
-      title: CountriesRow
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

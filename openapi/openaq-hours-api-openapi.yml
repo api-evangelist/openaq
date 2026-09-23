@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Hours API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Hours API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -19,91 +17,6 @@ paths:
       summary: OpenAQ Get measurements aggregated to hour by sensor ID
       description: Provides a list of hourly data by sensor ID
       operationId: sensor_hourly_measurements_get_v3_sensors__sensors_id__hours_get
-      security:
-      - APIKeyHeader: []
-      parameters:
-      - name: sensors_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Limit the results to a specific sensors id
-          title: Sensors Id
-        description: Limit the results to a specific sensors id
-      - name: datetime_to
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
-          - type: 'null'
-          description: To when?
-          examples:
-          - '2022-10-01T11:19:38-06:00'
-          - '2022-10-01'
-          title: Datetime To
-        description: To when?
-      - name: datetime_from
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
-          - type: 'null'
-          description: From when?
-          examples:
-          - '2022-10-01T11:19:38-06:00'
-          - '2022-10-01'
-          title: Datetime From
-        description: From when?
-      - name: limit
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-          examples:
-          - '100'
-          default: 100
-          title: Limit
-        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: Paginate through results. e.g. page=1 will return first page of results
-          examples:
-          - '1'
-          default: 1
-          title: Page
-        description: Paginate through results. e.g. page=1 will return first page of results
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HourlyDataResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /v3/sensors/{sensors_id}/hours/daily:
-    get:
-      tags:
-      - Hours
-      summary: OpenAQ Get measurements aggregated from hour to day by sensor ID
-      description: Provides a list of daily summaries of hourly data by sensor ID
-      operationId: sensor_hourly_measurements_aggregate_to_day_get_v3_sensors__sensors_id__hours_daily_get
       security:
       - APIKeyHeader: []
       parameters:
@@ -543,20 +456,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    Coordinates:
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
     Summary:
       properties:
         min:
@@ -606,55 +505,6 @@ components:
           title: Sd
       type: object
       title: Summary
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HourlyDataResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/HourlyData'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: HourlyDataResponse
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
     ParameterBase:
       properties:
         id:
@@ -677,6 +527,51 @@ components:
       - name
       - units
       title: ParameterBase
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HourlyData:
       properties:
         value:
@@ -730,15 +625,32 @@ components:
       - label
       - interval
       title: Period
-    HTTPValidationError:
+    openaq_api__v3__models__responses__Meta:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
       type: object
-      title: HTTPValidationError
+      title: Meta
     Coverage:
       properties:
         expectedCount:
@@ -776,47 +688,48 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
-    openaq_api__v3__models__responses__Meta:
+    HTTPValidationError:
       properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: Meta
-    DatetimeObject:
+      title: HTTPValidationError
+    Coordinates:
       properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    HourlyDataResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/HourlyData'
+          type: array
+          title: Results
       type: object
       required:
-      - utc
-      - local
-      title: DatetimeObject
+      - results
+      title: HourlyDataResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey

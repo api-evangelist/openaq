@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Locations API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Locations API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -291,160 +289,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SensorsResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /v3/locations/{locations_id}/latest:
-    get:
-      tags:
-      - Locations
-      summary: OpenAQ Get a location's latest measurements
-      description: Providers a location's latest measurement values
-      operationId: location_latest_get_v3_locations__locations_id__latest_get
-      security:
-      - APIKeyHeader: []
-      parameters:
-      - name: locations_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Limit the results to a specific location by id
-          title: Locations Id
-        description: Limit the results to a specific location by id
-      - name: limit
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-          examples:
-          - '100'
-          default: 100
-          title: Limit
-        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: Paginate through results. e.g. page=1 will return first page of results
-          examples:
-          - '1'
-          default: 1
-          title: Page
-        description: Paginate through results. e.g. page=1 will return first page of results
-      - name: datetime_min
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
-          - type: 'null'
-          description: Minimum datetime
-          examples:
-          - '2022-10-01T11:19:38-06:00'
-          - '2022-10-01'
-          title: Datetime Min
-        description: Minimum datetime
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/openaq_api__v3__models__responses__LatestResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /v3/locations/{locations_id}/flags:
-    get:
-      tags:
-      - Locations
-      summary: OpenAQ Get flags by location ID
-      description: Provides a list of flags by location ID
-      operationId: location_flags_get_v3_locations__locations_id__flags_get
-      security:
-      - APIKeyHeader: []
-      parameters:
-      - name: locations_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: Limit the results to a specific locations
-          title: Locations Id
-        description: Limit the results to a specific locations
-      - name: limit
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-          examples:
-          - '100'
-          default: 100
-          title: Limit
-        description: "Change the number of results returned.\n        e.g. limit=100 will return up to 100 results"
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-          description: Paginate through results. e.g. page=1 will return first page of results
-          examples:
-          - '1'
-          default: 1
-          title: Page
-        description: Paginate through results. e.g. page=1 will return first page of results
-      - name: datetime_from
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
-          - type: 'null'
-          description: To when?
-          examples:
-          - '2022-10-01T11:19:38-06:00'
-          - '2022-10-01'
-          title: Datetime From
-        description: To when?
-      - name: datetime_to
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: string
-            format: date
-          - type: 'null'
-          description: To when?
-          examples:
-          - '2022-10-01T11:19:38-06:00'
-          - '2022-10-01'
-          title: Datetime To
-        description: To when?
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LocationFlagsResponse'
         '422':
           description: Validation Error
           content:
@@ -829,161 +673,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /v2/latest/{location_id}:
-    get:
-      tags:
-      - Locations
-      summary: OpenAQ Get latest measurements by location ID
-      description: Provides latest measurements for a locations by location ID
-      operationId: get_v2_latest_by_id_v2_latest__location_id__get
-      deprecated: true
-      security:
-      - APIKeyHeader: []
-      parameters:
-      - name: location_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: The ID of the location
-          title: Location Id
-        description: The ID of the location
-      - name: limit
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
-          examples:
-          - '1000'
-          default: 100
-          title: Limit
-        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
-      - name: page
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Paginate through results. e.g. page=1 will return first page of results
-          examples:
-          - '1'
-          default: 1
-          title: Page
-        description: Paginate through results. e.g. page=1 will return first page of results
-      - name: offset
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: 0
-          title: Offset
-      - name: sort
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - $ref: '#/components/schemas/Sort'
-          - type: 'null'
-          description: Define sort order. e.g. ?sort=asc
-          default: asc
-          title: Sort
-        description: Define sort order. e.g. ?sort=asc
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/openaq_api__models__responses__LatestResponse'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-  /v1/latest/{location_id}:
-    get:
-      tags:
-      - Locations
-      summary: OpenAQ Get latest measurements by location ID
-      operationId: get_v1_latest_by_id_v1_latest__location_id__get
-      deprecated: true
-      security:
-      - APIKeyHeader: []
-      parameters:
-      - name: location_id
-        in: path
-        required: true
-        schema:
-          type: integer
-          description: The ID of the location
-          title: Location Id
-        description: The ID of the location
-      - name: limit
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
-          examples:
-          - '1000'
-          default: 100
-          title: Limit
-        description: Change the number of results returned. e.g. limit=1000 will return up to 1000 results
-      - name: page
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          description: Paginate through results. e.g. page=1 will return first page of results
-          examples:
-          - '1'
-          default: 1
-          title: Page
-        description: Paginate through results. e.g. page=1 will return first page of results
-      - name: offset
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          default: 0
-          title: Offset
-      - name: sort
-        in: query
-        required: false
-        schema:
-          anyOf:
-          - $ref: '#/components/schemas/Sort'
-          - type: 'null'
-          description: Define sort order. e.g. ?sort=asc
-          default: asc
-          title: Sort
-        description: Define sort order. e.g. ?sort=asc
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LatestResponseV1'
-        '422':
-          description: Validation Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
   /v1/locations/{location_id}:
     get:
       tags:
@@ -1362,32 +1051,46 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    LatestResponseV1:
+    ParameterBase:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LatestRowV1'
-          type: array
-          title: Results
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
       type: object
       required:
-      - results
-      title: LatestResponseV1
+      - id
+      - name
+      - units
+      title: ParameterBase
+    CountryBase:
+      properties:
+        id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Id
+        code:
+          type: string
+          title: Code
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - code
+      - name
+      title: CountryBase
     EntityTypes:
       type: string
       enum:
@@ -1395,100 +1098,7 @@ components:
       - community
       - research
       title: EntityTypes
-    openaq_api__models__responses__Manufacturer:
-      properties:
-        modelName:
-          type: string
-          title: Modelname
-        manufacturerName:
-          type: string
-          title: Manufacturername
-      type: object
-      required:
-      - modelName
-      - manufacturerName
-      title: Manufacturer
-    LatestRowV1:
-      properties:
-        location:
-          type: string
-          title: Location
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        country:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        measurements:
-          items:
-            $ref: '#/components/schemas/LatestMeasurementRow'
-          type: array
-          title: Measurements
-      type: object
-      required:
-      - location
-      - coordinates
-      - measurements
-      title: LatestRowV1
-    Latest:
-      properties:
-        datetime:
-          $ref: '#/components/schemas/DatetimeObject'
-        value:
-          type: number
-          title: Value
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        sensorsId:
-          type: integer
-          title: Sensorsid
-        locationsId:
-          type: integer
-          title: Locationsid
-      type: object
-      required:
-      - datetime
-      - value
-      - coordinates
-      - sensorsId
-      - locationsId
-      title: Latest
-    LocationFlag:
-      properties:
-        locationId:
-          type: integer
-          title: Locationid
-        flagType:
-          $ref: '#/components/schemas/FlagType'
-        datetimeFrom:
-          $ref: '#/components/schemas/DatetimeObject'
-        datetimeTo:
-          $ref: '#/components/schemas/DatetimeObject'
-        sensorIds:
-          items:
-            type: integer
-          type: array
-          title: Sensorids
-          default: []
-        note:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Note
-      type: object
-      required:
-      - locationId
-      - flagType
-      - datetimeFrom
-      - datetimeTo
-      title: LocationFlag
-    LocationLicense:
+    SensorBase:
       properties:
         id:
           type: integer
@@ -1496,39 +1106,14 @@ components:
         name:
           type: string
           title: Name
-        attribution:
-          $ref: '#/components/schemas/AttributionEntity'
-        dateFrom:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Datefrom
-        dateTo:
-          anyOf:
-          - type: string
-            format: date
-          - type: 'null'
-          title: Dateto
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
       type: object
       required:
       - id
       - name
-      - attribution
-      title: LocationLicense
-    ProviderBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: ProviderBase
+      - parameter
+      title: SensorBase
     Source:
       properties:
         url:
@@ -1563,74 +1148,328 @@ components:
       required:
       - name
       title: Source
-    openaq_api__models__responses__Parameter:
+    Coverage:
+      properties:
+        expectedCount:
+          type: integer
+          title: Expectedcount
+        expectedInterval:
+          type: string
+          title: Expectedinterval
+        observedCount:
+          type: integer
+          title: Observedcount
+        observedInterval:
+          type: string
+          title: Observedinterval
+        percentComplete:
+          type: number
+          title: Percentcomplete
+        percentCoverage:
+          type: number
+          title: Percentcoverage
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - expectedCount
+      - expectedInterval
+      - observedCount
+      - observedInterval
+      - percentComplete
+      - percentCoverage
+      title: Coverage
+    openaq_api__v3__models__responses__LocationsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Location'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationsResponse
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    LocationsResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationsRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationsResponseV1
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    LocationLicense:
       properties:
         id:
           type: integer
           title: Id
-        unit:
-          type: string
-          title: Unit
-        count:
-          type: integer
-          title: Count
-        average:
-          type: number
-          title: Average
-        parameter:
-          type: string
-          title: Parameter
-        lastValue:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Lastvalue
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        parameterId:
-          type: integer
-          title: Parameterid
-        firstUpdated:
-          type: string
-          title: Firstupdated
-        manufacturers:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
-            type: array
-          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
-          title: Manufacturers
-      type: object
-      required:
-      - id
-      - unit
-      - count
-      - average
-      - parameter
-      - lastUpdated
-      - parameterId
-      - firstUpdated
-      title: Parameter
-    AttributionEntity:
-      properties:
         name:
           type: string
           title: Name
-        url:
+        attribution:
+          $ref: '#/components/schemas/AttributionEntity'
+        dateFrom:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Datefrom
+        dateTo:
+          anyOf:
+          - type: string
+            format: date
+          - type: 'null'
+          title: Dateto
+      type: object
+      required:
+      - id
+      - name
+      - attribution
+      title: LocationLicense
+    openaq_api__models__responses__Manufacturer:
+      properties:
+        modelName:
+          type: string
+          title: Modelname
+        manufacturerName:
+          type: string
+          title: Manufacturername
+      type: object
+      required:
+      - modelName
+      - manufacturerName
+      title: Manufacturer
+    InstrumentBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: InstrumentBase
+    LatestBase:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      title: LatestBase
+    Summary:
+      properties:
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        q02:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q02
+        q25:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q25
+        median:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Median
+        q75:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q75
+        q98:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q98
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        avg:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg
+        sd:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sd
+      type: object
+      title: Summary
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LocationsRowV1:
+      properties:
+        id:
+          type: integer
+          title: Id
+        country:
+          type: string
+          title: Country
+        city:
           anyOf:
           - type: string
           - type: 'null'
-          title: Url
+          title: City
+        cities:
+          anyOf:
+          - items:
+              anyOf:
+              - type: string
+              - type: 'null'
+            type: array
+          - type: 'null'
+          title: Cities
+        location:
+          type: string
+          title: Location
+        locations:
+          items:
+            type: string
+          type: array
+          title: Locations
+        sourceName:
+          type: string
+          title: Sourcename
+        sourceNames:
+          items:
+            type: string
+          type: array
+          title: Sourcenames
+        sourceType:
+          type: string
+          title: Sourcetype
+        sourceTypes:
+          items:
+            type: string
+          type: array
+          title: Sourcetypes
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameters:
+          items:
+            type: string
+          type: array
+          title: Parameters
+        countsByMeasurement:
+          items:
+            $ref: '#/components/schemas/CountsByMeasurementItem'
+          type: array
+          title: Countsbymeasurement
+        count:
+          type: integer
+          title: Count
       type: object
       required:
-      - name
-      title: AttributionEntity
+      - id
+      - country
+      - location
+      - locations
+      - sourceName
+      - sourceNames
+      - sourceType
+      - sourceTypes
+      - coordinates
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      - countsByMeasurement
+      - count
+      title: LocationsRowV1
+    SensorTypes:
+      type: string
+      enum:
+      - reference grade
+      - low-cost sensor
+      title: SensorTypes
     Location:
       properties:
         id:
@@ -1714,24 +1553,37 @@ components:
       - coordinates
       - bounds
       title: Location
-    FlagType:
+    openaq_api__models__responses__Meta:
       properties:
-        id:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
           type: integer
-          title: Id
-        label:
-          type: string
-          title: Label
-        level:
-          type: string
-          title: Level
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
       type: object
-      required:
-      - id
-      - label
-      - level
-      title: FlagType
-    EntityBase:
+      title: Meta
+    ProviderBase:
       properties:
         id:
           type: integer
@@ -1743,7 +1595,47 @@ components:
       required:
       - id
       - name
-      title: EntityBase
+      title: ProviderBase
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    LocationsOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - location
+      - sourceName
+      - firstUpdated
+      - lastUpdated
+      - count
+      - random
+      - distance
+      title: LocationsOrder
     CountsByMeasurementItem:
       properties:
         parameter:
@@ -1757,84 +1649,6 @@ components:
       - parameter
       - count
       title: CountsByMeasurementItem
-    LatestMeasurementRow:
-      properties:
-        parameter:
-          type: string
-          title: Parameter
-        value:
-          type: number
-          title: Value
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        unit:
-          type: string
-          title: Unit
-        sourceName:
-          type: string
-          title: Sourcename
-        averagingPeriod:
-          $ref: '#/components/schemas/AveragingPeriodV1'
-      type: object
-      required:
-      - parameter
-      - value
-      - lastUpdated
-      - unit
-      - sourceName
-      - averagingPeriod
-      title: LatestMeasurementRow
-    Sensor:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        parameter:
-          $ref: '#/components/schemas/ParameterBase'
-        datetimeFirst:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-        datetimeLast:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-        coverage:
-          anyOf:
-          - $ref: '#/components/schemas/Coverage'
-          - type: 'null'
-        latest:
-          anyOf:
-          - $ref: '#/components/schemas/LatestBase'
-          - type: 'null'
-        summary:
-          anyOf:
-          - $ref: '#/components/schemas/Summary'
-          - type: 'null'
-      type: object
-      required:
-      - id
-      - name
-      - parameter
-      title: Sensor
-    Coordinates:
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
     LocationsRow:
       properties:
         id:
@@ -1924,120 +1738,6 @@ components:
       - isMobile
       - measurements
       title: LocationsRow
-    Summary:
-      properties:
-        min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min
-        q02:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q02
-        q25:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q25
-        median:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Median
-        q75:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q75
-        q98:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q98
-        max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max
-        avg:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Avg
-        sd:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sd
-      type: object
-      title: Summary
-    ParameterBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-      type: object
-      required:
-      - id
-      - name
-      - units
-      title: ParameterBase
-    InstrumentBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: InstrumentBase
-    LatestRow:
-      properties:
-        location:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Location
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        country:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country
-        coordinates:
-          anyOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - type: 'null'
-        measurements:
-          items:
-            $ref: '#/components/schemas/LatestMeasurement'
-          type: array
-          title: Measurements
-      type: object
-      required:
-      - measurements
-      title: LatestRow
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -2064,32 +1764,13 @@ components:
           title: Found
       type: object
       title: Meta
-    LatestMeasurement:
-      properties:
-        parameter:
-          type: string
-          title: Parameter
-        value:
-          type: number
-          title: Value
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        unit:
-          type: string
-          title: Unit
-      type: object
-      required:
-      - parameter
-      - value
-      - lastUpdated
-      - unit
-      title: LatestMeasurement
-    LocationsSortFields:
+    Sort:
       type: string
-      const: id
-      title: LocationsSortFields
-    SensorBase:
+      enum:
+      - asc
+      - desc
+      title: Sort
+    Sensor:
       properties:
         id:
           type: integer
@@ -2099,28 +1780,87 @@ components:
           title: Name
         parameter:
           $ref: '#/components/schemas/ParameterBase'
+        datetimeFirst:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeLast:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
+        latest:
+          anyOf:
+          - $ref: '#/components/schemas/LatestBase'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
       type: object
       required:
       - id
       - name
       - parameter
-      title: SensorBase
-    DatetimeObject:
+      title: Sensor
+    openaq_api__models__responses__Parameter:
       properties:
-        utc:
+        id:
+          type: integer
+          title: Id
+        unit:
           type: string
-          format: date-time
-          title: Utc
-        local:
+          title: Unit
+        count:
+          type: integer
+          title: Count
+        average:
+          type: number
+          title: Average
+        parameter:
           type: string
-          format: date-time
-          title: Local
+          title: Parameter
+        lastValue:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Lastvalue
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameterId:
+          type: integer
+          title: Parameterid
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        manufacturers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+            type: array
+          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+          title: Manufacturers
       type: object
       required:
-      - utc
-      - local
-      title: DatetimeObject
-    LocationFlagsResponse:
+      - id
+      - unit
+      - count
+      - average
+      - parameter
+      - lastUpdated
+      - parameterId
+      - firstUpdated
+      title: Parameter
+    SensorsResponse:
       properties:
         meta:
           allOf:
@@ -2132,32 +1872,27 @@ components:
             website: /
         results:
           items:
-            $ref: '#/components/schemas/LocationFlag'
+            $ref: '#/components/schemas/Sensor'
           type: array
           title: Results
       type: object
       required:
       - results
-      title: LocationFlagsResponse
-    openaq_api__v3__models__responses__LatestResponse:
+      title: SensorsResponse
+    AttributionEntity:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Latest'
-          type: array
-          title: Results
+        name:
+          type: string
+          title: Name
+        url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Url
       type: object
       required:
-      - results
-      title: LatestResponse
+      - name
+      title: AttributionEntity
     openaq_api__models__responses__LocationsResponse:
       properties:
         meta:
@@ -2178,337 +1913,23 @@ components:
       required:
       - results
       title: LocationsResponse
-    LocationsRowV1:
+    LocationsSortFields:
+      type: string
+      const: id
+      title: LocationsSortFields
+    EntityBase:
       properties:
         id:
           type: integer
           title: Id
-        country:
+        name:
           type: string
-          title: Country
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        cities:
-          anyOf:
-          - items:
-              anyOf:
-              - type: string
-              - type: 'null'
-            type: array
-          - type: 'null'
-          title: Cities
-        location:
-          type: string
-          title: Location
-        locations:
-          items:
-            type: string
-          type: array
-          title: Locations
-        sourceName:
-          type: string
-          title: Sourcename
-        sourceNames:
-          items:
-            type: string
-          type: array
-          title: Sourcenames
-        sourceType:
-          type: string
-          title: Sourcetype
-        sourceTypes:
-          items:
-            type: string
-          type: array
-          title: Sourcetypes
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        firstUpdated:
-          type: string
-          title: Firstupdated
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        parameters:
-          items:
-            type: string
-          type: array
-          title: Parameters
-        countsByMeasurement:
-          items:
-            $ref: '#/components/schemas/CountsByMeasurementItem'
-          type: array
-          title: Countsbymeasurement
-        count:
-          type: integer
-          title: Count
+          title: Name
       type: object
       required:
       - id
-      - country
-      - location
-      - locations
-      - sourceName
-      - sourceNames
-      - sourceType
-      - sourceTypes
-      - coordinates
-      - firstUpdated
-      - lastUpdated
-      - parameters
-      - countsByMeasurement
-      - count
-      title: LocationsRowV1
-    openaq_api__models__responses__LatestResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LatestRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LatestResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SensorsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Sensor'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: SensorsResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    AveragingPeriodV1:
-      properties:
-        value:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Value
-        unit:
-          type: string
-          title: Unit
-      type: object
-      required:
-      - unit
-      title: AveragingPeriodV1
-    Coverage:
-      properties:
-        expectedCount:
-          type: integer
-          title: Expectedcount
-        expectedInterval:
-          type: string
-          title: Expectedinterval
-        observedCount:
-          type: integer
-          title: Observedcount
-        observedInterval:
-          type: string
-          title: Observedinterval
-        percentComplete:
-          type: number
-          title: Percentcomplete
-        percentCoverage:
-          type: number
-          title: Percentcoverage
-        datetimeFrom:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-        datetimeTo:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-      type: object
-      required:
-      - expectedCount
-      - expectedInterval
-      - observedCount
-      - observedInterval
-      - percentComplete
-      - percentCoverage
-      title: Coverage
-    CountryBase:
-      properties:
-        id:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Id
-        code:
-          type: string
-          title: Code
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - code
       - name
-      title: CountryBase
-    SensorTypes:
-      type: string
-      enum:
-      - reference grade
-      - low-cost sensor
-      title: SensorTypes
-    openaq_api__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    LocationsResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LocationsRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LocationsResponseV1
-    LatestBase:
-      properties:
-        datetime:
-          $ref: '#/components/schemas/DatetimeObject'
-        value:
-          type: number
-          title: Value
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-      type: object
-      required:
-      - datetime
-      - value
-      - coordinates
-      title: LatestBase
-    openaq_api__v3__models__responses__LocationsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Location'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LocationsResponse
-    LocationsOrder:
-      type: string
-      enum:
-      - city
-      - country
-      - location
-      - sourceName
-      - firstUpdated
-      - lastUpdated
-      - count
-      - random
-      - distance
-      title: LocationsOrder
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
+      title: EntityBase
   securitySchemes:
     APIKeyHeader:
       type: apiKey

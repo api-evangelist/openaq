@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenAQ Averages Providers API
-  description: '
-
-    OpenAQ is a nonprofit organization providing universal access to air
+  title: OpenAQ Providers API
+  description: 'OpenAQ is a nonprofit organization providing universal access to air
 
     quality data to empower a global community of changemakers to solve air
 
@@ -201,20 +199,57 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    GeoJSON:
+    ParameterBase:
       properties:
-        type:
+        id:
+          type: integer
+          title: Id
+        name:
           type: string
-          title: Type
-        coordinates:
-          items: {}
-          type: array
-          title: Coordinates
-          default: []
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
       type: object
       required:
-      - type
-      title: GeoJSON
+      - id
+      - name
+      - units
+      title: ParameterBase
+    ProvidersResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Provider'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ProvidersResponse
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    ProvidersSortFields:
+      type: string
+      const: id
+      title: ProvidersSortFields
     ValidationError:
       properties:
         loc:
@@ -286,56 +321,6 @@ components:
       - entitiesId
       - parameters
       title: Provider
-    ParameterBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-      type: object
-      required:
-      - id
-      - name
-      - units
-      title: ParameterBase
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ProvidersResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Provider'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ProvidersResponse
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -362,16 +347,29 @@ components:
           title: Found
       type: object
       title: Meta
-    ProvidersSortFields:
-      type: string
-      const: id
-      title: ProvidersSortFields
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    GeoJSON:
+      properties:
+        type:
+          type: string
+          title: Type
+        coordinates:
+          items: {}
+          type: array
+          title: Coordinates
+          default: []
+      type: object
+      required:
+      - type
+      title: GeoJSON
   securitySchemes:
     APIKeyHeader:
       type: apiKey
