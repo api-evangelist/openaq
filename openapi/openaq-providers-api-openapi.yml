@@ -199,28 +199,32 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ParameterBase:
+    openaq_api__v3__models__responses__Meta:
       properties:
-        id:
-          type: integer
-          title: Id
         name:
           type: string
           title: Name
-        units:
+          default: openaq-api
+        website:
           type: string
-          title: Units
-        displayName:
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
           anyOf:
+          - type: integer
           - type: string
           - type: 'null'
-          title: Displayname
+          title: Found
       type: object
-      required:
-      - id
-      - name
-      - units
-      title: ParameterBase
+      title: Meta
     ProvidersResponse:
       properties:
         meta:
@@ -240,37 +244,6 @@ components:
       required:
       - results
       title: ProvidersResponse
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
-    ProvidersSortFields:
-      type: string
-      const: id
-      title: ProvidersSortFields
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     Provider:
       properties:
         id:
@@ -321,41 +294,59 @@ components:
       - entitiesId
       - parameters
       title: Provider
-    openaq_api__v3__models__responses__Meta:
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    ValidationError:
       properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ParameterBase:
+      properties:
+        id:
+          type: integer
+          title: Id
         name:
           type: string
           title: Name
-          default: openaq-api
-        website:
+        units:
           type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
+          title: Units
+        displayName:
           anyOf:
-          - type: integer
           - type: string
           - type: 'null'
-          title: Found
+          title: Displayname
       type: object
-      title: Meta
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    ProvidersSortFields:
+      type: string
+      const: id
+      title: ProvidersSortFields
     GeoJSON:
       properties:
         type:
@@ -370,6 +361,15 @@ components:
       required:
       - type
       title: GeoJSON
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

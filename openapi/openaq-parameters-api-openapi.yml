@@ -354,12 +354,74 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
     ParameterType:
       type: string
       enum:
       - pollutant
       - meteorological
       title: ParameterType
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     SortOrder:
       type: string
       enum:
@@ -406,6 +468,37 @@ components:
       required:
       - results
       title: ParametersResponse
+    ParametersRowV1:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        preferredUnit:
+          type: string
+          title: Preferredunit
+      type: object
+      required:
+      - id
+      - name
+      - preferredUnit
+      title: ParametersRowV1
+    ParametersSortFields:
+      type: string
+      const: id
+      title: ParametersSortFields
     openaq_api__v3__models__responses__Parameter:
       properties:
         id:
@@ -453,6 +546,15 @@ components:
       required:
       - results
       title: ParametersResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ParametersResponseV1:
       properties:
         meta:
@@ -473,104 +575,6 @@ components:
       required:
       - results
       title: ParametersResponseV1
-    openaq_api__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    ParametersRowV1:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-        preferredUnit:
-          type: string
-          title: Preferredunit
-      type: object
-      required:
-      - id
-      - name
-      - preferredUnit
-      title: ParametersRowV1
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ParametersRow:
       properties:
         id:
@@ -597,10 +601,6 @@ components:
       - description
       - preferredUnit
       title: ParametersRow
-    ParametersSortFields:
-      type: string
-      const: id
-      title: ParametersSortFields
   securitySchemes:
     APIKeyHeader:
       type: apiKey

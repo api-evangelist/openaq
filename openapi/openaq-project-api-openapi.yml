@@ -42,60 +42,49 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    openaq_api__models__responses__Parameter:
+    openaq_api__models__responses__Meta:
       properties:
-        id:
-          type: integer
-          title: Id
-        unit:
+        name:
           type: string
-          title: Unit
-        count:
-          type: integer
-          title: Count
-        average:
-          type: number
-          title: Average
-        parameter:
+          title: Name
+          default: openaq-api
+        license:
           type: string
-          title: Parameter
-        lastValue:
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
           anyOf:
-          - type: number
-          - type: 'null'
-          title: Lastvalue
-        displayName:
-          anyOf:
+          - type: integer
           - type: string
           - type: 'null'
-          title: Displayname
-        lastUpdated:
+          title: Found
+      type: object
+      title: Meta
+    openaq_api__models__responses__Manufacturer:
+      properties:
+        modelName:
           type: string
-          title: Lastupdated
-        parameterId:
-          type: integer
-          title: Parameterid
-        firstUpdated:
+          title: Modelname
+        manufacturerName:
           type: string
-          title: Firstupdated
-        manufacturers:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
-            type: array
-          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
-          title: Manufacturers
+          title: Manufacturername
       type: object
       required:
-      - id
-      - unit
-      - count
-      - average
-      - parameter
-      - lastUpdated
-      - parameterId
-      - firstUpdated
-      title: Parameter
+      - modelName
+      - manufacturerName
+      title: Manufacturer
     ValidationError:
       properties:
         loc:
@@ -117,19 +106,6 @@ components:
       - msg
       - type
       title: ValidationError
-    openaq_api__models__responses__Manufacturer:
-      properties:
-        modelName:
-          type: string
-          title: Modelname
-        manufacturerName:
-          type: string
-          title: Manufacturername
-      type: object
-      required:
-      - modelName
-      - manufacturerName
-      title: Manufacturer
     ProjectsRow:
       properties:
         id:
@@ -213,26 +189,6 @@ components:
       - lastUpdated
       - sources
       title: ProjectsRow
-    ProjectsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/ProjectsRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ProjectsResponse
     ProjectsSource:
       properties:
         id:
@@ -275,36 +231,80 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    openaq_api__models__responses__Meta:
+    ProjectsResponse:
       properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ProjectsRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ProjectsResponse
+    openaq_api__models__responses__Parameter:
+      properties:
+        id:
           type: integer
-          title: Page
-          default: 1
-        limit:
+          title: Id
+        unit:
+          type: string
+          title: Unit
+        count:
           type: integer
-          title: Limit
-          default: 100
-        found:
+          title: Count
+        average:
+          type: number
+          title: Average
+        parameter:
+          type: string
+          title: Parameter
+        lastValue:
           anyOf:
-          - type: integer
+          - type: number
+          - type: 'null'
+          title: Lastvalue
+        displayName:
+          anyOf:
           - type: string
           - type: 'null'
-          title: Found
+          title: Displayname
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameterId:
+          type: integer
+          title: Parameterid
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        manufacturers:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+            type: array
+          - $ref: '#/components/schemas/openaq_api__models__responses__Manufacturer'
+          title: Manufacturers
       type: object
-      title: Meta
+      required:
+      - id
+      - unit
+      - count
+      - average
+      - parameter
+      - lastUpdated
+      - parameterId
+      - firstUpdated
+      title: Parameter
   securitySchemes:
     APIKeyHeader:
       type: apiKey

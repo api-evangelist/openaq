@@ -130,27 +130,36 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    openaq_api__models__responses__Meta:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        name:
           type: string
-          title: Message
-        type:
+          title: Name
+          default: openaq-api
+        license:
           type: string
-          title: Error Type
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
       type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      title: Meta
     AveragesRow:
       properties:
         id:
@@ -253,64 +262,6 @@ components:
           title: Last Datetime
       type: object
       title: AveragesRow
-    SpatialTypes:
-      type: string
-      enum:
-      - country
-      - location
-      - total
-      title: SpatialTypes
-    PeriodNames:
-      type: string
-      enum:
-      - hour
-      - day
-      - month
-      - year
-      - hod
-      - dow
-      - moy
-      - raw
-      title: PeriodNames
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    openaq_api__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
     AveragesResponse:
       properties:
         meta:
@@ -331,6 +282,55 @@ components:
       required:
       - results
       title: AveragesResponse
+    PeriodNames:
+      type: string
+      enum:
+      - hour
+      - day
+      - month
+      - year
+      - hod
+      - dow
+      - moy
+      - raw
+      title: PeriodNames
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SpatialTypes:
+      type: string
+      enum:
+      - country
+      - location
+      - total
+      title: SpatialTypes
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey
