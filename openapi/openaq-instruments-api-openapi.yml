@@ -145,6 +145,27 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     Instrument:
       properties:
         id:
@@ -165,6 +186,12 @@ components:
       - isMonitor
       - manufacturer
       title: Instrument
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -191,6 +218,15 @@ components:
           title: Found
       type: object
       title: Meta
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ManufacturerBase:
       properties:
         id:
@@ -204,46 +240,6 @@ components:
       - id
       - name
       title: ManufacturerBase
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
-    InstrumentsSortFields:
-      type: string
-      const: id
-      title: InstrumentsSortFields
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     InstrumentsResponse:
       properties:
         meta:
@@ -263,6 +259,10 @@ components:
       required:
       - results
       title: InstrumentsResponse
+    InstrumentsSortFields:
+      type: string
+      const: id
+      title: InstrumentsSortFields
   securitySchemes:
     APIKeyHeader:
       type: apiKey

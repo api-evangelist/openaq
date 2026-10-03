@@ -759,6 +759,35 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -822,7 +851,7 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
-    MeasurementsResponseV1:
+    openaq_api__models__responses__MeasurementsResponse:
       properties:
         meta:
           allOf:
@@ -835,21 +864,43 @@ components:
             website: /
         results:
           items:
-            $ref: '#/components/schemas/MeasurementsRowV1'
+            $ref: '#/components/schemas/MeasurementsRow'
           type: array
           title: Results
       type: object
       required:
       - results
-      title: MeasurementsResponseV1
-    MeasOrder:
-      type: string
-      enum:
-      - city
-      - country
-      - location
-      - datetime
-      title: MeasOrder
+      title: MeasurementsResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
     MeasurementsRowV1:
       properties:
         location:
@@ -887,40 +938,44 @@ components:
       - unit
       - coordinates
       title: MeasurementsRowV1
-    ValidationError:
+    SensorTypes:
+      type: string
+      enum:
+      - reference grade
+      - low-cost sensor
+      title: SensorTypes
+    openaq_api__v3__models__responses__MeasurementsResponse:
       properties:
-        loc:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/Measurement'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Results
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Date:
-      properties:
-        utc:
-          type: string
-          title: Utc
-        local:
-          type: string
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: Date
+      - results
+      title: MeasurementsResponse
+    EntityTypes:
+      type: string
+      enum:
+      - government
+      - community
+      - research
+      title: EntityTypes
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     Period:
       properties:
         label:
@@ -942,26 +997,37 @@ components:
       - label
       - interval
       title: Period
-    openaq_api__models__responses__MeasurementsResponse:
+    Measurement:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/MeasurementsRow'
-          type: array
-          title: Results
+        value:
+          type: number
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
       type: object
       required:
-      - results
-      title: MeasurementsResponse
+      - value
+      - flagInfo
+      - parameter
+      title: Measurement
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -992,34 +1058,88 @@ components:
           title: Found
       type: object
       title: Meta
-    SensorTypes:
-      type: string
-      enum:
-      - reference grade
-      - low-cost sensor
-      title: SensorTypes
-    ParameterBase:
+    MeasurementsResponseV1:
       properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/MeasurementsRowV1'
+          type: array
+          title: Results
       type: object
       required:
-      - id
-      - name
-      - units
-      title: ParameterBase
+      - results
+      title: MeasurementsResponseV1
+    Summary:
+      properties:
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        q02:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q02
+        q25:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q25
+        median:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Median
+        q75:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q75
+        q98:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q98
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        avg:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg
+        sd:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sd
+      type: object
+      title: Summary
+    Date:
+      properties:
+        utc:
+          type: string
+          title: Utc
+        local:
+          type: string
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: Date
     MeasurementsRow:
       properties:
         locationId:
@@ -1080,20 +1200,6 @@ components:
       - isMobile
       - sensorType
       title: MeasurementsRow
-    Coordinates:
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
     HTTPValidationError:
       properties:
         detail:
@@ -1103,142 +1209,36 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
-    Sort:
+    MeasOrder:
       type: string
       enum:
-      - asc
-      - desc
-      title: Sort
-    Summary:
+      - city
+      - country
+      - location
+      - datetime
+      title: MeasOrder
+    ParameterBase:
       properties:
-        min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min
-        q02:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q02
-        q25:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q25
-        median:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Median
-        q75:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q75
-        q98:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q98
-        max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max
-        avg:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Avg
-        sd:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sd
-      type: object
-      title: Summary
-    Measurement:
-      properties:
-        value:
-          type: number
-          title: Value
-        flagInfo:
-          $ref: '#/components/schemas/FlagInfo'
-        parameter:
-          $ref: '#/components/schemas/ParameterBase'
-        period:
-          anyOf:
-          - $ref: '#/components/schemas/Period'
-          - type: 'null'
-        coordinates:
-          anyOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - type: 'null'
-        summary:
-          anyOf:
-          - $ref: '#/components/schemas/Summary'
-          - type: 'null'
-        coverage:
-          anyOf:
-          - $ref: '#/components/schemas/Coverage'
-          - type: 'null'
-      type: object
-      required:
-      - value
-      - flagInfo
-      - parameter
-      title: Measurement
-    DatetimeObject:
-      properties:
-        utc:
+        id:
+          type: integer
+          title: Id
+        name:
           type: string
-          format: date-time
-          title: Utc
-        local:
+          title: Name
+        units:
           type: string
-          format: date-time
-          title: Local
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
       type: object
       required:
-      - utc
-      - local
-      title: DatetimeObject
-    openaq_api__v3__models__responses__MeasurementsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Measurement'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: MeasurementsResponse
-    EntityTypes:
-      type: string
-      enum:
-      - government
-      - community
-      - research
-      title: EntityTypes
+      - id
+      - name
+      - units
+      title: ParameterBase
   securitySchemes:
     APIKeyHeader:
       type: apiKey

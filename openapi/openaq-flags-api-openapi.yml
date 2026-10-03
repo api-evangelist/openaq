@@ -182,78 +182,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    FlagType:
-      properties:
-        id:
-          type: integer
-          title: Id
-        label:
-          type: string
-          title: Label
-        level:
-          type: string
-          title: Level
-      type: object
-      required:
-      - id
-      - label
-      - level
-      title: FlagType
-    LocationFlag:
-      properties:
-        locationId:
-          type: integer
-          title: Locationid
-        flagType:
-          $ref: '#/components/schemas/FlagType'
-        datetimeFrom:
-          $ref: '#/components/schemas/DatetimeObject'
-        datetimeTo:
-          $ref: '#/components/schemas/DatetimeObject'
-        sensorIds:
-          items:
-            type: integer
-          type: array
-          title: Sensorids
-          default: []
-        note:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Note
-      type: object
-      required:
-      - locationId
-      - flagType
-      - datetimeFrom
-      - datetimeTo
-      title: LocationFlag
     ValidationError:
       properties:
         loc:
@@ -290,15 +218,6 @@ components:
       - utc
       - local
       title: DatetimeObject
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     LocationFlagsResponse:
       properties:
         meta:
@@ -318,6 +237,87 @@ components:
       required:
       - results
       title: LocationFlagsResponse
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    LocationFlag:
+      properties:
+        locationId:
+          type: integer
+          title: Locationid
+        flagType:
+          $ref: '#/components/schemas/FlagType'
+        datetimeFrom:
+          $ref: '#/components/schemas/DatetimeObject'
+        datetimeTo:
+          $ref: '#/components/schemas/DatetimeObject'
+        sensorIds:
+          items:
+            type: integer
+          type: array
+          title: Sensorids
+          default: []
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+      type: object
+      required:
+      - locationId
+      - flagType
+      - datetimeFrom
+      - datetimeTo
+      title: LocationFlag
+    FlagType:
+      properties:
+        id:
+          type: integer
+          title: Id
+        label:
+          type: string
+          title: Label
+        level:
+          type: string
+          title: Level
+      type: object
+      required:
+      - id
+      - label
+      - level
+      title: FlagType
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey

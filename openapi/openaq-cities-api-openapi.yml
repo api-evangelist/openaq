@@ -238,113 +238,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    openaq_api__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    CitiesOrderV1:
-      type: string
-      enum:
-      - city
-      - country
-      - locations
-      - count
-      title: CitiesOrderV1
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    CitiesOrder:
-      type: string
-      enum:
-      - city
-      - country
-      - firstUpdated
-      - lastUpdated
-      title: CitiesOrder
-    CitiesResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CityRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CitiesResponse
-    CityRow:
-      properties:
-        country:
-          type: string
-          title: Country
-        city:
-          type: string
-          title: City
-        count:
-          type: integer
-          title: Count
-        locations:
-          type: integer
-          title: Locations
-        firstUpdated:
-          type: string
-          title: Firstupdated
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        parameters:
-          items:
-            type: string
-          type: array
-          title: Parameters
-      type: object
-      required:
-      - country
-      - city
-      - count
-      - locations
-      - firstUpdated
-      - lastUpdated
-      - parameters
-      title: CityRow
     ValidationError:
       properties:
         loc:
@@ -387,6 +280,83 @@ components:
       - count
       - locations
       title: CityRowV1
+    CitiesResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/CityRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: CitiesResponse
+    CitiesOrderV1:
+      type: string
+      enum:
+      - city
+      - country
+      - locations
+      - count
+      title: CitiesOrderV1
+    CityRow:
+      properties:
+        country:
+          type: string
+          title: Country
+        city:
+          type: string
+          title: City
+        count:
+          type: integer
+          title: Count
+        locations:
+          type: integer
+          title: Locations
+        firstUpdated:
+          type: string
+          title: Firstupdated
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        parameters:
+          items:
+            type: string
+          type: array
+          title: Parameters
+      type: object
+      required:
+      - country
+      - city
+      - count
+      - locations
+      - firstUpdated
+      - lastUpdated
+      - parameters
+      title: CityRow
+    CitiesOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - firstUpdated
+      - lastUpdated
+      title: CitiesOrder
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     CitiesResponseV1:
       properties:
         meta:
@@ -416,6 +386,36 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
   securitySchemes:
     APIKeyHeader:
       type: apiKey

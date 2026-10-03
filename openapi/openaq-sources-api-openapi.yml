@@ -200,36 +200,121 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    openaq_api__models__responses__Meta:
+    ValidationError:
       properties:
-        name:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Name
-          default: openaq-api
-        license:
+          title: Message
+        type:
           type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SourcesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SourcesRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SourcesResponseV1
+    SourcesV1Order:
+      type: string
+      const: name
+      title: SourcesV1Order
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Datum:
+      properties:
+        url:
           anyOf:
-          - type: integer
           - type: string
           - type: 'null'
-          title: Found
+          title: Url
+        data_avg_dur:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Avg Dur
+        organization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Organization
+        lifecycle_stage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lifecycle Stage
       type: object
-      title: Meta
+      title: Datum
+    SourcesRow:
+      properties:
+        data:
+          anyOf:
+          - $ref: '#/components/schemas/Datum'
+          - type: 'null'
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        sourceId:
+          type: integer
+          title: Sourceid
+        locations:
+          type: integer
+          title: Locations
+        sourceName:
+          type: string
+          title: Sourcename
+        sourceSlug:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sourceslug
+      type: object
+      required:
+      - sourceId
+      - locations
+      - sourceName
+      title: SourcesRow
     SourcesRowV1:
       properties:
         url:
@@ -282,88 +367,6 @@ components:
       - contacts
       - active
       title: SourcesRowV1
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    Datum:
-      properties:
-        url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Url
-        data_avg_dur:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data Avg Dur
-        organization:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Organization
-        lifecycle_stage:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lifecycle Stage
-      type: object
-      title: Datum
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SourcesRow:
-      properties:
-        data:
-          anyOf:
-          - $ref: '#/components/schemas/Datum'
-          - type: 'null'
-        readme:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Readme
-        sourceId:
-          type: integer
-          title: Sourceid
-        locations:
-          type: integer
-          title: Locations
-        sourceName:
-          type: string
-          title: Sourcename
-        sourceSlug:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sourceslug
-      type: object
-      required:
-      - sourceId
-      - locations
-      - sourceName
-      title: SourcesRow
     SourcesOrder:
       type: string
       enum:
@@ -371,19 +374,6 @@ components:
       - firstUpdated
       - lastUpdated
       title: SourcesOrder
-    SourcesV1Order:
-      type: string
-      const: name
-      title: SourcesV1Order
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     SourcesResponse:
       properties:
         meta:
@@ -404,26 +394,36 @@ components:
       required:
       - results
       title: SourcesResponse
-    SourcesResponseV1:
+    openaq_api__models__responses__Meta:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/SourcesRowV1'
-          type: array
-          title: Results
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
       type: object
-      required:
-      - results
-      title: SourcesResponseV1
+      title: Meta
   securitySchemes:
     APIKeyHeader:
       type: apiKey

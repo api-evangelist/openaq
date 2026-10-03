@@ -354,6 +354,54 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    openaq_api__v3__models__responses__Parameter:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: Parameter
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -384,12 +432,56 @@ components:
           title: Found
       type: object
       title: Meta
-    ParameterType:
+    ParametersResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ParametersRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ParametersResponseV1
+    openaq_api__models__responses__ParametersResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/ParametersRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ParametersResponse
+    SortOrder:
       type: string
       enum:
-      - pollutant
-      - meteorological
-      title: ParameterType
+      - asc
+      - desc
+      title: SortOrder
+    ParametersSortFields:
+      type: string
+      const: id
+      title: ParametersSortFields
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -422,52 +514,47 @@ components:
       - asc
       - desc
       title: Sort
-    SortOrder:
+    ParametersRow:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+        description:
+          type: string
+          title: Description
+        preferredUnit:
+          type: string
+          title: Preferredunit
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - preferredUnit
+      title: ParametersRow
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ParameterType:
       type: string
       enum:
-      - asc
-      - desc
-      title: SortOrder
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    openaq_api__v3__models__responses__ParametersResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/openaq_api__v3__models__responses__Parameter'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ParametersResponse
+      - pollutant
+      - meteorological
+      title: ParameterType
     ParametersRowV1:
       properties:
         id:
@@ -495,112 +582,25 @@ components:
       - name
       - preferredUnit
       title: ParametersRowV1
-    ParametersSortFields:
-      type: string
-      const: id
-      title: ParametersSortFields
-    openaq_api__v3__models__responses__Parameter:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-        description:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Description
-      type: object
-      required:
-      - id
-      - name
-      - units
-      title: Parameter
-    openaq_api__models__responses__ParametersResponse:
+    openaq_api__v3__models__responses__ParametersResponse:
       properties:
         meta:
           allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
           default:
-            license: ''
             limit: 100
             name: openaq-api
             page: 1
             website: /
         results:
           items:
-            $ref: '#/components/schemas/ParametersRow'
+            $ref: '#/components/schemas/openaq_api__v3__models__responses__Parameter'
           type: array
           title: Results
       type: object
       required:
       - results
       title: ParametersResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ParametersResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/ParametersRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ParametersResponseV1
-    ParametersRow:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
-        description:
-          type: string
-          title: Description
-        preferredUnit:
-          type: string
-          title: Preferredunit
-      type: object
-      required:
-      - id
-      - name
-      - description
-      - preferredUnit
-      title: ParametersRow
   securitySchemes:
     APIKeyHeader:
       type: apiKey
