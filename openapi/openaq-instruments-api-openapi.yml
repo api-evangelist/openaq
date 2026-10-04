@@ -145,53 +145,25 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    InstrumentsResponse:
       properties:
-        loc:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/Instrument'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Results
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    Instrument:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        isMonitor:
-          type: boolean
-          title: Ismonitor
-        manufacturer:
-          $ref: '#/components/schemas/ManufacturerBase'
-      type: object
-      required:
-      - id
-      - name
-      - isMonitor
-      - manufacturer
-      title: Instrument
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
+      - results
+      title: InstrumentsResponse
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -218,15 +190,6 @@ components:
           title: Found
       type: object
       title: Meta
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ManufacturerBase:
       properties:
         id:
@@ -240,29 +203,66 @@ components:
       - id
       - name
       title: ManufacturerBase
-    InstrumentsResponse:
+    ValidationError:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
+        loc:
           items:
-            $ref: '#/components/schemas/Instrument'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Results
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - results
-      title: InstrumentsResponse
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     InstrumentsSortFields:
       type: string
       const: id
       title: InstrumentsSortFields
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    Instrument:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        isMonitor:
+          type: boolean
+          title: Ismonitor
+        manufacturer:
+          $ref: '#/components/schemas/ManufacturerBase'
+      type: object
+      required:
+      - id
+      - name
+      - isMonitor
+      - manufacturer
+      title: Instrument
   securitySchemes:
     APIKeyHeader:
       type: apiKey

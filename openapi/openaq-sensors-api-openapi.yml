@@ -128,6 +128,189 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
+    SensorsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Sensor'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SensorsResponse
+    Coverage:
+      properties:
+        expectedCount:
+          type: integer
+          title: Expectedcount
+        expectedInterval:
+          type: string
+          title: Expectedinterval
+        observedCount:
+          type: integer
+          title: Observedcount
+        observedInterval:
+          type: string
+          title: Observedinterval
+        percentComplete:
+          type: number
+          title: Percentcomplete
+        percentCoverage:
+          type: number
+          title: Percentcoverage
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+      type: object
+      required:
+      - expectedCount
+      - expectedInterval
+      - observedCount
+      - observedInterval
+      - percentComplete
+      - percentCoverage
+      title: Coverage
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    AnnualData:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
+          - type: 'null'
+      type: object
+      required:
+      - flagInfo
+      - parameter
+      title: AnnualData
+    LatestBase:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      title: LatestBase
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Sensor:
       properties:
         id:
@@ -164,42 +347,27 @@ components:
       - name
       - parameter
       title: Sensor
-    ValidationError:
+    Period:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        label:
           type: string
-          title: Message
-        type:
+          title: Label
+        interval:
           type: string
-          title: Error Type
+          title: Interval
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    DatetimeObject:
-      properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: DatetimeObject
+      - label
+      - interval
+      title: Period
     Summary:
       properties:
         min:
@@ -249,60 +417,6 @@ components:
           title: Sd
       type: object
       title: Summary
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
-    SensorsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Sensor'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: SensorsResponse
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
     Coordinates:
       properties:
         latitude:
@@ -317,139 +431,6 @@ components:
           title: Longitude
       type: object
       title: Coordinates
-    Coverage:
-      properties:
-        expectedCount:
-          type: integer
-          title: Expectedcount
-        expectedInterval:
-          type: string
-          title: Expectedinterval
-        observedCount:
-          type: integer
-          title: Observedcount
-        observedInterval:
-          type: string
-          title: Observedinterval
-        percentComplete:
-          type: number
-          title: Percentcomplete
-        percentCoverage:
-          type: number
-          title: Percentcoverage
-        datetimeFrom:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-        datetimeTo:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-      type: object
-      required:
-      - expectedCount
-      - expectedInterval
-      - observedCount
-      - observedInterval
-      - percentComplete
-      - percentCoverage
-      title: Coverage
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    AnnualDataResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/AnnualData'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: AnnualDataResponse
-    Period:
-      properties:
-        label:
-          type: string
-          title: Label
-        interval:
-          type: string
-          title: Interval
-        datetimeFrom:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-        datetimeTo:
-          anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
-          - type: 'null'
-      type: object
-      required:
-      - label
-      - interval
-      title: Period
-    AnnualData:
-      properties:
-        value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Value
-        flagInfo:
-          $ref: '#/components/schemas/FlagInfo'
-        parameter:
-          $ref: '#/components/schemas/ParameterBase'
-        period:
-          anyOf:
-          - $ref: '#/components/schemas/Period'
-          - type: 'null'
-        coordinates:
-          anyOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - type: 'null'
-        summary:
-          anyOf:
-          - $ref: '#/components/schemas/Summary'
-          - type: 'null'
-        coverage:
-          anyOf:
-          - $ref: '#/components/schemas/Coverage'
-          - type: 'null'
-      type: object
-      required:
-      - flagInfo
-      - parameter
-      title: AnnualData
-    LatestBase:
-      properties:
-        datetime:
-          $ref: '#/components/schemas/DatetimeObject'
-        value:
-          type: number
-          title: Value
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-      type: object
-      required:
-      - datetime
-      - value
-      - coordinates
-      title: LatestBase
     ParameterBase:
       properties:
         id:
@@ -472,6 +453,25 @@ components:
       - name
       - units
       title: ParameterBase
+    AnnualDataResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/AnnualData'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: AnnualDataResponse
   securitySchemes:
     APIKeyHeader:
       type: apiKey

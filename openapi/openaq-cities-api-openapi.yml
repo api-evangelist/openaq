@@ -238,27 +238,26 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
+    CitiesResponseV1:
       properties:
-        loc:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/CityRowV1'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Results
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - results
+      title: CitiesResponseV1
     CityRowV1:
       properties:
         country:
@@ -308,6 +307,27 @@ components:
       - locations
       - count
       title: CitiesOrderV1
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CityRow:
       properties:
         country:
@@ -343,40 +363,6 @@ components:
       - lastUpdated
       - parameters
       title: CityRow
-    CitiesOrder:
-      type: string
-      enum:
-      - city
-      - country
-      - firstUpdated
-      - lastUpdated
-      title: CitiesOrder
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    CitiesResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/CityRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: CitiesResponseV1
     HTTPValidationError:
       properties:
         detail:
@@ -386,6 +372,20 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    CitiesOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - firstUpdated
+      - lastUpdated
+      title: CitiesOrder
     openaq_api__models__responses__Meta:
       properties:
         name:

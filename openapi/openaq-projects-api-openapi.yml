@@ -213,6 +213,61 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ProjectsSource:
+      properties:
+        id:
+          type: string
+          title: Id
+        name:
+          type: string
+          title: Name
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        data_avg_dur:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Data Avg Dur
+        organization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Organization
+        lifecycle_stage:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lifecycle Stage
+      type: object
+      required:
+      - id
+      - name
+      title: ProjectsSource
+    ProjectsOrder:
+      type: string
+      enum:
+      - id
+      - name
+      - subtitle
+      - firstUpdated
+      - lastUpdated
+      title: ProjectsOrder
+    openaq_api__models__responses__Manufacturer:
+      properties:
+        modelName:
+          type: string
+          title: Modelname
+        manufacturerName:
+          type: string
+          title: Manufacturername
+      type: object
+      required:
+      - modelName
+      - manufacturerName
+      title: Manufacturer
     ProjectsRow:
       properties:
         id:
@@ -296,6 +351,12 @@ components:
       - lastUpdated
       - sources
       title: ProjectsRow
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     ValidationError:
       properties:
         loc:
@@ -317,6 +378,45 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    openaq_api__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        license:
+          type: string
+          title: License
+          default: ''
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
     ProjectsResponse:
       properties:
         meta:
@@ -337,54 +437,6 @@ components:
       required:
       - results
       title: ProjectsResponse
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ProjectsSource:
-      properties:
-        id:
-          type: string
-          title: Id
-        name:
-          type: string
-          title: Name
-        readme:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Readme
-        data_avg_dur:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Data Avg Dur
-        organization:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Organization
-        lifecycle_stage:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lifecycle Stage
-      type: object
-      required:
-      - id
-      - name
-      title: ProjectsSource
     openaq_api__models__responses__Parameter:
       properties:
         id:
@@ -439,58 +491,6 @@ components:
       - parameterId
       - firstUpdated
       title: Parameter
-    ProjectsOrder:
-      type: string
-      enum:
-      - id
-      - name
-      - subtitle
-      - firstUpdated
-      - lastUpdated
-      title: ProjectsOrder
-    openaq_api__models__responses__Manufacturer:
-      properties:
-        modelName:
-          type: string
-          title: Modelname
-        manufacturerName:
-          type: string
-          title: Manufacturername
-      type: object
-      required:
-      - modelName
-      - manufacturerName
-      title: Manufacturer
-    openaq_api__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        license:
-          type: string
-          title: License
-          default: ''
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
   securitySchemes:
     APIKeyHeader:
       type: apiKey

@@ -130,34 +130,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    SpatialTypes:
-      type: string
-      enum:
-      - country
-      - location
-      - total
-      title: SpatialTypes
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     AveragesResponse:
       properties:
         meta:
@@ -178,6 +150,18 @@ components:
       required:
       - results
       title: AveragesResponse
+    PeriodNames:
+      type: string
+      enum:
+      - hour
+      - day
+      - month
+      - year
+      - hod
+      - dow
+      - moy
+      - raw
+      title: PeriodNames
     AveragesRow:
       properties:
         id:
@@ -280,6 +264,27 @@ components:
           title: Last Datetime
       type: object
       title: AveragesRow
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -289,18 +294,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    PeriodNames:
-      type: string
-      enum:
-      - hour
-      - day
-      - month
-      - year
-      - hod
-      - dow
-      - moy
-      - raw
-      title: PeriodNames
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -331,6 +324,13 @@ components:
           title: Found
       type: object
       title: Meta
+    SpatialTypes:
+      type: string
+      enum:
+      - country
+      - location
+      - total
+      title: SpatialTypes
   securitySchemes:
     APIKeyHeader:
       type: apiKey

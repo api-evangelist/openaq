@@ -200,66 +200,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SourcesResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/SourcesRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: SourcesResponseV1
-    SourcesV1Order:
-      type: string
-      const: name
-      title: SourcesV1Order
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Datum:
       properties:
         url:
@@ -284,37 +224,57 @@ components:
           title: Lifecycle Stage
       type: object
       title: Datum
-    SourcesRow:
+    SourcesResponse:
       properties:
-        data:
-          anyOf:
-          - $ref: '#/components/schemas/Datum'
-          - type: 'null'
-        readme:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Readme
-        sourceId:
-          type: integer
-          title: Sourceid
-        locations:
-          type: integer
-          title: Locations
-        sourceName:
-          type: string
-          title: Sourcename
-        sourceSlug:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sourceslug
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SourcesRow'
+          type: array
+          title: Results
       type: object
       required:
-      - sourceId
-      - locations
+      - results
+      title: SourcesResponse
+    SourcesV1Order:
+      type: string
+      const: name
+      title: SourcesV1Order
+    SourcesResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/SourcesRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: SourcesResponseV1
+    SourcesOrder:
+      type: string
+      enum:
       - sourceName
-      title: SourcesRow
+      - firstUpdated
+      - lastUpdated
+      title: SourcesOrder
     SourcesRowV1:
       properties:
         url:
@@ -367,33 +327,73 @@ components:
       - contacts
       - active
       title: SourcesRowV1
-    SourcesOrder:
-      type: string
-      enum:
-      - sourceName
-      - firstUpdated
-      - lastUpdated
-      title: SourcesOrder
-    SourcesResponse:
+    ValidationError:
       properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
+        loc:
           items:
-            $ref: '#/components/schemas/SourcesRow'
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Results
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
       type: object
       required:
-      - results
-      title: SourcesResponse
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SourcesRow:
+      properties:
+        data:
+          anyOf:
+          - $ref: '#/components/schemas/Datum'
+          - type: 'null'
+        readme:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Readme
+        sourceId:
+          type: integer
+          title: Sourceid
+        locations:
+          type: integer
+          title: Locations
+        sourceName:
+          type: string
+          title: Sourcename
+        sourceSlug:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sourceslug
+      type: object
+      required:
+      - sourceId
+      - locations
+      - sourceName
+      title: SourcesRow
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
     openaq_api__models__responses__Meta:
       properties:
         name:

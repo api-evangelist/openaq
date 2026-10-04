@@ -199,105 +199,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ProvidersSortFields:
-      type: string
-      const: id
-      title: ProvidersSortFields
-    GeoJSON:
-      properties:
-        type:
-          type: string
-          title: Type
-        coordinates:
-          items: {}
-          type: array
-          title: Coordinates
-          default: []
-      type: object
-      required:
-      - type
-      title: GeoJSON
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
-    ProvidersResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Provider'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: ProvidersResponse
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     Provider:
       properties:
         id:
@@ -348,6 +249,105 @@ components:
       - entitiesId
       - parameters
       title: Provider
+    ProvidersSortFields:
+      type: string
+      const: id
+      title: ProvidersSortFields
+    GeoJSON:
+      properties:
+        type:
+          type: string
+          title: Type
+        coordinates:
+          items: {}
+          type: array
+          title: Coordinates
+          default: []
+      type: object
+      required:
+      - type
+      title: GeoJSON
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
+    ProvidersResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Provider'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: ProvidersResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ParameterBase:
       properties:
         id:

@@ -133,37 +133,10 @@ components:
       required:
       - results
       title: OwnersResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     OwnersSortFields:
       type: string
       const: id
       title: OwnersSortFields
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -190,6 +163,27 @@ components:
           title: Found
       type: object
       title: Meta
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -212,6 +206,12 @@ components:
       - id
       - name
       title: Owner
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
   securitySchemes:
     APIKeyHeader:
       type: apiKey
