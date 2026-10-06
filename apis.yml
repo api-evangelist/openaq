@@ -316,6 +316,8 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openaq.png
 common:
+  - url: https://openaq.medium.com/feed
+    type: BlogRSS
   - type: Website
     url: https://openaq.org/
   - type: AgenticAccess
@@ -336,7 +338,7 @@ common:
   - type: Integrations
     url: https://openaq.org/partners/
 created: '2024-11-11'
-modified: '2026-05-19'
+modified: '2026-10-06'
 description: >-
   OpenAQ is a non-profit organization that focuses on collecting and sharing air quality data from around the world. By
   providing access to this information through their open-source platform, OpenAQ aims to empower individuals,
