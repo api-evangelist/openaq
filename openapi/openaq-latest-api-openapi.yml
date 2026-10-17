@@ -750,99 +750,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    LatestMeasurementRow:
-      properties:
-        parameter:
-          type: string
-          title: Parameter
-        value:
-          type: number
-          title: Value
-        lastUpdated:
-          type: string
-          title: Lastupdated
-        unit:
-          type: string
-          title: Unit
-        sourceName:
-          type: string
-          title: Sourcename
-        averagingPeriod:
-          $ref: '#/components/schemas/AveragingPeriodV1'
-      type: object
-      required:
-      - parameter
-      - value
-      - lastUpdated
-      - unit
-      - sourceName
-      - averagingPeriod
-      title: LatestMeasurementRow
-    openaq_api__models__responses__LatestResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LatestRow'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LatestResponse
-    Latest:
-      properties:
-        datetime:
-          $ref: '#/components/schemas/DatetimeObject'
-        value:
-          type: number
-          title: Value
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        sensorsId:
-          type: integer
-          title: Sensorsid
-        locationsId:
-          type: integer
-          title: Locationsid
-      type: object
-      required:
-      - datetime
-      - value
-      - coordinates
-      - sensorsId
-      - locationsId
-      title: Latest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    LocationsOrder:
-      type: string
-      enum:
-      - city
-      - country
-      - location
-      - sourceName
-      - firstUpdated
-      - lastUpdated
-      - count
-      - random
-      - distance
-      title: LocationsOrder
     Body_latest_get_v2_latest_get:
       properties:
         parameter:
@@ -910,6 +817,120 @@ components:
           title: Manufacturer Name
       type: object
       title: Body_latest_get_v2_latest_get
+    Latest:
+      properties:
+        datetime:
+          $ref: '#/components/schemas/DatetimeObject'
+        value:
+          type: number
+          title: Value
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        sensorsId:
+          type: integer
+          title: Sensorsid
+        locationsId:
+          type: integer
+          title: Locationsid
+      type: object
+      required:
+      - datetime
+      - value
+      - coordinates
+      - sensorsId
+      - locationsId
+      title: Latest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LatestMeasurement:
+      properties:
+        parameter:
+          type: string
+          title: Parameter
+        value:
+          type: number
+          title: Value
+        lastUpdated:
+          type: string
+          title: Lastupdated
+        unit:
+          type: string
+          title: Unit
+      type: object
+      required:
+      - parameter
+      - value
+      - lastUpdated
+      - unit
+      title: LatestMeasurement
+    LatestRowV1:
+      properties:
+        location:
+          type: string
+          title: Location
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        measurements:
+          items:
+            $ref: '#/components/schemas/LatestMeasurementRow'
+          type: array
+          title: Measurements
+      type: object
+      required:
+      - location
+      - coordinates
+      - measurements
+      title: LatestRowV1
+    LocationsOrder:
+      type: string
+      enum:
+      - city
+      - country
+      - location
+      - sourceName
+      - firstUpdated
+      - lastUpdated
+      - count
+      - random
+      - distance
+      title: LocationsOrder
+    LatestResponseV1:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LatestRowV1'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponseV1
     openaq_api__models__responses__Meta:
       properties:
         name:
@@ -940,47 +961,6 @@ components:
           title: Found
       type: object
       title: Meta
-    EntityTypes:
-      type: string
-      enum:
-      - government
-      - community
-      - research
-      title: EntityTypes
-    LatestResponseV1:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
-          default:
-            license: ''
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LatestRowV1'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LatestResponseV1
-    AveragingPeriodV1:
-      properties:
-        value:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Value
-        unit:
-          type: string
-          title: Unit
-      type: object
-      required:
-      - unit
-      title: AveragingPeriodV1
     LatestRow:
       properties:
         location:
@@ -1011,33 +991,27 @@ components:
       required:
       - measurements
       title: LatestRow
-    SensorTypes:
-      type: string
-      enum:
-      - reference grade
-      - low-cost sensor
-      title: SensorTypes
-    LatestMeasurement:
+    ValidationError:
       properties:
-        parameter:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Parameter
-        value:
-          type: number
-          title: Value
-        lastUpdated:
+          title: Message
+        type:
           type: string
-          title: Lastupdated
-        unit:
-          type: string
-          title: Unit
+          title: Error Type
       type: object
       required:
-      - parameter
-      - value
-      - lastUpdated
-      - unit
-      title: LatestMeasurement
+      - loc
+      - msg
+      - type
+      title: ValidationError
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -1064,27 +1038,106 @@ components:
           title: Found
       type: object
       title: Meta
-    ValidationError:
+    Sort:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: Sort
+    SensorTypes:
+      type: string
+      enum:
+      - reference grade
+      - low-cost sensor
+      title: SensorTypes
+    LatestMeasurementRow:
       properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        parameter:
           type: string
-          title: Message
-        type:
+          title: Parameter
+        value:
+          type: number
+          title: Value
+        lastUpdated:
           type: string
-          title: Error Type
+          title: Lastupdated
+        unit:
+          type: string
+          title: Unit
+        sourceName:
+          type: string
+          title: Sourcename
+        averagingPeriod:
+          $ref: '#/components/schemas/AveragingPeriodV1'
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - parameter
+      - value
+      - lastUpdated
+      - unit
+      - sourceName
+      - averagingPeriod
+      title: LatestMeasurementRow
+    openaq_api__v3__models__responses__LatestResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/Latest'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponse
+    EntityTypes:
+      type: string
+      enum:
+      - government
+      - community
+      - research
+      title: EntityTypes
+    openaq_api__models__responses__LatestResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__models__responses__Meta'
+          default:
+            license: ''
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LatestRow'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LatestResponse
+    AveragingPeriodV1:
+      properties:
+        value:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Value
+        unit:
+          type: string
+          title: Unit
+      type: object
+      required:
+      - unit
+      title: AveragingPeriodV1
     Coordinates:
       properties:
         latitude:
@@ -1114,59 +1167,6 @@ components:
       - utc
       - local
       title: DatetimeObject
-    LatestRowV1:
-      properties:
-        location:
-          type: string
-          title: Location
-        city:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: City
-        country:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Country
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        measurements:
-          items:
-            $ref: '#/components/schemas/LatestMeasurementRow'
-          type: array
-          title: Measurements
-      type: object
-      required:
-      - location
-      - coordinates
-      - measurements
-      title: LatestRowV1
-    openaq_api__v3__models__responses__LatestResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/Latest'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LatestResponse
-    Sort:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: Sort
   securitySchemes:
     APIKeyHeader:
       type: apiKey

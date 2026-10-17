@@ -97,30 +97,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DatetimeObject:
-      properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: DatetimeObject
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
     Coverage:
       properties:
         expectedCount:
@@ -158,6 +134,98 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ParameterBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    Summary:
+      properties:
+        min:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Min
+        q02:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q02
+        q25:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q25
+        median:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Median
+        q75:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q75
+        q98:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Q98
+        max:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max
+        avg:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg
+        sd:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Sd
+      type: object
+      title: Summary
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -215,36 +283,6 @@ components:
       - flagInfo
       - parameter
       title: Measurement
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     openaq_api__v3__models__responses__MeasurementsResponse:
       properties:
         meta:
@@ -264,6 +302,20 @@ components:
       required:
       - results
       title: MeasurementsResponse
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
     Period:
       properties:
         label:
@@ -285,91 +337,39 @@ components:
       - label
       - interval
       title: Period
-    Summary:
+    HTTPValidationError:
       properties:
-        min:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Min
-        q02:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q02
-        q25:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q25
-        median:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Median
-        q75:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q75
-        q98:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Q98
-        max:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Max
-        avg:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Avg
-        sd:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Sd
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      title: Summary
-    Coordinates:
+      title: HTTPValidationError
+    FlagInfo:
       properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
-    ParameterBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
+        hasFlags:
+          type: boolean
+          title: Hasflags
       type: object
       required:
-      - id
-      - name
-      - units
-      title: ParameterBase
+      - hasFlags
+      title: FlagInfo
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
   securitySchemes:
     APIKeyHeader:
       type: apiKey

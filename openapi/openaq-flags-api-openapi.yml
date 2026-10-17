@@ -182,57 +182,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DatetimeObject:
-      properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: DatetimeObject
-    FlagType:
-      properties:
-        id:
-          type: integer
-          title: Id
-        label:
-          type: string
-          title: Label
-        level:
-          type: string
-          title: Level
-      type: object
-      required:
-      - id
-      - label
-      - level
-      title: FlagType
-    LocationFlagsResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/LocationFlag'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: LocationFlagsResponse
     LocationFlag:
       properties:
         locationId:
@@ -262,6 +211,46 @@ components:
       - datetimeFrom
       - datetimeTo
       title: LocationFlag
+    LocationFlagsResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/LocationFlag'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: LocationFlagsResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     openaq_api__v3__models__responses__Meta:
       properties:
         name:
@@ -288,27 +277,6 @@ components:
           title: Found
       type: object
       title: Meta
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -318,6 +286,38 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    FlagType:
+      properties:
+        id:
+          type: integer
+          title: Id
+        label:
+          type: string
+          title: Label
+        level:
+          type: string
+          title: Level
+      type: object
+      required:
+      - id
+      - label
+      - level
+      title: FlagType
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
   securitySchemes:
     APIKeyHeader:
       type: apiKey

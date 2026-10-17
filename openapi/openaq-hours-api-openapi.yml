@@ -456,30 +456,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DatetimeObject:
-      properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: DatetimeObject
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
     Coverage:
       properties:
         expectedCount:
@@ -517,32 +493,6 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
     ValidationError:
       properties:
         loc:
@@ -564,36 +514,60 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    ParameterBase:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Period:
-      properties:
-        label:
+        id:
+          type: integer
+          title: Id
+        name:
           type: string
-          title: Label
-        interval:
+          title: Name
+        units:
           type: string
-          title: Interval
-        datetimeFrom:
+          title: Units
+        displayName:
           anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
+          - type: string
           - type: 'null'
-        datetimeTo:
+          title: Displayname
+      type: object
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    HourlyData:
+      properties:
+        value:
           anyOf:
-          - $ref: '#/components/schemas/DatetimeObject'
+          - type: number
+          - type: 'null'
+          title: Value
+        flagInfo:
+          $ref: '#/components/schemas/FlagInfo'
+        parameter:
+          $ref: '#/components/schemas/ParameterBase'
+        period:
+          anyOf:
+          - $ref: '#/components/schemas/Period'
+          - type: 'null'
+        coordinates:
+          anyOf:
+          - $ref: '#/components/schemas/Coordinates'
+          - type: 'null'
+        summary:
+          anyOf:
+          - $ref: '#/components/schemas/Summary'
+          - type: 'null'
+        coverage:
+          anyOf:
+          - $ref: '#/components/schemas/Coverage'
           - type: 'null'
       type: object
       required:
-      - label
-      - interval
-      title: Period
+      - flagInfo
+      - parameter
+      title: HourlyData
     Summary:
       properties:
         min:
@@ -643,20 +617,6 @@ components:
           title: Sd
       type: object
       title: Summary
-    Coordinates:
-      properties:
-        latitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Latitude
-        longitude:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Longitude
-      type: object
-      title: Coordinates
     HourlyDataResponse:
       properties:
         meta:
@@ -676,60 +636,100 @@ components:
       required:
       - results
       title: HourlyDataResponse
-    HourlyData:
+    openaq_api__v3__models__responses__Meta:
       properties:
-        value:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Value
-        flagInfo:
-          $ref: '#/components/schemas/FlagInfo'
-        parameter:
-          $ref: '#/components/schemas/ParameterBase'
-        period:
-          anyOf:
-          - $ref: '#/components/schemas/Period'
-          - type: 'null'
-        coordinates:
-          anyOf:
-          - $ref: '#/components/schemas/Coordinates'
-          - type: 'null'
-        summary:
-          anyOf:
-          - $ref: '#/components/schemas/Summary'
-          - type: 'null'
-        coverage:
-          anyOf:
-          - $ref: '#/components/schemas/Coverage'
-          - type: 'null'
-      type: object
-      required:
-      - flagInfo
-      - parameter
-      title: HourlyData
-    ParameterBase:
-      properties:
-        id:
-          type: integer
-          title: Id
         name:
           type: string
           title: Name
-        units:
+          default: openaq-api
+        website:
           type: string
-          title: Units
-        displayName:
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
           anyOf:
+          - type: integer
           - type: string
           - type: 'null'
-          title: Displayname
+          title: Found
+      type: object
+      title: Meta
+    Coordinates:
+      properties:
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+      type: object
+      title: Coordinates
+    Period:
+      properties:
+        label:
+          type: string
+          title: Label
+        interval:
+          type: string
+          title: Interval
+        datetimeFrom:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
+        datetimeTo:
+          anyOf:
+          - $ref: '#/components/schemas/DatetimeObject'
+          - type: 'null'
       type: object
       required:
-      - id
-      - name
-      - units
-      title: ParameterBase
+      - label
+      - interval
+      title: Period
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
+      type: object
+      required:
+      - hasFlags
+      title: FlagInfo
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
   securitySchemes:
     APIKeyHeader:
       type: apiKey

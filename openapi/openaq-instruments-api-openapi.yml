@@ -145,6 +145,27 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     InstrumentsResponse:
       properties:
         meta:
@@ -190,40 +211,6 @@ components:
           title: Found
       type: object
       title: Meta
-    ManufacturerBase:
-      properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - id
-      - name
-      title: ManufacturerBase
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -233,16 +220,6 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    InstrumentsSortFields:
-      type: string
-      const: id
-      title: InstrumentsSortFields
-    SortOrder:
-      type: string
-      enum:
-      - asc
-      - desc
-      title: SortOrder
     Instrument:
       properties:
         id:
@@ -263,6 +240,29 @@ components:
       - isMonitor
       - manufacturer
       title: Instrument
+    ManufacturerBase:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - id
+      - name
+      title: ManufacturerBase
+    InstrumentsSortFields:
+      type: string
+      const: id
+      title: InstrumentsSortFields
+    SortOrder:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: SortOrder
   securitySchemes:
     APIKeyHeader:
       type: apiKey

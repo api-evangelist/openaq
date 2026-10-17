@@ -393,30 +393,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    DatetimeObject:
-      properties:
-        utc:
-          type: string
-          format: date-time
-          title: Utc
-        local:
-          type: string
-          format: date-time
-          title: Local
-      type: object
-      required:
-      - utc
-      - local
-      title: DatetimeObject
-    FlagInfo:
-      properties:
-        hasFlags:
-          type: boolean
-          title: Hasflags
-      type: object
-      required:
-      - hasFlags
-      title: FlagInfo
     Coverage:
       properties:
         expectedCount:
@@ -454,32 +430,6 @@ components:
       - percentComplete
       - percentCoverage
       title: Coverage
-    openaq_api__v3__models__responses__Meta:
-      properties:
-        name:
-          type: string
-          title: Name
-          default: openaq-api
-        website:
-          type: string
-          title: Website
-          default: /
-        page:
-          type: integer
-          title: Page
-          default: 1
-        limit:
-          type: integer
-          title: Limit
-          default: 100
-        found:
-          anyOf:
-          - type: integer
-          - type: string
-          - type: 'null'
-          title: Found
-      type: object
-      title: Meta
     ValidationError:
       properties:
         loc:
@@ -501,16 +451,29 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
+    ParameterBase:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        id:
+          type: integer
+          title: Id
+        name:
+          type: string
+          title: Name
+        units:
+          type: string
+          title: Units
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Displayname
       type: object
-      title: HTTPValidationError
-    DailyData:
+      required:
+      - id
+      - name
+      - units
+      title: ParameterBase
+    HourlyData:
       properties:
         value:
           anyOf:
@@ -541,26 +504,7 @@ components:
       required:
       - flagInfo
       - parameter
-      title: DailyData
-    DailyDataResponse:
-      properties:
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
-          default:
-            limit: 100
-            name: openaq-api
-            page: 1
-            website: /
-        results:
-          items:
-            $ref: '#/components/schemas/DailyData'
-          type: array
-          title: Results
-      type: object
-      required:
-      - results
-      title: DailyDataResponse
+      title: HourlyData
     Summary:
       properties:
         min:
@@ -610,6 +554,51 @@ components:
           title: Sd
       type: object
       title: Summary
+    HourlyDataResponse:
+      properties:
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/openaq_api__v3__models__responses__Meta'
+          default:
+            limit: 100
+            name: openaq-api
+            page: 1
+            website: /
+        results:
+          items:
+            $ref: '#/components/schemas/HourlyData'
+          type: array
+          title: Results
+      type: object
+      required:
+      - results
+      title: HourlyDataResponse
+    openaq_api__v3__models__responses__Meta:
+      properties:
+        name:
+          type: string
+          title: Name
+          default: openaq-api
+        website:
+          type: string
+          title: Website
+          default: /
+        page:
+          type: integer
+          title: Page
+          default: 1
+        limit:
+          type: integer
+          title: Limit
+          default: 100
+        found:
+          anyOf:
+          - type: integer
+          - type: string
+          - type: 'null'
+          title: Found
+      type: object
+      title: Meta
     Coordinates:
       properties:
         latitude:
@@ -645,29 +634,25 @@ components:
       - label
       - interval
       title: Period
-    ParameterBase:
+    HTTPValidationError:
       properties:
-        id:
-          type: integer
-          title: Id
-        name:
-          type: string
-          title: Name
-        units:
-          type: string
-          title: Units
-        displayName:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Displayname
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    FlagInfo:
+      properties:
+        hasFlags:
+          type: boolean
+          title: Hasflags
       type: object
       required:
-      - id
-      - name
-      - units
-      title: ParameterBase
-    HourlyDataResponse:
+      - hasFlags
+      title: FlagInfo
+    DailyDataResponse:
       properties:
         meta:
           allOf:
@@ -679,14 +664,14 @@ components:
             website: /
         results:
           items:
-            $ref: '#/components/schemas/HourlyData'
+            $ref: '#/components/schemas/DailyData'
           type: array
           title: Results
       type: object
       required:
       - results
-      title: HourlyDataResponse
-    HourlyData:
+      title: DailyDataResponse
+    DailyData:
       properties:
         value:
           anyOf:
@@ -717,7 +702,22 @@ components:
       required:
       - flagInfo
       - parameter
-      title: HourlyData
+      title: DailyData
+    DatetimeObject:
+      properties:
+        utc:
+          type: string
+          format: date-time
+          title: Utc
+        local:
+          type: string
+          format: date-time
+          title: Local
+      type: object
+      required:
+      - utc
+      - local
+      title: DatetimeObject
   securitySchemes:
     APIKeyHeader:
       type: apiKey
