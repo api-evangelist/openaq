@@ -1,4 +1,4 @@
-# OpenAQ (openaq)
+# OpenAQ
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,78 +66,161 @@
 
 OpenAQ is a non-profit organization that focuses on collecting and sharing air quality data from around the world. By providing access to this information through their open-source platform, OpenAQ aims to empower individuals, communities, and organizations to take action towards improving air quality and public health.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/openaq/refs/heads/main/apis.yml)
+**Areas:** Data · Data Quality
 
-## Scope
+## OpenAQ on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for OpenAQ is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/openaq/](https://apis.io/providers/openaq/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- Data
-- Data Quality
+- [OpenAQ Averages API](https://apis.io/apis/openaq/openaq-averages-api/) — The Averages API from OpenAQ — 1 operation(s) for averages.
+- [OpenAQ Cities API](https://apis.io/apis/openaq/openaq-cities-api/) — The Cities API from OpenAQ — 2 operation(s) for cities.
+- [OpenAQ Countries API](https://apis.io/apis/openaq/openaq-countries-api/) — The Countries API from OpenAQ — 6 operation(s) for countries.
+- [OpenAQ Daily API](https://apis.io/apis/openaq/openaq-daily-api/) — The Daily API from OpenAQ — 2 operation(s) for daily.
+- [OpenAQ Days API](https://apis.io/apis/openaq/openaq-days-api/) — The Days API from OpenAQ — 5 operation(s) for days.
+- [OpenAQ Flags API](https://apis.io/apis/openaq/openaq-flags-api/) — The Flags API from OpenAQ — 2 operation(s) for flags.
+- [OpenAQ Hourly API](https://apis.io/apis/openaq/openaq-hourly-api/) — The Hourly API from OpenAQ — 1 operation(s) for hourly.
+- [OpenAQ Hours API](https://apis.io/apis/openaq/openaq-hours-api/) — The Hours API from OpenAQ — 7 operation(s) for hours.
+- [OpenAQ Instruments API](https://apis.io/apis/openaq/openaq-instruments-api/) — The Instruments API from OpenAQ — 3 operation(s) for instruments.
+- [OpenAQ Latest API](https://apis.io/apis/openaq/openaq-latest-api/) — The Latest API from OpenAQ — 6 operation(s) for latest.
+- [OpenAQ Licenses API](https://apis.io/apis/openaq/openaq-licenses-api/) — The Licenses API from OpenAQ — 2 operation(s) for licenses.
+- [OpenAQ Locations API](https://apis.io/apis/openaq/openaq-locations-api/) — The Locations API from OpenAQ — 11 operation(s) for locations.
+- [OpenAQ Manufacturers API](https://apis.io/apis/openaq/openaq-manufacturers-api/) — The Manufacturers API from OpenAQ — 3 operation(s) for manufacturers.
+- [OpenAQ Measurements API](https://apis.io/apis/openaq/openaq-measurements-api/) — The Measurements API from OpenAQ — 5 operation(s) for measurements.
+- [OpenAQ Owners API](https://apis.io/apis/openaq/openaq-owners-api/) — The Owners API from OpenAQ — 2 operation(s) for owners.
+- [OpenAQ Parameters API](https://apis.io/apis/openaq/openaq-parameters-api/) — The Parameters API from OpenAQ — 5 operation(s) for parameters.
+- [OpenAQ Project API](https://apis.io/apis/openaq/openaq-project-api/) — The Project API from OpenAQ — 1 operation(s) for project.
+- [OpenAQ Projects API](https://apis.io/apis/openaq/openaq-projects-api/) — The Projects API from OpenAQ — 2 operation(s) for projects.
+- [OpenAQ Providers API](https://apis.io/apis/openaq/openaq-providers-api/) — The Providers API from OpenAQ — 2 operation(s) for providers.
+- [OpenAQ Readme API](https://apis.io/apis/openaq/openaq-readme-api/) — The Readme API from OpenAQ — 1 operation(s) for readme.
+- [OpenAQ Sensors API](https://apis.io/apis/openaq/openaq-sensors-api/) — The Sensors API from OpenAQ — 19 operation(s) for sensors.
+- [OpenAQ Sources API](https://apis.io/apis/openaq/openaq-sources-api/) — The Sources API from OpenAQ — 3 operation(s) for sources.
+- [OpenAQ Summary API](https://apis.io/apis/openaq/openaq-summary-api/) — The Summary API from OpenAQ — 1 operation(s) for summary.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-11
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### OpenAQ
+Which operations an agent can call, which act, and which need a human in the loop.
 
-OpenAQ is a nonprofit organization providing universal access to air quality data to empower a global community of changemakers to solve air inequality-the unequal access to clean air.
+- [Openaq Agentic Access](https://apis.io/agentic-access/openaq/openaq-agentic-access/)
 
-- **Human URL:** [https://openaq.org/](https://openaq.org/)
-- **Base URL:** `http://api.example.com`
+#### Collections (29)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Averages
-- Cities
-- Countries
-- Daily
-- Days
-- Flags
-- Hourly
-- Hours
-- Instruments
-- Latest
-- Licenses
-- Locations
-- Manufacturers
-- Measurements
-- Monthly
-- Owners
-- Parameters
-- Project
-- Projects
-- Providers
-- Readme
-- Sensor
-- Sensors
-- Slug
-- Sources
-- Summary
-- Yearly
-- Years
+- [OpenAQ](https://apis.io/collections/openaq/open-openaq/)
+- [OpenAQ Averages API](https://apis.io/collections/openaq/open-openaq-averages-api/)
+- [OpenAQ Averages Cities API](https://apis.io/collections/openaq/open-openaq-cities-api/)
+- [OpenAQ Averages Countries API](https://apis.io/collections/openaq/open-openaq-countries-api/)
+- [OpenAQ Averages Daily API](https://apis.io/collections/openaq/open-openaq-daily-api/)
+- [OpenAQ Averages Days API](https://apis.io/collections/openaq/open-openaq-days-api/)
+- [OpenAQ Averages Flags API](https://apis.io/collections/openaq/open-openaq-flags-api/)
+- [OpenAQ Averages Hourly API](https://apis.io/collections/openaq/open-openaq-hourly-api/)
+- [OpenAQ Averages Hours API](https://apis.io/collections/openaq/open-openaq-hours-api/)
+- [OpenAQ Averages Instruments API](https://apis.io/collections/openaq/open-openaq-instruments-api/)
+- [OpenAQ Averages Latest API](https://apis.io/collections/openaq/open-openaq-latest-api/)
+- [OpenAQ Averages Licenses API](https://apis.io/collections/openaq/open-openaq-licenses-api/)
+- [OpenAQ Averages Locations API](https://apis.io/collections/openaq/open-openaq-locations-api/)
+- [OpenAQ Averages Manufacturers API](https://apis.io/collections/openaq/open-openaq-manufacturers-api/)
+- [OpenAQ Averages Measurements API](https://apis.io/collections/openaq/open-openaq-measurements-api/)
+- [OpenAQ Averages Monthly API](https://apis.io/collections/openaq/open-openaq-monthly-api/)
+- [OpenAQ Averages Owners API](https://apis.io/collections/openaq/open-openaq-owners-api/)
+- [OpenAQ Averages Parameters API](https://apis.io/collections/openaq/open-openaq-parameters-api/)
+- [OpenAQ Averages Project API](https://apis.io/collections/openaq/open-openaq-project-api/)
+- [OpenAQ Averages Projects API](https://apis.io/collections/openaq/open-openaq-projects-api/)
+- [OpenAQ Averages Providers API](https://apis.io/collections/openaq/open-openaq-providers-api/)
+- [OpenAQ Averages Readme API](https://apis.io/collections/openaq/open-openaq-readme-api/)
+- [OpenAQ Averages Sensor API](https://apis.io/collections/openaq/open-openaq-sensor-api/)
+- [OpenAQ Averages Sensors API](https://apis.io/collections/openaq/open-openaq-sensors-api/)
+- [OpenAQ Averages Slug API](https://apis.io/collections/openaq/open-openaq-slug-api/)
+- …and 4 more published on APIs.io
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://docs.openaq.org/)
-- [OpenAPI](properties/openaq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/openaq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/openaq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Openaq Authentication](https://apis.io/security/openaq/openaq-authentication/)
+- [Openaq Domain Security](https://apis.io/security/openaq/openaq-domain-security/)
+- [Openaq Vulnerability Disclosure](https://apis.io/security/openaq/openaq-vulnerability-disclosure/)
 
-- [LinkedIn](https://www.linkedin.com/company/openaq)
-- [Portal](https://openaq.org/developers/platform-overview/)
-- [GitHub Organization](https://github.com/openaq)
-- [Integrations](https://openaq.org/partners/)
+#### Plans and pricing (1)
 
-## Maintainers
+Published plans, tiers and prices.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Openaq Plans Pricing](https://apis.io/plans/openaq/openaq-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Openaq Rate Limits](https://apis.io/rate-limits/openaq/openaq-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Openaq Finops](https://apis.io/finops/openaq/openaq-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://openaq.org/)
+- [GitHub](https://github.com/openaq)
+
+## API Evangelist rating
+
+**Kin Score 26.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 45.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 27.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/openaq/](https://apis.io/providers/openaq/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OpenAQ: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/openaq/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
